@@ -26,6 +26,11 @@ true if process.env.LOG_LEVEL is set to the namesake log level, or one that is m
 
     if (logGtEqlVerbose) console.log('Display some mostly unneccessary info if LOG_LEVEL is "silly" or "verbose"');
 
+## isSilly
+true if process.env.LOG_LEVEL is set to 'silly'
+
+## isVerbose
+true if process.env.LOG_LEVEL is set to 'verbose'
+
 ## isTestMode
 Is true if process.env.TEST_MODE was set to true.
-

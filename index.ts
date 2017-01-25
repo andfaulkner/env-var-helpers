@@ -35,6 +35,9 @@ export const logGtEqlError = (logGtEqlWarn || env.LOG_LEVEL === 'error');
 export const logGtEqlWTF = (logGtEqlError || env.LOG_LEVEL === 'wtf');
 export const logGtEqlWtf = logGtEqlWTF;
 
+export const isVerbose = logGtEqlVerbose;
+export const isSilly = logGtEqlSilly;
+
 export const isIeCompatMode = (env.IE_COMPAT);
 export const isIECompatMode = isIeCompatMode;
 
