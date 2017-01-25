@@ -1,7 +1,21 @@
-/**************************************** TYPE DEFINITIONS ****************************************/
-export interface INodeModuleBoilerplate {
-    nodeModuleBoilerplatePlaceholder: string;
-    nodeModuleBoilerplatePlaceholderFn: (test: string) => never;
-}
-declare const nodeModuleBoilerplateExport: INodeModuleBoilerplate;
-export { nodeModuleBoilerplateExport };
+export declare const env: {
+    NODE_ENV: any;
+    LOG_LEVEL: any;
+    IE_COMPAT: boolean;
+    TEST_MODE: boolean;
+};
+export declare const isDevelopment: boolean;
+export declare const isDev: boolean;
+export declare const isProduction: boolean;
+export declare const isProd: boolean;
+export declare const doLogSilly: boolean;
+export declare const doLogVerbose: boolean;
+export declare const doLogDebug: boolean;
+export declare const doLogInfo: boolean;
+export declare const doLogWarn: boolean;
+export declare const doLogError: boolean;
+export declare const doLogWTF: boolean;
+export declare const doLogWtf: boolean;
+export declare const isIeCompatMode: boolean;
+export declare const isIECompatMode: boolean;
+export declare const isTestMode: boolean;

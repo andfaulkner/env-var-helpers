@@ -1,7 +1,7 @@
 {
-  "name": "node-typescript-module-boilerplate",
-  "version": "1.0.0",
-  "description": "/***** TODO Stuff and things ******/",
+  "name": "env-var-helpers",
+  "version": "1.0.1",
+  "description": "Grab quick info from common environment variables (NODE_ENV, LOG_LEVEL, etc.). Convenience methods.", 
   "main": "lib/index.js",
   "typings": "lib/index",
   "files": [
@@ -12,23 +12,38 @@
     "compile-ts:watch": "./node_modules/typescript/bin/tsc -p ./ --watch",
     "test": "mocha test/",
     "boilerplate-check": "./script/ensure-fully-implemented.rb",
+    "start": "npm run test",
+    "test": "npm run compile-ts; ./test/test-runner.sh",
     "test:watch": "chokidar ./lib/** ./config/** ./test/** --initial -c \"mocha test/\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andfaulkner/node-typescript-module-boilerplate.git"
+    "url": "git+https://github.com/andfaulkner/node-env-var-helpers.git"
   },
   "keywords": [
-    "/**** TODO ADD KEYWORDS ****/"
+    "environment",
+    "environment-variables",
+    "config",
+    "variables",
+    "configuration",
+    "configuration-management",
+    "project-config",
+    "project-configuration",
+    "configuration",
+    "environment-config",
+    "env-config",
+    "env-configuration",
+    "environment-configuration",
+    "NODE_ENV",
+    "LOG_LEVEL"
   ],
   "author": "Andrew Faulkner <andfaulkner@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andfaulkner/node-typescript-module-boilerplate/issues"
+    "url": "https://github.com/andfaulkner/node-env-var-helpers/issues"
   },
-  "homepage": "https://github.com/andfaulkner/node-typescript-module-boilerplate#readme",
+  "homepage": "https://github.com/andfaulkner/node-env-var-helpers#readme",
   "dependencies": {
-    "colors": "^1.1.2",
     "detect-node": "^2.0.3",
     "string.prototype.padend": "^3.0.0"
   },

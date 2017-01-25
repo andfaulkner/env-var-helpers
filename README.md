@@ -1,35 +1,31 @@
-# module boilerplate
+# Environment variable helpers
 
-*   baseline for new standalone npm module projects
-
-----
-## Usage
-
-    // example of code used in the README file
-    console.log('some __module_boilerplate_usage__ example');
+*   set of convenience functions to extract quick info from process.env with little fuss
+*   handles true and "true" identically
+*   works cross-environment and platform - Typescript, Node, Babel, Webpack, standard browser JS are all cool with it 
 
 ----
-### Third-level heading
-A regular paragraph, no bullet. Code below:
+## isDev
+    import { isDev } from 'env-var-helpers';
 
-    // Another code example
+    if (isDev) {
+        // run this if NODE_ENV is 'development'
+    }
 
-## API
+## isProd
+    import { isProd } from 'env-var-helpers';
 
-### someFunctionInModuleBoilerplate
-(varName: typeEg_string): returnTypeEg_number
+    if (isProd) {
+        // run this if NODE_ENV is 'production'
+    }
 
-*   varName: description
+## logGtEqlSilly, logGtEqlVerbose, logGtEqlDebug, logGtEqlInfo, logGtEqlWarn, logGtEqlError, logGtEqlWTF
+true if process.env.LOG_LEVEL is set to the namesake log level, or one that is more verbose.
 
-Examples:
+    import { logGtEqlVerbose } from 'env-var-helpers';
 
-    someFunctionInModuleBoilerplate('hello');
-    // => hello output
+    if (logGtEqlVerbose) console.log('Display some mostly unneccessary info if LOG_LEVEL is "silly" or "verbose"');
 
+## isTestMode
+Is true if process.env.TEST_MODE was set to true.
 
-### anotherModuleBoilerplateFunction
-(anotherVarName: string) => next
-
-*   anotherVarName: description of argument
-*   next: (err: Error, filename: string): string
-    *   example of how a callback would be described
