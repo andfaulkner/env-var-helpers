@@ -32,10 +32,16 @@ true if process.env.LOG_LEVEL is set to the namesake log level, or one that is m
 true if process.env.LOG_LEVEL is set to 'silly'
 
 ## isVerbose
-true if process.env.LOG_LEVEL is set to 'verbose'
+true if process.env.LOG_LEVEL is set to 'verbose' or 'silly'.
+
+## isDebug
+true if process.env.LOG_LEVEL is set to 'verbose', 'silly', or 'debug'.
 
 ## isTestMode
 Is true if process.env.TEST_MODE was set to true.
+
+## isIeCompatMode
+Is true if process.env.IE_COMPAT was set to true.
 
 Environment variables handled
 =============================

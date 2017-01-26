@@ -7,10 +7,10 @@
   "files": [
     "lib/"
   ],
+  "test": "npm run test",
   "scripts": {
     "compile-ts": "./node_modules/typescript/bin/tsc -p ./",
     "compile-ts:watch": "./node_modules/typescript/bin/tsc -p ./ --watch",
-    "test": "mocha test/",
     "boilerplate-check": "./script/ensure-fully-implemented.rb",
     "start": "npm run test",
     "test": "npm run compile-ts; ./test/test-runner.sh",

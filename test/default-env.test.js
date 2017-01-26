@@ -16,7 +16,7 @@ const envVarHelpers = require('../lib/index');
 const { isDev, isDevelopment, isProd, isProduction,
         logGtEqlSilly, logGtEqlVerbose, logGtEqlDebug, logGtEqlInfo, logGtEqlWarn, logGtEqlError,
         logGtEqlWtf, logGtEqlWTF,
-        isVerbose, isSilly,
+        isVerbose, isSilly, isDebug,
         isIECompatMode, isIeCompatMode
 } = envVarHelpers;
 
@@ -129,6 +129,18 @@ describe('isIECompatMode', function() {
     });
 });
 
+describe('isSilly', function() {
+    it('exists', function() {
+        expect(isSilly).to.exist;
+    });
+    it('is false by default', function() {
+        expect(isSilly).to.be.false;
+    });
+    it('is alias of logGtEqlSilly', function() {
+        expect(isSilly).to.eql(logGtEqlSilly);
+    });
+});
+
 describe('isVerbose', function() {
     it('exists', function() {
         expect(isVerbose).to.exist;
@@ -141,14 +153,14 @@ describe('isVerbose', function() {
     });
 });
 
-describe('isSilly', function() {
+describe('isDebug', function() {
     it('exists', function() {
-        expect(isSilly).to.exist;
+        expect(isDebug).to.exist;
     });
     it('is false by default', function() {
-        expect(isSilly).to.be.false;
+        expect(isDebug).to.be.false;
     });
-    it('is alias of logGtEqlSilly', function() {
-        expect(isSilly).to.eql(logGtEqlSilly);
+    it('is alias of logGtEqlDebug', function() {
+        expect(isDebug).to.eql(logGtEqlDebug);
     });
 });
