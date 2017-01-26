@@ -21,4 +21,6 @@ export declare const isVerbose: boolean;
 export declare const isDebug: boolean;
 export declare const isIeCompatMode: boolean;
 export declare const isIECompatMode: boolean;
+export declare const isIECompat: boolean;
+export declare const isIeCompat: boolean;
 export declare const isTestMode: boolean;
