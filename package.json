@@ -1,6 +1,6 @@
 {
   "name": "env-var-helpers",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Grab quick info from common environment variables (NODE_ENV, LOG_LEVEL, etc.). Convenience methods.", 
   "main": "lib/index.js",
   "typings": "lib/index",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andfaulkner/node-env-var-helpers.git"
+    "url": "git+https://github.com/andfaulkner/env-var-helpers.git"
   },
   "keywords": [
     "environment",
@@ -40,9 +40,9 @@
   "author": "Andrew Faulkner <andfaulkner@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andfaulkner/node-env-var-helpers/issues"
+    "url": "https://github.com/andfaulkner/env-var-helpers/issues"
   },
-  "homepage": "https://github.com/andfaulkner/node-env-var-helpers#readme",
+  "homepage": "https://github.com/andfaulkner/env-var-helpers#readme",
   "dependencies": {
     "detect-node": "^2.0.3",
     "string.prototype.padend": "^3.0.0"
