@@ -3,6 +3,7 @@ Environment variable helpers
 
 *   set of convenience functions to extract quick info from process.env with little fuss
 *   handles true and "true" identically
+*   case-insensitive environment variable value detections (NODE_ENV=development, NODE_ENV=Development, and NODE_ENV=DEVELOPMENT are treated identically)
 *   works cross-environment and platform - Typescript, Node, Babel, Webpack, standard browser JS are all cool with it 
 
 ----
