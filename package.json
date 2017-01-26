@@ -1,6 +1,6 @@
 {
   "name": "env-var-helpers",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Grab quick info from common environment variables (NODE_ENV, LOG_LEVEL, etc.). Convenience methods.", 
   "main": "lib/index.js",
   "typings": "lib/index",

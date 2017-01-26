@@ -16,6 +16,7 @@ const envVarHelpers = require('../lib/index');
 const { isDev, isDevelopment, isProd, isProduction,
         logGtEqlSilly, logGtEqlVerbose, logGtEqlDebug, logGtEqlInfo, logGtEqlWarn, logGtEqlError,
         logGtEqlWtf, logGtEqlWTF,
+        isVerbose, isSilly,
         isIECompatMode, isIeCompatMode
 } = envVarHelpers;
 
@@ -125,5 +126,29 @@ describe('isIECompatMode', function() {
     });
     it('is alias of isIeCompatMode', function() {
         expect(isIECompatMode).to.eql(isIeCompatMode);
+    });
+});
+
+describe('isVerbose', function() {
+    it('exists', function() {
+        expect(isVerbose).to.exist;
+    });
+    it('is false by default', function() {
+        expect(isVerbose).to.be.false;
+    });
+    it('is alias of logGtEqlVerbose', function() {
+        expect(isVerbose).to.eql(logGtEqlVerbose);
+    });
+});
+
+describe('isSilly', function() {
+    it('exists', function() {
+        expect(isSilly).to.exist;
+    });
+    it('is false by default', function() {
+        expect(isSilly).to.be.false;
+    });
+    it('is alias of logGtEqlSilly', function() {
+        expect(isSilly).to.eql(logGtEqlSilly);
     });
 });
