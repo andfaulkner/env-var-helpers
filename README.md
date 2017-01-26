@@ -40,7 +40,7 @@ true if process.env.LOG_LEVEL is set to 'verbose', 'silly', or 'debug'.
 ## isTestMode
 Is true if process.env.TEST_MODE was set to true.
 
-## isIeCompatMode
+## isIeCompatMode, isIeCompat, isIECompatMode, isIeCompatMode
 Is true if process.env.IE_COMPAT was set to true.
 
 Environment variables handled

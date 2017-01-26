@@ -41,6 +41,8 @@ export const isDebug = logGtEqlDebug;
 
 export const isIeCompatMode = (env.IE_COMPAT);
 export const isIECompatMode = isIeCompatMode;
+export const isIECompat = isIeCompatMode;
+export const isIeCompat = isIeCompatMode;
 
 export const isTestMode = (env.TEST_MODE);
 
