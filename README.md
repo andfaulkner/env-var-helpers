@@ -1,4 +1,5 @@
-# Environment variable helpers
+Environment variable helpers
+============================
 
 *   set of convenience functions to extract quick info from process.env with little fuss
 *   handles true and "true" identically
@@ -34,3 +35,40 @@ true if process.env.LOG_LEVEL is set to 'verbose'
 
 ## isTestMode
 Is true if process.env.TEST_MODE was set to true.
+
+Environment variables handled
+=============================
+
+Environment options / variables
+-------------------------------
+### NODE_ENV
+Values:
+*   development (DEFAULT)
+*   production
+
+### IE_COMPAT
+Turn on to compile app to run in Internet Explorer.
+Automatically set to true (if env-var-helpers imported), if NODE_ENV=production.
+
+Values:
+*   true
+*   false (DEFAULT)
+
+### LOG_LEVEL
+Values:
+*   silly
+*   verbose
+*   debug
+*   info
+*   warn
+*   error
+*   wtf
+
+### TEST_MODE
+If unit tests are currently being run, set to true
+Values:
+*   true
+*   false (DEFAULT)
+
+# Why?
+*   I hate duplicating functions between projects. These come up again and again.
