@@ -1,6 +1,6 @@
 {
   "name": "env-var-helpers",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Grab quick info from common environment variables (NODE_ENV, LOG_LEVEL, etc.). Convenience methods.",
   "main": "lib/index.js",
   "typings": "lib/index",
@@ -55,7 +55,6 @@
     "colors": "^1.1.2",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-promise": "^3.4.0",
-    "lodash": "^4.17.2",
     "mocha": "^3.2.0",
     "sinon": "^1.17.6",
     "test-console": "^1.0.0",
