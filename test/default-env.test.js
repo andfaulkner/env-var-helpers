@@ -16,8 +16,9 @@ const envVarHelpers = require('../lib/index');
 const { isDev, isDevelopment, isProd, isProduction,
         logGtEqlSilly, logGtEqlVerbose, logGtEqlDebug, logGtEqlInfo, logGtEqlWarn, logGtEqlError,
         logGtEqlWtf, logGtEqlWTF,
-        isVerbose, isSilly, isDebug,
-        isIECompatMode, isIeCompatMode
+        isIECompatMode, isIeCompatMode,
+        isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWtf, isWTF,
+        isLogSilly, isLogVerbose, isLogDebug, isLogInfo, isLogWarn, isLogError, isLogWtf, isLogWTF
 } = envVarHelpers;
 
 console.log(`process.env.LOG_LEVEL:`, process.env.LOG_LEVEL);
@@ -129,38 +130,113 @@ describe('isIECompatMode', function() {
     });
 });
 
-describe('isSilly', function() {
+describe('isSilly + other aliases', function() {
     it('exists', function() {
         expect(isSilly).to.exist;
+        expect(isLogSilly).to.exist;
     });
     it('is false by default', function() {
         expect(isSilly).to.be.false;
+        expect(isLogSilly).to.be.false;
     });
     it('is alias of logGtEqlSilly', function() {
         expect(isSilly).to.eql(logGtEqlSilly);
+        expect(isLogSilly).to.eql(logGtEqlSilly);
     });
 });
 
-describe('isVerbose', function() {
+describe('isVerbose + other aliases', function() {
     it('exists', function() {
         expect(isVerbose).to.exist;
+        expect(isLogVerbose).to.exist;
     });
     it('is false by default', function() {
         expect(isVerbose).to.be.false;
+        expect(isLogVerbose).to.be.false;
     });
     it('is alias of logGtEqlVerbose', function() {
         expect(isVerbose).to.eql(logGtEqlVerbose);
+        expect(isLogVerbose).to.eql(logGtEqlVerbose);
     });
 });
 
 describe('isDebug', function() {
     it('exists', function() {
         expect(isDebug).to.exist;
+        expect(isLogDebug).to.exist;
     });
     it('is false by default', function() {
         expect(isDebug).to.be.false;
+        expect(isLogDebug).to.be.false;
     });
     it('is alias of logGtEqlDebug', function() {
         expect(isDebug).to.eql(logGtEqlDebug);
+        expect(isLogDebug).to.eql(logGtEqlDebug);
+    });
+});
+
+describe('isInfo', function() {
+    it('exists', function() {
+        expect(isInfo).to.exist;
+        expect(isLogInfo).to.exist;
+    });
+    it('is true by default', function() {
+        expect(isInfo).to.be.true;
+        expect(isLogInfo).to.be.true;
+    });
+    it('is alias of logGtEqlInfo', function() {
+        expect(isInfo).to.eql(logGtEqlInfo);
+        expect(isLogInfo).to.eql(logGtEqlInfo);
+    });
+});
+
+describe('isWarn', function() {
+    it('exists', function() {
+        expect(isWarn).to.exist;
+        expect(isLogWarn).to.exist;
+    });
+    it('is true by default', function() {
+        expect(isWarn).to.be.true;
+        expect(isLogWarn).to.be.true;
+    });
+    it('is alias of logGtEqlWarn', function() {
+        expect(isWarn).to.eql(logGtEqlWarn);
+        expect(isLogWarn).to.eql(logGtEqlWarn);
+    });
+});
+
+describe('isError', function() {
+    it('exists', function() {
+        expect(isError).to.exist;
+        expect(isLogError).to.exist;
+    });
+    it('is true by default', function() {
+        expect(isError).to.be.true;
+        expect(isLogError).to.be.true;
+    });
+    it('is alias of logGtEqlError', function() {
+        expect(isError).to.eql(logGtEqlError);
+        expect(isLogError).to.eql(logGtEqlError);
+    });
+});
+
+describe('isWTF', function() {
+    it('exists', function() {
+        expect(isWTF).to.exist;
+        expect(isWtf).to.exist;
+        expect(isLogWTF).to.exist;
+        expect(isLogWtf).to.exist;
+    });
+    it('is true by default', function() {
+        expect(isWTF).to.be.true;
+        expect(isWtf).to.be.true;
+        expect(isLogWTF).to.be.true;
+        expect(isLogWtf).to.be.true;
+    });
+    it('is alias of logGtEqlWTF', function() {
+        expect(isWTF).to.eql(logGtEqlWTF);
+        expect(isWtf).to.eql(logGtEqlWTF);
+        expect(isLogWTF).to.eql(logGtEqlWTF);
+        expect(isLogWtf).to.eql(logGtEqlWTF);
     });
 });

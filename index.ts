@@ -49,6 +49,20 @@ export const logGtEqlWtf = logGtEqlWTF;
 export const isSilly = logGtEqlSilly;
 export const isVerbose = logGtEqlVerbose;
 export const isDebug = logGtEqlDebug;
+export const isInfo = logGtEqlInfo;
+export const isWarn = logGtEqlWarn;
+export const isError = logGtEqlError;
+export const isWTF = logGtEqlWTF;
+export const isWtf = logGtEqlWtf;
+
+export const isLogSilly = logGtEqlSilly;
+export const isLogVerbose = logGtEqlVerbose;
+export const isLogDebug = logGtEqlDebug;
+export const isLogInfo = logGtEqlInfo;
+export const isLogWarn = logGtEqlWarn;
+export const isLogError = logGtEqlError;
+export const isLogWTF = logGtEqlWTF;
+export const isLogWtf = logGtEqlWtf;
 
 export const isIeCompatMode = (env.IE_COMPAT);
 export const isIECompatMode = isIeCompatMode;
