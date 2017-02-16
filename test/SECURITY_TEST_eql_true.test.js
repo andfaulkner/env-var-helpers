@@ -19,21 +19,9 @@ const envVarHelpers = require('../lib/index');
 const { isDev, isProd, prodOrSecurityTest } = envVarHelpers;
 
 /********************************************* TESTS **********************************************/
-describe('NODE_ENV=production', function() {
-    describe('isDev', function() {
-        it('is false when NODE_ENV equals production', function() {
-            expect(isDev).to.be.false;
-        });
-    });
-
-    describe('isProd', function() {
-        it('is true when NODE_ENV equals production', function() {
-            expect(isProd).to.be.true;
-        });
-    });
-
+describe('SECURITY_TEST=true', function() {
     describe('prodOrSecurityTest', function() {
-        it('is true if NODE_ENV equals production', function() {
+        it('is true if SECURITY_TEST equals true (when NODE_ENV is undefined', function() {
             expect(prodOrSecurityTest).to.be.true;
         });
     });

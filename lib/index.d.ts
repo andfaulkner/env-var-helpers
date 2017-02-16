@@ -1,3 +1,4 @@
+/******************************* COMMON ENVIRONMENT VALS COLLECTION *******************************/
 export declare const env: {
     NODE_ENV: any;
     LOG_LEVEL: any;
@@ -8,6 +9,8 @@ export declare const isDevelopment: boolean;
 export declare const isDev: boolean;
 export declare const isProduction: boolean;
 export declare const isProd: boolean;
+export declare const prodOrSecurityTest: boolean;
+/******************************************* LOG LEVEL ********************************************/
 export declare const logGtEqlSilly: boolean;
 export declare const logGtEqlVerbose: boolean;
 export declare const logGtEqlDebug: boolean;
@@ -16,6 +19,7 @@ export declare const logGtEqlWarn: boolean;
 export declare const logGtEqlError: boolean;
 export declare const logGtEqlWTF: boolean;
 export declare const logGtEqlWtf: boolean;
+/******************************************** ALIASES *********************************************/
 export declare const isSilly: boolean;
 export declare const isVerbose: boolean;
 export declare const isDebug: boolean;

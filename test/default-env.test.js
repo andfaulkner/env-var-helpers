@@ -18,7 +18,8 @@ const { isDev, isDevelopment, isProd, isProduction,
         logGtEqlWtf, logGtEqlWTF,
         isIECompatMode, isIeCompatMode,
         isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWtf, isWTF,
-        isLogSilly, isLogVerbose, isLogDebug, isLogInfo, isLogWarn, isLogError, isLogWtf, isLogWTF
+        isLogSilly, isLogVerbose, isLogDebug, isLogInfo, isLogWarn, isLogError, isLogWtf, isLogWTF,
+        prodOrSecurityTest
 } = envVarHelpers;
 
 console.log(`process.env.LOG_LEVEL:`, process.env.LOG_LEVEL);
@@ -238,5 +239,18 @@ describe('isWTF', function() {
         expect(isWtf).to.eql(logGtEqlWTF);
         expect(isLogWTF).to.eql(logGtEqlWTF);
         expect(isLogWtf).to.eql(logGtEqlWTF);
+    });
+});
+
+describe('prodOrSecurityTest', function() {
+    it('exists', function() {
+        expect(prodOrSecurityTest).to.exist;
+    });
+    it('is false by default', function() {
+        console.log("process.env.NODE_ENV:");
+        console.log(process.env.NODE_ENV);
+        console.log("process.env.SECURITY_TEST:");
+        console.log(process.env.SECURITY_TEST);
+        expect(prodOrSecurityTest).to.be.false;
     });
 });

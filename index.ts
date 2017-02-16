@@ -16,6 +16,7 @@ declare const process: any;
 //     process.env['TEST_MODE'] = process.env.TEST_MODE || 'info';
 // }
 
+/******************************* COMMON ENVIRONMENT VALS COLLECTION *******************************/
 export const env = {
     NODE_ENV:  ((process.env.NODE_ENV)
                    ? process.env.NODE_ENV.toString().toLowerCase()
@@ -37,6 +38,15 @@ export const isDev = isDevelopment;
 export const isProduction = (env.NODE_ENV === 'production' || env.NODE_ENV === 'prod');
 export const isProd = isProduction;
 
+// True if NODE_ENV is production, TEST_SECURITY is true, or SECURITY_TEST is true
+export const prodOrSecurityTest = isProduction
+                                  || process.env.TEST_SECURITY === true
+                                  || process.env.TEST_SECURITY === 'true'
+                                  || process.env.SECURITY_TEST === true
+                                  || process.env.SECURITY_TEST === 'true';
+
+
+/******************************************* LOG LEVEL ********************************************/
 export const logGtEqlSilly = (env.LOG_LEVEL === 'silly');
 export const logGtEqlVerbose = (logGtEqlSilly || env.LOG_LEVEL === 'verbose');
 export const logGtEqlDebug = (logGtEqlVerbose || env.LOG_LEVEL === 'debug');
@@ -46,6 +56,7 @@ export const logGtEqlError = (logGtEqlWarn || env.LOG_LEVEL === 'error');
 export const logGtEqlWTF = (logGtEqlError || env.LOG_LEVEL === 'wtf');
 export const logGtEqlWtf = logGtEqlWTF;
 
+/******************************************** ALIASES *********************************************/
 export const isSilly = logGtEqlSilly;
 export const isVerbose = logGtEqlVerbose;
 export const isDebug = logGtEqlDebug;
