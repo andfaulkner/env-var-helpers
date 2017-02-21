@@ -1,67 +1,67 @@
 {
-  "name": "env-var-helpers",
-  "version": "2.2.0",
-  "description": "Grab quick info from common environment variables (NODE_ENV, LOG_LEVEL, etc.). Convenience methods.",
-  "main": "lib/index.js",
-  "typings": "lib/index",
-  "files": [
-    "lib/"
-  ],
-  "test": "npm run test",
-  "scripts": {
-    "compile-ts": "./node_modules/typescript/bin/tsc -p ./",
-    "compile-ts:watch": "./node_modules/typescript/bin/tsc -p ./ --watch",
-    "boilerplate-check": "./script/ensure-fully-implemented.rb",
-    "start": "npm run test",
-    "test": "npm run compile-ts; ./test/test-runner.sh",
-    "test:watch": "chokidar ./lib/** ./config/** ./test/** --initial -c \"mocha test/\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/andfaulkner/env-var-helpers.git"
-  },
-  "keywords": [
-    "environment",
-    "environment-variables",
-    "config",
-    "variables",
-    "configuration",
-    "configuration-management",
-    "project-config",
-    "project-configuration",
-    "configuration",
-    "environment-config",
-    "env-config",
-    "env-configuration",
-    "environment-configuration",
-    "NODE_ENV",
-    "LOG_LEVEL"
-  ],
-  "author": "Andrew Faulkner <andfaulkner@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/andfaulkner/env-var-helpers/issues"
-  },
-  "homepage": "https://github.com/andfaulkner/env-var-helpers#readme",
-  "dependencies": {
-    "detect-node": "^2.0.3",
-    "mad-logs": "^5.3.0",
-    "string.prototype.padend": "^3.0.0"
-  },
-  "devDependencies": {
-    "@types/lodash": "^4.14.43",
-    "@types/node": "^6.0.52",
-    "chai": "^3.5.0",
-    "colors": "^1.1.2",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-promise": "^3.4.0",
-    "lodash": "^4.17.4",
-    "mocha": "^3.2.0",
-    "sinon": "^1.17.6",
-    "test-console": "^1.0.0",
-    "typescript": "2.1.4"
-  },
-  "peerDependencies": {
-    "lodash": "^4.x"
-  }
+    "name": "env-var-helpers",
+    "version": "2.2.2",
+    "description": "Grab quick info from common environment variables (NODE_ENV, LOG_LEVEL, etc.). Convenience methods.",
+    "main": "lib/index.js",
+    "typings": "lib/index",
+    "files": [
+        "lib/"
+    ],
+    "test": "npm run test",
+    "scripts": {
+        "compile-ts": "./node_modules/typescript/bin/tsc -p ./",
+        "compile-ts:watch": "./node_modules/typescript/bin/tsc -p ./ --watch",
+        "boilerplate-check": "./script/ensure-fully-implemented.rb",
+        "start": "npm run test",
+        "test": "npm run compile-ts; ./test/test-runner.sh",
+        "test:watch": "chokidar ./lib/** ./config/** ./test/** --initial -c \"mocha test/\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/andfaulkner/env-var-helpers.git#v2.2.2"
+    },
+    "keywords": [
+        "environment",
+        "environment-variables",
+        "config",
+        "variables",
+        "configuration",
+        "configuration-management",
+        "project-config",
+        "project-configuration",
+        "configuration",
+        "environment-config",
+        "env-config",
+        "env-configuration",
+        "environment-configuration",
+        "NODE_ENV",
+        "LOG_LEVEL"
+    ],
+    "author": "Andrew Faulkner <andfaulkner@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/andfaulkner/env-var-helpers/issues"
+    },
+    "homepage": "https://github.com/andfaulkner/env-var-helpers#readme",
+    "dependencies": {
+        "detect-node": "^2.0.3",
+        "mad-logs": "^5.3.0",
+        "string.prototype.padend": "^3.0.0"
+    },
+    "devDependencies": {
+        "@types/lodash": "^4.14.43",
+        "@types/node": "^6.0.52",
+        "chai": "^3.5.0",
+        "colors": "^1.1.2",
+        "eslint-plugin-import": "^2.2.0",
+        "eslint-plugin-promise": "^3.4.0",
+        "lodash": "^4.17.4",
+        "mocha": "^3.2.0",
+        "sinon": "^1.17.6",
+        "test-console": "^1.0.0",
+        "typescript": "2.1.4"
+    },
+    "peerDependencies": {
+        "lodash": "^4.x"
+    }
 }
