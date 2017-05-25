@@ -30,6 +30,13 @@ export const env = {
     TEST_MODE: ((process.env.TEST_MODE)
                    ? (process.env.TEST_MODE === true || process.env.TEST_MODE === 'true')
                    : false),
+    AVOID_WEB: ((process.env.AVOID_WEB)
+                   ? (process.env.AVOID_WEB === true || process.env.AVOID_WEB === 'true')
+                   : false),
+    WAS_RUN_THRU_MOCHA: ((process.env.LOADED_MOCHA_OPTS)
+                           ? (process.env.LOADED_MOCHA_OPTS === 'true'
+                             || process.env.LOADED_MOCHA_OPTS === true)
+                           : false),
 };
 
 export const isDevelopment = (env.NODE_ENV === 'development' || env.NODE_ENV === 'dev');
@@ -75,10 +82,22 @@ export const isLogError = logGtEqlError;
 export const isLogWTF = logGtEqlWTF;
 export const isLogWtf = logGtEqlWtf;
 
-export const isIeCompatMode = (env.IE_COMPAT);
+export const isIeCompatMode = env.IE_COMPAT;
 export const isIECompatMode = isIeCompatMode;
 export const isIECompat = isIeCompatMode;
 export const isIeCompat = isIeCompatMode;
 
-export const isTestMode = (env.TEST_MODE);
+export const isTestMode = env.TEST_MODE;
 
+// Check for env var requesting total avoidance of web; e.g. no CDNs (local bundles use instead)
+export const isAvoidWeb = env.AVOID_WEB;
+export const avoidWeb = env.AVOID_WEB;
+export const doAvoidWeb = env.AVOID_WEB;
+
+// Check if current script was run through Mocha (i.e. are we in a Mocha test?)
+export const wasRunViaMocha  = env.WAS_RUN_THRU_MOCHA;
+export const isMochaEnv      = env.WAS_RUN_THRU_MOCHA;
+export const runViaMocha     = env.WAS_RUN_THRU_MOCHA;
+export const runThruMocha    = env.WAS_RUN_THRU_MOCHA;
+export const wasRunThruMocha = env.WAS_RUN_THRU_MOCHA;
+export const loadedMochaOpts = env.WAS_RUN_THRU_MOCHA;

@@ -46,6 +46,16 @@ Is true if process.env.IE_COMPAT was set to true.
 ### prodOrSecurityTest
 Is true if NODE_ENV is production, TEST_SECURITY is true, or SECURITY_TEST is true
 
+### isAvoidWeb, avoidWeb, doAvoidWeb
+Is true if AVOID_WEB is true.
+This is an environment variable requesting total avoidance of internet usage in a build.
+*   e.g. no CDNs (usage of local bundles instead)
+
+### isMochaEnv, wasRunViaMocha, runViaMocha, runThruMocha, wasRunThruMocha, loadedMochaOpts
+Is true if LOADED_MOCHA_OPTS is 'true'.
+Should always be true if the current script was run through Mocha, and never true otherwise.
+
+
 Environment variables handled
 =============================
 
