@@ -101,3 +101,4 @@ export const runViaMocha     = env.WAS_RUN_THRU_MOCHA;
 export const runThruMocha    = env.WAS_RUN_THRU_MOCHA;
 export const wasRunThruMocha = env.WAS_RUN_THRU_MOCHA;
 export const loadedMochaOpts = env.WAS_RUN_THRU_MOCHA;
+export const isMocha         = env.WAS_RUN_THRU_MOCHA;

@@ -19,7 +19,9 @@ const { isDev, isDevelopment, isProd, isProduction,
         isIECompatMode, isIeCompatMode,
         isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWtf, isWTF,
         isLogSilly, isLogVerbose, isLogDebug, isLogInfo, isLogWarn, isLogError, isLogWtf, isLogWTF,
-        prodOrSecurityTest
+        prodOrSecurityTest, wasRunViaMocha, isMochaEnv, runViaMocha, runThruMocha, wasRunThruMocha,
+        loadedMochaOpts, isMocha,
+        isAvoidWeb, avoidWeb, doAvoidWeb
 } = envVarHelpers;
 
 console.log(`process.env.LOG_LEVEL:`, process.env.LOG_LEVEL);
@@ -252,5 +254,43 @@ describe('prodOrSecurityTest', function() {
         console.log("process.env.SECURITY_TEST:");
         console.log(process.env.SECURITY_TEST);
         expect(prodOrSecurityTest).to.be.false;
+    });
+});
+
+describe('wasRunViaMocha tests', function() {
+    it('exists', function () {
+        expect(wasRunViaMocha).to.exist;
+    });
+    it('has aliases isMochaEnv, runViaMocha, runThruMocha, wasRunThruMocha, isMocha', function () {
+        expect(wasRunThruMocha).to.exist;
+        expect(runThruMocha).to.exist;
+        expect(runViaMocha).to.exist;
+        expect(isMochaEnv).to.exist;
+        expect(wasRunViaMocha).to.exist;
+        expect(isMocha).to.exist;
+    });
+    it('is true (and all of its aliases are true) when run in a mocha script', function () {
+        expect(wasRunViaMocha).to.be.true;
+        expect(wasRunThruMocha).to.be.true;
+        expect(runThruMocha).to.be.true;
+        expect(runViaMocha).to.be.true;
+        expect(isMochaEnv).to.be.true;
+        expect(wasRunViaMocha).to.be.true;
+        expect(isMocha).to.be.true;
+    });
+});
+
+describe('isAvoidWeb tests', function() {
+    it('exists', function () {
+        expect(isAvoidWeb).to.exist;
+    });
+    it('has aliases avoidWeb, doAvoidWeb', function () {
+        expect(avoidWeb).to.exist;
+        expect(doAvoidWeb).to.exist;
+    });
+    it('is false by default (as are its aliases avoidWeb & doAvoidWeb)', function () {
+        expect(isAvoidWeb).to.be.false;
+        expect(avoidWeb).to.be.false;
+        expect(doAvoidWeb).to.be.false;
     });
 });
