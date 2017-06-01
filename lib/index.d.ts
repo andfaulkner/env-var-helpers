@@ -7,6 +7,7 @@ export declare const env: {
     AVOID_WEB: boolean;
     WAS_RUN_THRU_MOCHA: boolean;
 };
+/******************************************** NODE_ENV ********************************************/
 export declare const isDevelopment: boolean;
 export declare const isDev: boolean;
 export declare const isProduction: boolean;
@@ -38,14 +39,16 @@ export declare const isLogWarn: boolean;
 export declare const isLogError: boolean;
 export declare const isLogWTF: boolean;
 export declare const isLogWtf: boolean;
+/**************************************** IE COMPATIBILITY ****************************************/
 export declare const isIeCompatMode: boolean;
 export declare const isIECompatMode: boolean;
 export declare const isIECompat: boolean;
 export declare const isIeCompat: boolean;
-export declare const isTestMode: boolean;
 export declare const isAvoidWeb: boolean;
 export declare const avoidWeb: boolean;
 export declare const doAvoidWeb: boolean;
+/**************************************** TEST ENVIRONMENT ****************************************/
+export declare const isTestMode: boolean;
 export declare const wasRunViaMocha: boolean;
 export declare const isMochaEnv: boolean;
 export declare const runViaMocha: boolean;
@@ -53,3 +56,20 @@ export declare const runThruMocha: boolean;
 export declare const wasRunThruMocha: boolean;
 export declare const loadedMochaOpts: boolean;
 export declare const isMocha: boolean;
+/**************************** LOG LEVEL + TEST ENVIRONMENT SHORTHANDS *****************************/
+export declare const isVerboseMocha: boolean;
+export declare const isMochaVerbose: boolean;
+export declare const isVerboseTest: boolean;
+export declare const isTestVerbose: boolean;
+export declare const isVTest: boolean;
+export declare const isVMocha: boolean;
+export declare const isTestV: boolean;
+export declare const isMochaV: boolean;
+export declare const isDebugMocha: boolean;
+export declare const isMochaDebug: boolean;
+export declare const isDebugTest: boolean;
+export declare const isTestDebug: boolean;
+export declare const isSillyMocha: boolean;
+export declare const isMochaSilly: boolean;
+export declare const isSillyTest: boolean;
+export declare const isTestSilly: boolean;
