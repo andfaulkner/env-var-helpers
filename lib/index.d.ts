@@ -1,4 +1,3 @@
-/******************************* COMMON ENVIRONMENT VALS COLLECTION *******************************/
 export declare const env: {
     NODE_ENV: any;
     LOG_LEVEL: any;
