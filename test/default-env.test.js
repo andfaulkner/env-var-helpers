@@ -13,16 +13,31 @@ const { stderr, stdout } = require('test-console');
 
 /*********************************** IMPORT FILES TO BE TESTED ************************************/
 const envVarHelpers = require('../lib/index');
-const { isDev, isDevelopment, isProd, isProduction,
-        logGtEqlSilly, logGtEqlVerbose, logGtEqlDebug, logGtEqlInfo, logGtEqlWarn, logGtEqlError,
-        logGtEqlWtf, logGtEqlWTF,
-        isIECompatMode, isIeCompatMode,
-        isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWtf, isWTF,
-        isLogSilly, isLogVerbose, isLogDebug, isLogInfo, isLogWarn, isLogError, isLogWtf, isLogWTF,
-        prodOrSecurityTest, wasRunViaMocha, isMochaEnv, runViaMocha, runThruMocha, wasRunThruMocha,
-        loadedMochaOpts, isMocha,
-        isAvoidWeb, avoidWeb, doAvoidWeb
+const {
+        prodOrSecurityTest
 } = envVarHelpers;
+
+// IE_COMPAT exports
+const { isIECompatMode, isIeCompatMode, } = envVarHelpers;
+
+// LOG_LEVEL (long-form) property exports
+const { logGtEqlSilly, logGtEqlVerbose, logGtEqlDebug, logGtEqlInfo, logGtEqlWarn,
+        logGtEqlError, logGtEqlWtf, logGtEqlWTF, } = envVarHelpers;
+
+// LOG_LEVEL (short-form) property exports
+const { isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWtf, isWTF,
+        isLogSilly, isLogVerbose, isLogDebug, isLogInfo, isLogWarn, isLogError, isLogWtf,
+        isLogWTF } = envVarHelpers;
+
+// AVOID_WEB exports
+const { isAvoidWeb, avoidWeb, doAvoidWeb } = envVarHelpers;
+
+// Environment exports
+const { isDev, isDevelopment, isProd, isProduction } = envVarHelpers;
+
+// Mocha exports
+const { wasRunViaMocha, isMochaEnv, runViaMocha, runThruMocha, wasRunThruMocha,
+        runByMocha, wasRunByMocha, loadedMochaOpts, isMocha } = envVarHelpers;
 
 console.log(`process.env.LOG_LEVEL:`, process.env.LOG_LEVEL);
 console.log(`process.env.NODE_ENV:`, process.env.NODE_ENV);
@@ -302,36 +317,40 @@ describe('isAvoidWeb tests', function() {
         expect(avoidWeb).to.be.false;
         expect(doAvoidWeb).to.be.false;
     });
+
+    // TODO refactor - use an abstraction. Below tests were created with a quick & dirty macro.
+    describe('WAS_RUN_THRU_MOCHA value tests', function() {
+        valsExistAndAreTrue([
+            { name: 'isMocha',         value: isMocha         },
+            { name: 'isMochaEnv',      value: isMochaEnv      },
+            { name: 'runByMocha',      value: runByMocha      },
+            { name: 'runViaMocha',     value: runViaMocha     },
+            { name: 'runThruMocha',    value: runThruMocha    },
+            { name: 'wasRunByMocha',   value: wasRunByMocha   },
+            { name: 'wasRunViaMocha',  value: wasRunViaMocha  },
+            { name: 'wasRunThruMocha', value: wasRunThruMocha },
+            { name: 'loadedMochaOpts', value: loadedMochaOpts },
+        ]);
+    });
 });
 
+function propExists(prop) {
+    it('exists and gets exported', function() {
+        expect(prop).to.exist
+    });
+}
 
-describe('WAS_RUN_THRU_MOCHA value tests', function() {
-    it('has isMocha, & is true (since script was run via Mocha)', function () {
-        expect(isMocha).to.exist;
-        expect(isMocha).to.be.true;
+function propIsTrue(prop) {
+    it('is set to true (current process was launched by Mocha)', function() {
+        expect(prop).to.exist
     });
-    it('has isMochaEnv, & is true (since script was run via Mocha)', function() {
-        expect(isMochaEnv).to.exist;
-        expect(isMochaEnv).to.be.true;
+}
+
+function valsExistAndAreTrue(valObjArr) {
+    valObjArr.forEach(valObj => {
+        describe(valObj['name'], function() {
+            propExists(valObj['value']);
+            propIsTrue(valObj['value']);
+        });
     });
-    it('has runViaMocha, & is true (since script was run via Mocha)', function() {
-        expect(runViaMocha).to.exist;
-        expect(runViaMocha).to.be.true;
-    });
-    it('has runThruMocha, & is true (since script was run via Mocha)', function() {
-        expect(runThruMocha).to.exist;
-        expect(runThruMocha).to.be.true;
-    });
-    it('has wasRunThruMocha, & is true (since script was run via Mocha)', function() {
-        expect(wasRunThruMocha).to.exist;
-        expect(wasRunThruMocha).to.be.true;
-    });
-    it('has loadedMochaOpts, & is true (since script was run via Mocha)', function() {
-        expect(loadedMochaOpts).to.exist;
-        expect(loadedMochaOpts).to.be.true;
-    });
-    it('has isMocha, & is true (since script was run via Mocha)', function() {
-        expect(isMocha).to.exist;
-        expect(isMocha).to.be.true;
-    });
-});
+}
