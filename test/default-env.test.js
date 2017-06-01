@@ -13,9 +13,9 @@ const { stderr, stdout } = require('test-console');
 
 /*********************************** IMPORT FILES TO BE TESTED ************************************/
 const envVarHelpers = require('../lib/index');
-const {
-        prodOrSecurityTest
-} = envVarHelpers;
+
+// TEST_SECURITY / SECURITY_TEST exports
+const { prodOrSecurityTest } = envVarHelpers;
 
 // IE_COMPAT exports
 const { isIECompatMode, isIeCompatMode, } = envVarHelpers;
