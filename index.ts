@@ -92,7 +92,7 @@ export const doAvoidWeb = env.AVOID_WEB;
 
 /**************************************** TEST ENVIRONMENT ****************************************/
 // For cases where TEST_MODE was run explicitly
-export const isTestMode = env.TEST_MODE;
+export const isTestMode = env.TEST_MODE && (env.TEST_MODE === true || env.TEST_MODE === 'true');
 
 // Check if current script was run via Mocha
 export const wasRunViaMocha  = env.WAS_RUN_THRU_MOCHA;
