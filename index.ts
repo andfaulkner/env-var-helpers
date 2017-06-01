@@ -104,25 +104,25 @@ export const loadedMochaOpts = env.WAS_RUN_THRU_MOCHA;
 export const isMocha         = env.WAS_RUN_THRU_MOCHA;
 
 /**************************** LOG LEVEL + TEST ENVIRONMENT SHORTHANDS *****************************/
-// More for verbose + mocha because it's such a common pattern.
+// More are defined for verbose + mocha because it's a much more common pattern.
 export const isVerboseMocha = env.WAS_RUN_THRU_MOCHA && isVerbose;
-export const isMochaVerbose = env.WAS_RUN_THRU_MOCHA && isVerbose;
 export const isVerboseTest  = env.WAS_RUN_THRU_MOCHA && isVerbose;
-export const isTestVerbose  = env.WAS_RUN_THRU_MOCHA && isVerbose;
 export const isVTest        = env.WAS_RUN_THRU_MOCHA && isVerbose;
 export const isVMocha       = env.WAS_RUN_THRU_MOCHA && isVerbose;
-export const isTestV        = env.WAS_RUN_THRU_MOCHA && isVerbose;
+export const isMochaVerbose = env.WAS_RUN_THRU_MOCHA && isVerbose;
+export const isTestVerbose  = env.WAS_RUN_THRU_MOCHA && isVerbose;
 export const isMochaV       = env.WAS_RUN_THRU_MOCHA && isVerbose;
+export const isTestV        = env.WAS_RUN_THRU_MOCHA && isVerbose;
 
 export const isDebugMocha   = env.WAS_RUN_THRU_MOCHA && isDebug;
-export const isMochaDebug   = env.WAS_RUN_THRU_MOCHA && isDebug;
 export const isDebugTest    = env.WAS_RUN_THRU_MOCHA && isDebug;
+export const isMochaDebug   = env.WAS_RUN_THRU_MOCHA && isDebug;
 export const isTestDebug    = env.WAS_RUN_THRU_MOCHA && isDebug;
 
 export const isSillyMocha   = env.WAS_RUN_THRU_MOCHA && isSilly;
-export const isMochaSilly   = env.WAS_RUN_THRU_MOCHA && isSilly;
 export const isSillyTest    = env.WAS_RUN_THRU_MOCHA && isSilly;
+export const isMochaSilly   = env.WAS_RUN_THRU_MOCHA && isSilly;
 export const isTestSilly    = env.WAS_RUN_THRU_MOCHA && isSilly;
 
-// No need for isWarnMocha, isErrorMocha, or isWtfMocha: suppressing warning &
-// error logs in unit tests is virtually never needed, & terrible practice besides.
+// No need for isWarnMocha, isErrorMocha, or isWtfMocha: suppressing warning & error
+// error logs in unit tests is virtually never needed, and terrible practice besides.
