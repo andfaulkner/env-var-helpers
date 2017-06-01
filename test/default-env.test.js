@@ -15,7 +15,7 @@ const { stderr, stdout } = require('test-console');
 const envVarHelpers = require('../lib/index');
 
 // TEST_SECURITY / SECURITY_TEST exports
-const { prodOrSecurityTest } = envVarHelpers;
+const { prodOrSecurityTest, isProdOrSecurityTest } = envVarHelpers;
 
 // IE_COMPAT exports
 const { isIECompatMode, isIeCompatMode, } = envVarHelpers;
@@ -55,287 +55,211 @@ if (LOG_LEVEL && (LOG_LEVEL === 'verbose' || LOG_LEVEL === 'silly')) {
 }
 
 /********************************************* TESTS **********************************************/
-describe('isDev', function() {
-    it('exists', function() {
-        expect(isDev).to.exist;
-    });
-    it('is true by default', function() {
-        expect(isDev).to.be.true;
-    });
-    it('is alias of isDevelopment', function() {
-        expect(isDevelopment).to.be.true;
-        expect(isDevelopment).to.eql(isDev);
-    });
+describe('isDevelopment (and aliases) :: ', function() {
+    valsExistAndAreTrue([
+        { name: 'isDev', value: isDev },
+        { name: 'isDevelopment', value: isDevelopment }
+    ], null, { isDevelopment });
 });
 
-describe('isProd', function() {
-    it('exists', function() {
-        expect(isProd).to.exist;
-    });
-    it('is false by default', function() {
-        expect(isProd).to.be.false;
-    });
-    it('is alias of isProduction', function() {
-        expect(isProduction).to.be.false;
-        expect(isProduction).to.eql(isProd);
-    });});
-
-describe('logGtEqlSilly', function() {
-    it('exists', function() {
-        expect(logGtEqlSilly).to.exist;
-    });
-    it('is false by default', function() {
-        expect(logGtEqlSilly).to.be.false;
-    });
+describe('isProduction (and aliases) :: ', function() {
+    valsExistAndAreFalse([
+        { name: 'isProd', value: isProd },
+        { name: 'isProd', value: isProduction }
+    ], null, { isProduction });
 });
 
-describe('logGtEqlVerbose', function() {
-    it('exists', function() {
-        expect(logGtEqlVerbose).to.exist;
-    });
-    it('is false by default', function() {
-        expect(logGtEqlVerbose).to.be.false;
-    });
+describe('logGtEqlSilly (and aliases) :: ', function() {
+    valsExistAndAreFalse([{ name: 'logGtEqlSilly', value: logGtEqlSilly }]);
 });
 
-describe('logGtEqlDebug', function() {
-    it('exists', function() {
-        expect(logGtEqlDebug).to.exist;
-    });
-    it('is false by default', function() {
-        expect(logGtEqlDebug).to.be.false;
-    });
+describe('logGtEqlVerbose (and aliases) :: ', function() {
+    valsExistAndAreFalse([{ name: 'logGtEqlVerbose', value: logGtEqlVerbose }]);
 });
 
-describe('logGtEqlInfo', function() {
-    it('exists', function() {
-        expect(logGtEqlInfo).to.exist;
-    });
-    it('is true by default', function() {
-        expect(logGtEqlInfo).to.be.true;
-    });
+describe('logGtEqlDebug (and aliases) :: ', function() {
+    valsExistAndAreFalse([{ name: 'logGtEqlDebug', value: logGtEqlDebug }]);
 });
 
-describe('logGtEqlWarn', function() {
-    it('exists', function() {
-        expect(logGtEqlWarn).to.exist;
-    });
-    it('is true by default', function() {
-        expect(logGtEqlWarn).to.be.true;
-    });
+describe('logGtEqlInfo (and aliases) :: ', function() {
+    valsExistAndAreTrue([{ name: 'logGtEqlInfo', value: logGtEqlInfo }]);
 });
 
-describe('logGtEqlError', function() {
-    it('exists', function() {
-        expect(logGtEqlError).to.exist;
-    });
-    it('is true by default', function() {
-        expect(logGtEqlError).to.be.true;
-    });
+describe('logGtEqlWarn (and aliases) :: ', function() {
+    valsExistAndAreTrue([{ name: 'logGtEqlWarn', value: logGtEqlWarn }]);
 });
 
-describe('logGtEqlWTF', function() {
-    it('exists', function() {
-        expect(logGtEqlWTF).to.exist;
-    });
-    it('is true by default', function() {
-        expect(logGtEqlWTF).to.be.true;
-    });
-    it('is alias of logGtEqlWtf', function() {
-        expect(logGtEqlWTF).to.eql(logGtEqlWtf);
-    });
+describe('logGtEqlError (and aliases) :: ', function() {
+    valsExistAndAreTrue([{ name: 'logGtEqlError', value: logGtEqlError }]);
 });
 
-describe('isIECompatMode', function() {
-    it('exists', function() {
-        expect(isIECompatMode).to.exist;
-    });
-    it('is false by default', function() {
-        expect(isIECompatMode).to.be.false;
-    });
-    it('is alias of isIeCompatMode', function() {
-        expect(isIECompatMode).to.eql(isIeCompatMode);
-    });
+describe('logGtEqlWTF :: ', function() {
+    valsExistAndAreTrue([
+        { name: 'logGtEqlWtf', value: logGtEqlWtf },
+        { name: 'logGtEqlWTF', value: logGtEqlWTF }
+    ], null, { logGtEqlWtf });
 });
 
-describe('isSilly + other aliases', function() {
-    it('exists', function() {
-        expect(isSilly).to.exist;
-        expect(isLogSilly).to.exist;
-    });
-    it('is false by default', function() {
-        expect(isSilly).to.be.false;
-        expect(isLogSilly).to.be.false;
-    });
-    it('is alias of logGtEqlSilly', function() {
-        expect(isSilly).to.eql(logGtEqlSilly);
-        expect(isLogSilly).to.eql(logGtEqlSilly);
-    });
+describe('isIECompatMode (and alias isIeCompatMode) :: ', function() {
+    valsExistAndAreFalse([
+        { name: 'isIECompatMode', value: isIECompatMode },
+        { name: 'isIECompatMode', value: isIECompatMode }
+    ], null, { isIECompatMode });
 });
 
-describe('isVerbose + other aliases', function() {
-    it('exists', function() {
-        expect(isVerbose).to.exist;
-        expect(isLogVerbose).to.exist;
-    });
-    it('is false by default', function() {
-        expect(isVerbose).to.be.false;
-        expect(isLogVerbose).to.be.false;
-    });
-    it('is alias of logGtEqlVerbose', function() {
-        expect(isVerbose).to.eql(logGtEqlVerbose);
-        expect(isLogVerbose).to.eql(logGtEqlVerbose);
-    });
+describe('isSilly (and alias isLogSilly) :: ', function() {
+    valsExistAndAreFalse([
+        { name: 'isSilly', value: isSilly },
+        { name: 'isLogSilly', value: isLogSilly }
+    ], '(since LOG_LEVEL value defaults to info)', { logGtEqlSilly });
 });
 
-describe('isDebug', function() {
-    it('exists', function() {
-        expect(isDebug).to.exist;
-        expect(isLogDebug).to.exist;
-    });
-    it('is false by default', function() {
-        expect(isDebug).to.be.false;
-        expect(isLogDebug).to.be.false;
-    });
-    it('is alias of logGtEqlDebug', function() {
-        expect(isDebug).to.eql(logGtEqlDebug);
-        expect(isLogDebug).to.eql(logGtEqlDebug);
-    });
+describe('isVerbose (and alias isLogVerbose) :: ', function() {
+    valsExistAndAreFalse([
+        { name: 'isVerbose', value: isVerbose },
+        { name: 'isLogVerbose', value: isLogVerbose }
+    ], '(since LOG_LEVEL value defaults to info)', { logGtEqlVerbose });
 });
 
-describe('isInfo', function() {
-    it('exists', function() {
-        expect(isInfo).to.exist;
-        expect(isLogInfo).to.exist;
-    });
-    it('is true by default', function() {
-        expect(isInfo).to.be.true;
-        expect(isLogInfo).to.be.true;
-    });
-    it('is alias of logGtEqlInfo', function() {
-        expect(isInfo).to.eql(logGtEqlInfo);
-        expect(isLogInfo).to.eql(logGtEqlInfo);
-    });
+describe('isDebug (and alias isLogDebug) :: ', function() {
+    valsExistAndAreFalse([
+        { name: 'isDebug', value: isDebug },
+        { name: 'isLogDebug', value: isLogDebug },
+    ], '(since LOG_LEVEL value defaults to info)', { logGtEqlDebug });
 });
 
-describe('isWarn', function() {
-    it('exists', function() {
-        expect(isWarn).to.exist;
-        expect(isLogWarn).to.exist;
-    });
-    it('is true by default', function() {
-        expect(isWarn).to.be.true;
-        expect(isLogWarn).to.be.true;
-    });
-    it('is alias of logGtEqlWarn', function() {
-        expect(isWarn).to.eql(logGtEqlWarn);
-        expect(isLogWarn).to.eql(logGtEqlWarn);
-    });
+describe('isInfo (and alias isLogInfo) :: ', function() {
+    valsExistAndAreTrue([
+        { name: 'isInfo', value: isInfo },
+        { name: 'isLogInfo', value: isLogInfo },
+    ], '(since LOG_LEVEL value defaults to info)', { logGtEqlInfo });
 });
 
-describe('isError', function() {
-    it('exists', function() {
-        expect(isError).to.exist;
-        expect(isLogError).to.exist;
-    });
-    it('is true by default', function() {
-        expect(isError).to.be.true;
-        expect(isLogError).to.be.true;
-    });
-    it('is alias of logGtEqlError', function() {
-        expect(isError).to.eql(logGtEqlError);
-        expect(isLogError).to.eql(logGtEqlError);
-    });
+describe('isWarn (and alias isLogWarn) :: ', function() {
+    valsExistAndAreTrue([
+        { name: 'isWarn', value: isWarn },
+        { name: 'isLogWarn', value: isLogWarn },
+    ], '(since LOG_LEVEL value defaults to info)', { logGtEqlWarn });
 });
 
-describe('isWTF', function() {
+describe('isError (and alias isLogError) :: ', function() {
+    valsExistAndAreTrue([
+        { name: 'isError', value: isError },
+        { name: 'isLogError', value: isLogError },
+    ], '(since LOG_LEVEL value defaults to info)', { logGtEqlError });
+});
+
+describe('isWTF (and aliases isWtf, isLogWTF, and isLogWtf) :: ', function() {
     valsExistAndAreTrue([
         { name: 'isWTF', value: isWTF },
         { name: 'isWtf', value: isWtf },
         { name: 'isLogWTF', value: isLogWTF },
-        { name: 'isLogWtf', value: isLogWtf }
-    ], '(since LOG_LEVEL value defaults to info');
+        { name: 'isLogWtf', value: isLogWtf },
+        { name: 'logGtEqlWtf', value: logGtEqlWtf },
+    ], '(since LOG_LEVEL value defaults to info', { logGtEqlWtf });
 });
 
-describe('prodOrSecurityTest', function() {
-    it('exists', function() {
-        expect(prodOrSecurityTest).to.exist;
-    });
-    it('is false by default', function() {
-        expect(prodOrSecurityTest).to.be.false;
-    });
+describe('prodOrSecurityTest (and aliases) :: ', function() {
+    valsExistAndAreFalse([
+        { name: 'prodOrSecurityTest', value: prodOrSecurityTest },
+        { name: 'isProdOrSecurityTest', value: isProdOrSecurityTest }
+    ]);
 });
 
-describe('wasRunViaMocha tests', function() {
-    it('exists', function () {
-        expect(wasRunViaMocha).to.exist;
-    });
-    it('has aliases isMochaEnv, runViaMocha, runThruMocha, wasRunThruMocha, isMocha', function () {
-        expect(wasRunThruMocha).to.exist;
-        expect(runThruMocha).to.exist;
-        expect(runViaMocha).to.exist;
-        expect(isMochaEnv).to.exist;
-        expect(wasRunViaMocha).to.exist;
-        expect(isMocha).to.exist;
-    });
-    it('is true (and all of its aliases are true) when run in a mocha script', function () {
-        expect(wasRunViaMocha).to.be.true;
-        expect(wasRunThruMocha).to.be.true;
-        expect(runThruMocha).to.be.true;
-        expect(runViaMocha).to.be.true;
-        expect(isMochaEnv).to.be.true;
-        expect(wasRunViaMocha).to.be.true;
-        expect(isMocha).to.be.true;
-    });
+describe('wasRunViaMocha (and aliases) :: ', function() {
+    valsExistAndAreTrue([
+        { name: 'wasRunThruMocha', value: wasRunThruMocha },
+        { name: 'runThruMocha', value: runThruMocha },
+        { name: 'runViaMocha', value: runViaMocha },
+        { name: 'isMochaEnv', value: isMochaEnv },
+        { name: 'wasRunViaMocha', value: wasRunViaMocha },
+        { name: 'isMocha', value: isMocha },
+    ], null, { wasRunViaMocha });
 });
 
-describe('isAvoidWeb tests', function() {
-    it('exists', function () {
-        expect(isAvoidWeb).to.exist;
-    });
-    it('has aliases avoidWeb, doAvoidWeb', function () {
-        expect(avoidWeb).to.exist;
-        expect(doAvoidWeb).to.exist;
-    });
-    it('is false by default (as are its aliases avoidWeb & doAvoidWeb)', function () {
-        expect(isAvoidWeb).to.be.false;
-        expect(avoidWeb).to.be.false;
-        expect(doAvoidWeb).to.be.false;
-    });
-
-    // TODO refactor - use an abstraction. Below tests were created with a quick & dirty macro.
-    describe('WAS_RUN_THRU_MOCHA value tests', function() {
-        valsExistAndAreTrue([
-            { name: 'isMocha',         value: isMocha         },
-            { name: 'isMochaEnv',      value: isMochaEnv      },
-            { name: 'runByMocha',      value: runByMocha      },
-            { name: 'runViaMocha',     value: runViaMocha     },
-            { name: 'runThruMocha',    value: runThruMocha    },
-            { name: 'wasRunByMocha',   value: wasRunByMocha   },
-            { name: 'wasRunViaMocha',  value: wasRunViaMocha  },
-            { name: 'wasRunThruMocha', value: wasRunThruMocha },
-            { name: 'loadedMochaOpts', value: loadedMochaOpts },
-        ], `(since current process was launched by Mocha)`);
-    });
+describe('isAvoidWeb tests :: ', function() {
+    valsExistAndAreFalse([
+        { name: 'isAvoidWeb', value: isAvoidWeb },
+        { name: 'avoidWeb', value: avoidWeb },
+        { name: 'doAvoidWeb', value: doAvoidWeb },
+    ], null, { isAvoidWeb });
 });
 
+// TODO refactor - use an abstraction. Below tests were created with a quick & dirty macro.
+describe('WAS_RUN_THRU_MOCHA value tests :: ', function() {
+    valsExistAndAreTrue([
+        { name: 'isMocha',         value: isMocha         },
+        { name: 'isMochaEnv',      value: isMochaEnv      },
+        { name: 'runByMocha',      value: runByMocha      },
+        { name: 'runViaMocha',     value: runViaMocha     },
+        { name: 'runThruMocha',    value: runThruMocha    },
+        { name: 'wasRunByMocha',   value: wasRunByMocha   },
+        { name: 'wasRunViaMocha',  value: wasRunViaMocha  },
+        { name: 'wasRunThruMocha', value: wasRunThruMocha },
+        { name: 'loadedMochaOpts', value: loadedMochaOpts },
+    ], `(since current process was launched by Mocha)`);
+});
+
+
+/******************************************** HELPERS *********************************************/
 function propExists(prop) {
     it('exists and gets exported', function() {
         expect(prop).to.exist
     });
 }
 
-function propIsTrue(prop, msg) {
-    it(`is set to true${msg ? ' ' + msg : ''}`, function() {
-        expect(prop).to.exist
+function propHasExpectedVal(val, prop, msg) {
+    it(`is set to ${val} ${msg ? ' ' + msg : ''}`, function() {
+        expect(prop).to.eql(val);
     });
 }
 
-function valsExistAndAreTrue(valObjArr, msg) {
+/**
+ * Tests if a provided property value matches a given alias.
+ * @param {RealAny} aliasValue - value of property doing the aliasing.
+ * @param {string} name - name of aliased property.
+ * @param {RealAny} propValue - value of aliased property.
+ */
+function propIsAliasOf(aliasValue, propName, propValue) {
+    console.log(`propIsAliasOf :: aliasValue: ${aliasValue};\n propName: ${propName}\n propValue: ${propValue}`);
+    it(`is alias of ${propName}`, function() {
+        expect(aliasValue).to.eql(propValue)
+    });
+}
+
+/**
+ * Dynamically creates tests for whether each property given in valObjArr exists & is set to true.
+ * @param {string} msg - [OPTIONAL] an additional message to display in the truthiness test
+ * @param {Object} aliasOf - [OPTIONAL] generate test of whether prop aliases of another given prop.
+ *                           Format of aliasOf object: { nameOfAliasedProp: valueOfAliasedProp }
+ *                           If no value provided, it excludes the test.
+ */
+function valsExistAndAreExpectedVal(valObjArr, msg, aliasOf, expectedVal = true) {
+    console.log(`valsExistAndAreExpectedVal :: expectedVal: ${expectedVal}\n`);
     valObjArr.forEach(valObj => {
+        console.log(`valsExistAndAreExpectedVal :: name of tested prop: ${valObj['name']}`);
+        console.log(`valsExistAndAreExpectedVal :: value of tested prop: ${valObj['value']}`);
+
         describe(valObj['name'], function() {
             propExists(valObj['value']);
-            propIsTrue(valObj['value'], msg || false);
+            console.log(`valsExistAndAreExpectedVal :: expectedVal: ${expectedVal}`);
+            propHasExpectedVal(expectedVal, valObj['value'], msg || false);
+            if (aliasOf) {
+                const propName = Object.keys(aliasOf)[0];
+                console.log(`valsExistAndAreExpectedVal :: name of aliased prop: ${propName}`);
+                console.log(`valsExistAndAreExpectedVal :: value of aliased prop: ${aliasOf[propName]}`);
+                if (propName !== valObj['name']) {
+                    propIsAliasOf(valObj['value'], propName, aliasOf[propName]);
+                }
+            }
         });
     });
+}
+
+function valsExistAndAreTrue(valObjArr, msg, aliasOf, expectedVal = true) {
+    valsExistAndAreExpectedVal(valObjArr, msg, aliasOf, true)
+}
+
+function valsExistAndAreFalse(valObjArr, msg, aliasOf, expectedVal = false) {
+    valsExistAndAreExpectedVal(valObjArr, msg, aliasOf, false)
 }

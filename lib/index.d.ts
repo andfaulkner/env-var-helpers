@@ -13,6 +13,7 @@ export declare const isDev: boolean;
 export declare const isProduction: boolean;
 export declare const isProd: boolean;
 export declare const prodOrSecurityTest: boolean;
+export declare const isProdOrSecurityTest: boolean;
 /******************************************* LOG LEVEL ********************************************/
 export declare const logGtEqlSilly: boolean;
 export declare const logGtEqlVerbose: boolean;

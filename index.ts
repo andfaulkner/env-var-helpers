@@ -33,6 +33,7 @@ export const isProd = isProduction;
 export const prodOrSecurityTest =
   isProd || process.env.TEST_SECURITY === true || process.env.TEST_SECURITY === 'true'
          || process.env.SECURITY_TEST === true || process.env.SECURITY_TEST === 'true';
+export const isProdOrSecurityTest = prodOrSecurityTest;
 
 /******************************************* LOG LEVEL ********************************************/
 export const logGtEqlSilly   = (env.LOG_LEVEL === 'silly');
