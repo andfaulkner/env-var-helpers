@@ -1,23 +1,24 @@
 declare const process: any;
 
 /******************************* COMMON ENVIRONMENT VALS COLLECTION *******************************/
+const processExists = typeof process !== 'undefined' && process != null;
 export const env = {
-    NODE_ENV:  ((process.env.NODE_ENV)
+    NODE_ENV:  (processExists && process.env && process.env.NODE_ENV
                    ? process.env.NODE_ENV.toString().toLowerCase()
                    : 'development'),
-    LOG_LEVEL: ((process.env.LOG_LEVEL)
+    LOG_LEVEL: (processExists && process.env && process.env.LOG_LEVEL
                    ? process.env.LOG_LEVEL.toString().toLowerCase()
                    : 'info'),
-    IE_COMPAT: ((process.env.IE_COMPAT)
+    IE_COMPAT: (processExists && process.env && process.env.IE_COMPAT
                    ? (process.env.IE_COMPAT === true || process.env.IE_COMPAT === 'true')
                    : false),
-    TEST_MODE: ((process.env.TEST_MODE)
+    TEST_MODE: (processExists && process.env && process.env.TEST_MODE
                    ? (process.env.TEST_MODE === true || process.env.TEST_MODE === 'true')
                    : false),
-    AVOID_WEB: ((process.env.AVOID_WEB)
+    AVOID_WEB: (processExists && process.env && process.env.AVOID_WEB
                    ? (process.env.AVOID_WEB === true || process.env.AVOID_WEB === 'true')
                    : false),
-    WAS_RUN_THRU_MOCHA: ((process.env.LOADED_MOCHA_OPTS)
+    WAS_RUN_THRU_MOCHA: (processExists && process.env && process.env.LOADED_MOCHA_OPTS
                            ? (process.env.LOADED_MOCHA_OPTS === 'true'
                              || process.env.LOADED_MOCHA_OPTS === true)
                            : false),
