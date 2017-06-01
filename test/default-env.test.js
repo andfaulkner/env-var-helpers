@@ -42,12 +42,16 @@ const { wasRunViaMocha, isMochaEnv, runViaMocha, runThruMocha, wasRunThruMocha,
 // Directly log the environment variables in verbose or silly mode.
 const { LOG_LEVEL } = process.env;
 if (LOG_LEVEL && (LOG_LEVEL === 'verbose' || LOG_LEVEL === 'silly')) {
+    console.log(`\n\n******* Environment variables checked/used by library props *******`);
     console.log(`process.env.LOG_LEVEL:`, process.env.LOG_LEVEL);
     console.log(`process.env.NODE_ENV:`, process.env.NODE_ENV);
     console.log(`process.env.IE_COMPAT:`, process.env.IE_COMPAT);
     console.log(`process.env.TEST_MODE:`, process.env.TEST_MODE);
     console.log(`process.env.AVOID_WEB:`, process.env.AVOID_WEB);
     console.log(`process.env.LOADED_MOCHA_OPTS:`, process.env.LOADED_MOCHA_OPTS);
+    console.log(`process.env.SECURITY_TEST:`, process.env.SECURITY_TEST);
+    console.log(`process.env.TEST_SECURITY:`, process.env.TEST_SECURITY);
+    console.log(`*******************************************************************\n\n`);
 }
 
 /********************************************* TESTS **********************************************/
@@ -245,24 +249,12 @@ describe('isError', function() {
 });
 
 describe('isWTF', function() {
-    it('exists', function() {
-        expect(isWTF).to.exist;
-        expect(isWtf).to.exist;
-        expect(isLogWTF).to.exist;
-        expect(isLogWtf).to.exist;
-    });
-    it('is true by default', function() {
-        expect(isWTF).to.be.true;
-        expect(isWtf).to.be.true;
-        expect(isLogWTF).to.be.true;
-        expect(isLogWtf).to.be.true;
-    });
-    it('is alias of logGtEqlWTF', function() {
-        expect(isWTF).to.eql(logGtEqlWTF);
-        expect(isWtf).to.eql(logGtEqlWTF);
-        expect(isLogWTF).to.eql(logGtEqlWTF);
-        expect(isLogWtf).to.eql(logGtEqlWTF);
-    });
+    valsExistAndAreTrue([
+        { name: 'isWTF', value: isWTF },
+        { name: 'isWtf', value: isWtf },
+        { name: 'isLogWTF', value: isLogWTF },
+        { name: 'isLogWtf', value: isLogWtf }
+    ], '(since LOG_LEVEL value defaults to info');
 });
 
 describe('prodOrSecurityTest', function() {
@@ -270,10 +262,6 @@ describe('prodOrSecurityTest', function() {
         expect(prodOrSecurityTest).to.exist;
     });
     it('is false by default', function() {
-        console.log("process.env.NODE_ENV:");
-        console.log(process.env.NODE_ENV);
-        console.log("process.env.SECURITY_TEST:");
-        console.log(process.env.SECURITY_TEST);
         expect(prodOrSecurityTest).to.be.false;
     });
 });
@@ -305,15 +293,6 @@ describe('isAvoidWeb tests', function() {
     it('exists', function () {
         expect(isAvoidWeb).to.exist;
     });
-    it('is false by default (as are its aliases avoidWeb & doAvoidWeb)', function () {
-        expect(isAvoidWeb).to.be.false;
-        expect(avoidWeb).to.be.false;
-        expect(doAvoidWeb).to.be.false;
-    });
-    it('has aliases avoidWeb, doAvoidWeb', function () {
-        expect(avoidWeb).to.exist;
-        expect(doAvoidWeb).to.exist;
-    });
     it('has aliases avoidWeb, doAvoidWeb', function () {
         expect(avoidWeb).to.exist;
         expect(doAvoidWeb).to.exist;
@@ -336,7 +315,7 @@ describe('isAvoidWeb tests', function() {
             { name: 'wasRunViaMocha',  value: wasRunViaMocha  },
             { name: 'wasRunThruMocha', value: wasRunThruMocha },
             { name: 'loadedMochaOpts', value: loadedMochaOpts },
-        ]);
+        ], `(since current process was launched by Mocha)`);
     });
 });
 
@@ -346,17 +325,17 @@ function propExists(prop) {
     });
 }
 
-function propIsTrue(prop) {
-    it('is set to true (current process was launched by Mocha)', function() {
+function propIsTrue(prop, msg) {
+    it(`is set to true${msg ? ' ' + msg : ''}`, function() {
         expect(prop).to.exist
     });
 }
 
-function valsExistAndAreTrue(valObjArr) {
+function valsExistAndAreTrue(valObjArr, msg) {
     valObjArr.forEach(valObj => {
         describe(valObj['name'], function() {
             propExists(valObj['value']);
-            propIsTrue(valObj['value']);
+            propIsTrue(valObj['value'], msg || false);
         });
     });
 }
