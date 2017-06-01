@@ -49,13 +49,15 @@ export declare const avoidWeb: boolean;
 export declare const doAvoidWeb: boolean;
 /**************************************** TEST ENVIRONMENT ****************************************/
 export declare const isTestMode: boolean;
-export declare const wasRunViaMocha: boolean;
+export declare const isMocha: boolean;
 export declare const isMochaEnv: boolean;
+export declare const runByMocha: boolean;
 export declare const runViaMocha: boolean;
 export declare const runThruMocha: boolean;
+export declare const wasRunByMocha: boolean;
+export declare const wasRunViaMocha: boolean;
 export declare const wasRunThruMocha: boolean;
 export declare const loadedMochaOpts: boolean;
-export declare const isMocha: boolean;
 /**************************** LOG LEVEL + TEST ENVIRONMENT SHORTHANDS *****************************/
 export declare const isVerboseMocha: boolean;
 export declare const isVerboseTest: boolean;

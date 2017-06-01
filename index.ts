@@ -95,13 +95,15 @@ export const doAvoidWeb = env.AVOID_WEB;
 export const isTestMode = env.TEST_MODE && (env.TEST_MODE === true || env.TEST_MODE === 'true');
 
 // Check if current script was run via Mocha
-export const wasRunViaMocha  = env.WAS_RUN_THRU_MOCHA;
+export const isMocha         = env.WAS_RUN_THRU_MOCHA;
 export const isMochaEnv      = env.WAS_RUN_THRU_MOCHA;
+export const runByMocha      = env.WAS_RUN_THRU_MOCHA;
 export const runViaMocha     = env.WAS_RUN_THRU_MOCHA;
 export const runThruMocha    = env.WAS_RUN_THRU_MOCHA;
+export const wasRunByMocha   = env.WAS_RUN_THRU_MOCHA;
+export const wasRunViaMocha  = env.WAS_RUN_THRU_MOCHA;
 export const wasRunThruMocha = env.WAS_RUN_THRU_MOCHA;
 export const loadedMochaOpts = env.WAS_RUN_THRU_MOCHA;
-export const isMocha         = env.WAS_RUN_THRU_MOCHA;
 
 /**************************** LOG LEVEL + TEST ENVIRONMENT SHORTHANDS *****************************/
 // More are defined for verbose + mocha because it's a much more common pattern.
