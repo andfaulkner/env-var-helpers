@@ -284,6 +284,15 @@ describe('isAvoidWeb tests', function() {
     it('exists', function () {
         expect(isAvoidWeb).to.exist;
     });
+    it('is false by default (as are its aliases avoidWeb & doAvoidWeb)', function () {
+        expect(isAvoidWeb).to.be.false;
+        expect(avoidWeb).to.be.false;
+        expect(doAvoidWeb).to.be.false;
+    });
+    it('has aliases avoidWeb, doAvoidWeb', function () {
+        expect(avoidWeb).to.exist;
+        expect(doAvoidWeb).to.exist;
+    });
     it('has aliases avoidWeb, doAvoidWeb', function () {
         expect(avoidWeb).to.exist;
         expect(doAvoidWeb).to.exist;
@@ -292,5 +301,37 @@ describe('isAvoidWeb tests', function() {
         expect(isAvoidWeb).to.be.false;
         expect(avoidWeb).to.be.false;
         expect(doAvoidWeb).to.be.false;
+    });
+});
+
+
+describe('WAS_RUN_THRU_MOCHA value tests', function() {
+    it('has isMocha, & is true (since script was run via Mocha)', function () {
+        expect(isMocha).to.exist;
+        expect(isMocha).to.be.true;
+    });
+    it('has isMochaEnv, & is true (since script was run via Mocha)', function() {
+        expect(isMochaEnv).to.exist;
+        expect(isMochaEnv).to.be.true;
+    });
+    it('has runViaMocha, & is true (since script was run via Mocha)', function() {
+        expect(runViaMocha).to.exist;
+        expect(runViaMocha).to.be.true;
+    });
+    it('has runThruMocha, & is true (since script was run via Mocha)', function() {
+        expect(runThruMocha).to.exist;
+        expect(runThruMocha).to.be.true;
+    });
+    it('has wasRunThruMocha, & is true (since script was run via Mocha)', function() {
+        expect(wasRunThruMocha).to.exist;
+        expect(wasRunThruMocha).to.be.true;
+    });
+    it('has loadedMochaOpts, & is true (since script was run via Mocha)', function() {
+        expect(loadedMochaOpts).to.exist;
+        expect(loadedMochaOpts).to.be.true;
+    });
+    it('has isMocha, & is true (since script was run via Mocha)', function() {
+        expect(isMocha).to.exist;
+        expect(isMocha).to.be.true;
     });
 });
