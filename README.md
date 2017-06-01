@@ -53,8 +53,43 @@ This is an environment variable requesting total avoidance of internet usage in 
 
 ### isMochaEnv, wasRunViaMocha, runViaMocha, runThruMocha, wasRunThruMocha, loadedMochaOpts
 Is true if LOADED_MOCHA_OPTS is 'true'.
-Should always be true if the current script was run through Mocha, and never true otherwise.
+Should always be true if the current script was run through Mocha, and never true otherwise. Mocha sets this value automatically when it is launched.
 
+### Simultaneous checks of log level & whether Mocha launched the current process
+Each value is true if both:
+    a)  LOADED_MOCHA_OPTS is 'true'; and
+    b)  The log level is above the corresponding log level
+        *   (i.e. about the log level in the name of the property)
+
+Each function of this type also has numerous aliases. Full list:
+*   true if LOG_LEVEL is set to silly:
+    *   isSillyMocha
+    *   isSillyTest
+    *   isMochaSilly
+    *   isTestSilly
+*   true if LOG_LEVEL is set to verbose or silly:
+    *   isVerboseMocha,
+    *   isVerboseTest,
+    *   isVTest,
+    *   isVMocha,
+    *   isMochaVerbose,
+    *   isTestVerbose,
+    *   isMochaV,
+    *   isTestV,
+*   true if LOG_LEVEL is set to debug, verbose or silly:
+    *   isDebugMocha
+    *   isDebugTest
+    *   isMochaDebug
+    *   isTestDebug
+
+Note that properties only exist for LOG_LEVEL values of silly, verbose, and debug, because it's near-universally bad practice to suppressing errors & warnings in unit tests:
+*   Note that there isn't necessarily no reason to suppress them ever, but adding the resistance of having to manually check these environment variables ensures we really think about it before doing so.
+*   Why is it bad practice?
+    *   Errors and warnings provide information on parts of the codebase not (yet) directly covered by the test suite. This has the potential to prevent runtime bugs you'd otherwise miss
+        *   (especially in cases where whatever your testing still works despite a function that gets run in the process going off the "happy path")
+    *   Including them makes it easy to use them without thinking, then forget about them.
+        *   Worst-case scenario: hours of frustration trying to determine why your tests are failing yet not providing any information on the reasons why
+            *   ![NEVER AGAIN](http://i0.kym-cdn.com/entries/icons/original/000/006/216/7nTnr.png)
 
 Environment variables handled
 =============================
