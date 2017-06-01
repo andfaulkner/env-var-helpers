@@ -32,17 +32,23 @@ const { isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWtf, isWTF,
 // AVOID_WEB exports
 const { isAvoidWeb, avoidWeb, doAvoidWeb } = envVarHelpers;
 
-// Environment exports
+// NODE_ENV (environment) exports
 const { isDev, isDevelopment, isProd, isProduction } = envVarHelpers;
 
-// Mocha exports
+// LOADED_MOCHA_OPTS exports (true if current process launched by Mocha)
 const { wasRunViaMocha, isMochaEnv, runViaMocha, runThruMocha, wasRunThruMocha,
         runByMocha, wasRunByMocha, loadedMochaOpts, isMocha } = envVarHelpers;
 
-console.log(`process.env.LOG_LEVEL:`, process.env.LOG_LEVEL);
-console.log(`process.env.NODE_ENV:`, process.env.NODE_ENV);
-console.log(`process.env.IE_COMPAT:`, process.env.IE_COMPAT);
-console.log(`process.env.TEST_MODE:`, process.env.TEST_MODE);
+// Directly log the environment variables in verbose or silly mode.
+const { LOG_LEVEL } = process.env;
+if (LOG_LEVEL && (LOG_LEVEL === 'verbose' || LOG_LEVEL === 'silly')) {
+    console.log(`process.env.LOG_LEVEL:`, process.env.LOG_LEVEL);
+    console.log(`process.env.NODE_ENV:`, process.env.NODE_ENV);
+    console.log(`process.env.IE_COMPAT:`, process.env.IE_COMPAT);
+    console.log(`process.env.TEST_MODE:`, process.env.TEST_MODE);
+    console.log(`process.env.AVOID_WEB:`, process.env.AVOID_WEB);
+    console.log(`process.env.LOADED_MOCHA_OPTS:`, process.env.LOADED_MOCHA_OPTS);
+}
 
 /********************************************* TESTS **********************************************/
 describe('isDev', function() {
