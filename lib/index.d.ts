@@ -66,6 +66,12 @@ export declare const isReleaseEnvUat: boolean;
 export declare const isReleaseEnvUAT: boolean;
 export declare const isUat: boolean;
 export declare const isUAT: boolean;
+export declare const releaseEnvShort: 'uat' | 'prod' | 'dev';
+export declare const releaseEnvAbbrev: "dev" | "prod" | "uat";
+export declare const releaseEnvAbbreviation: "dev" | "prod" | "uat";
+export declare const releaseEnvironmentShort: "dev" | "prod" | "uat";
+export declare const releaseEnvironmentAbbrev: "dev" | "prod" | "uat";
+export declare const releaseEnvironmentAbbreviation: "dev" | "prod" | "uat";
 /**************************** LOG LEVEL + TEST ENVIRONMENT SHORTHANDS *****************************/
 export declare const isVerboseMocha: boolean;
 export declare const isVerboseTest: boolean;
