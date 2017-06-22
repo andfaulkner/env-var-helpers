@@ -1,7 +1,18 @@
 declare const process: any;
 
+type ReleaseEnvs = 'production' | 'uat' | 'development';
+
 /******************************* COMMON ENVIRONMENT VALS COLLECTION *******************************/
 const processExists = typeof process !== 'undefined' && process != null;
+
+const RELEASE_ENV =
+    (processExists && process.env && process.env.RELEASE_ENV)
+        ? process.env.RELEASE_ENV.toString().toLowerCase()
+        : (process.env.NODE_ENV ? process.env.NODE_ENV.toString().toLowerCase() : 'dev');
+    // RELEASE_ENV: (processExists && process.env && process.env.RELEASE_ENV
+    //                ? process.env.RELEASE_ENV.toString().toLowerCase()
+    //                : 'dev'),
+
 export const env = {
     NODE_ENV:  (processExists && process.env && process.env.NODE_ENV
                    ? process.env.NODE_ENV.toString().toLowerCase()
@@ -22,6 +33,11 @@ export const env = {
                            ? (process.env.LOADED_MOCHA_OPTS === 'true'
                              || process.env.LOADED_MOCHA_OPTS === true)
                            : false),
+    RELEASE_ENV: (processExists && process.env && process.env.RELEASE_ENV)
+                    ? process.env.RELEASE_ENV.toString().toLowerCase()
+                    : ((process.env.NODE_ENV && process.env.NODE_ENV.toString().toLowerCase())
+                       || 'development'),
+
 };
 
 /******************************************** NODE_ENV ********************************************/
@@ -90,6 +106,15 @@ export const wasRunByMocha   = env.WAS_RUN_THRU_MOCHA;
 export const wasRunViaMocha  = env.WAS_RUN_THRU_MOCHA;
 export const wasRunThruMocha = env.WAS_RUN_THRU_MOCHA;
 export const loadedMochaOpts = env.WAS_RUN_THRU_MOCHA;
+
+/******************************* RELEASE ENVIRONMENT (RELEASE_ENV) ********************************/
+export const releaseEnv = env.RELEASE_ENV;
+export const releaseEnvironment = env.RELEASE_ENV;
+
+export const isReleaseEnvUat = (env.RELEASE_ENV === 'uat');
+export const isReleaseEnvUAT = isReleaseEnvUat;
+export const isUat = isReleaseEnvUat;
+export const isUAT = isReleaseEnvUat;
 
 /**************************** LOG LEVEL + TEST ENVIRONMENT SHORTHANDS *****************************/
 // More are defined for verbose + mocha because it's a much more common pattern.

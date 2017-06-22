@@ -5,6 +5,7 @@ export declare const env: {
     TEST_MODE: boolean;
     AVOID_WEB: boolean;
     WAS_RUN_THRU_MOCHA: boolean;
+    RELEASE_ENV: any;
 };
 /******************************************** NODE_ENV ********************************************/
 export declare const isDevelopment: boolean;
@@ -58,6 +59,13 @@ export declare const wasRunByMocha: boolean;
 export declare const wasRunViaMocha: boolean;
 export declare const wasRunThruMocha: boolean;
 export declare const loadedMochaOpts: boolean;
+/******************************* RELEASE ENVIRONMENT (RELEASE_ENV) ********************************/
+export declare const releaseEnv: any;
+export declare const releaseEnvironment: any;
+export declare const isReleaseEnvUat: boolean;
+export declare const isReleaseEnvUAT: boolean;
+export declare const isUat: boolean;
+export declare const isUAT: boolean;
 /**************************** LOG LEVEL + TEST ENVIRONMENT SHORTHANDS *****************************/
 export declare const isVerboseMocha: boolean;
 export declare const isVerboseTest: boolean;

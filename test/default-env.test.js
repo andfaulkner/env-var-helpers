@@ -39,6 +39,12 @@ const { isDev, isDevelopment, isProd, isProduction } = envVarHelpers;
 const { wasRunViaMocha, isMochaEnv, runViaMocha, runThruMocha, wasRunThruMocha,
         runByMocha, wasRunByMocha, loadedMochaOpts, isMocha } = envVarHelpers;
 
+// RELEASE_ENV (release environment) exports
+const { releaseEnv, releaseEnvironment } = envVarHelpers;
+
+// UAT release environment helpers
+const { isReleaseEnvUat, isReleaseEnvUAT, isUat, isUAT } = envVarHelpers;
+
 // Directly log the environment variables in verbose or silly mode.
 const { LOG_LEVEL } = process.env;
 if (LOG_LEVEL && (LOG_LEVEL === 'verbose' || LOG_LEVEL === 'silly')) {
@@ -175,6 +181,25 @@ describe('wasRunViaMocha (and aliases) :: ', function() {
         { name: 'wasRunViaMocha', value: wasRunViaMocha },
         { name: 'isMocha', value: isMocha },
     ], null, { wasRunViaMocha });
+});
+
+describe('releaseEnv tests :: ', function() {
+    it(`releaseEnv defaults to development`, function() {
+        expect(releaseEnv).to.eql('development');
+    });
+    it(`releaseEnv has alias releaseEnvironment, with the same value ('development')`, function() {
+        expect(releaseEnvironment).to.eql('development');
+        expect(releaseEnvironment).to.eql(releaseEnv);
+    });
+});
+
+describe('isReleaseEnvUat tests :: ', function() {
+    valsExistAndAreFalse([
+        { name: 'isReleaseEnvUat', value: isReleaseEnvUat },
+        { name: 'isReleaseEnvUAT', value: isReleaseEnvUAT },
+        { name: 'isUat',           value: isUat           },
+        { name: 'isUAT',           value: isUAT           },
+    ], null, { isReleaseEnvUat });
 });
 
 describe('isAvoidWeb tests :: ', function() {
