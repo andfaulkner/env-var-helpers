@@ -1,6 +1,6 @@
 declare const process: any;
 
-type ReleaseEnvs = 'production' | 'uat' | 'development';
+export type ReleaseEnvs = 'production' | 'uat' | 'development';
 
 /******************************* COMMON ENVIRONMENT VALS COLLECTION *******************************/
 const processExists = typeof process !== 'undefined' && process != null;
@@ -26,10 +26,9 @@ export const env = {
                              || process.env.LOADED_MOCHA_OPTS === true)
                            : false),
     RELEASE_ENV: (processExists && process.env && process.env.RELEASE_ENV)
-                    ? process.env.RELEASE_ENV.toString().toLowerCase()
+                    ? process.env.RELEASE_ENV.toString().toLowerCase() as ReleaseEnvs
                     : ((process.env.NODE_ENV && process.env.NODE_ENV.toString().toLowerCase())
-                       || 'development'),
-
+                       || 'development') as ReleaseEnvs,
 };
 
 /******************************************** NODE_ENV ********************************************/
@@ -108,8 +107,10 @@ export const isReleaseEnvUAT = isReleaseEnvUat;
 export const isUat = isReleaseEnvUat;
 export const isUAT = isReleaseEnvUat;
 
+export type ReleaseEnvsShort = 'uat' | 'prod' | 'dev';
+
 // 3-4 letter version of release environment name.
-export const releaseEnvShort: 'uat' | 'prod' | 'dev' = (function() {
+export const releaseEnvShort: ReleaseEnvsShort = (function() {
     switch (releaseEnv) {
       case "uat":                      return 'uat';
       case "prod": case "production":  return 'prod';

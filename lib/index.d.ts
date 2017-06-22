@@ -1,3 +1,4 @@
+export declare type ReleaseEnvs = 'production' | 'uat' | 'development';
 export declare const env: {
     NODE_ENV: any;
     LOG_LEVEL: any;
@@ -5,7 +6,7 @@ export declare const env: {
     TEST_MODE: boolean;
     AVOID_WEB: boolean;
     WAS_RUN_THRU_MOCHA: boolean;
-    RELEASE_ENV: any;
+    RELEASE_ENV: ReleaseEnvs;
 };
 /******************************************** NODE_ENV ********************************************/
 export declare const isDevelopment: boolean;
@@ -60,18 +61,19 @@ export declare const wasRunViaMocha: boolean;
 export declare const wasRunThruMocha: boolean;
 export declare const loadedMochaOpts: boolean;
 /******************************* RELEASE ENVIRONMENT (RELEASE_ENV) ********************************/
-export declare const releaseEnv: any;
-export declare const releaseEnvironment: any;
+export declare const releaseEnv: ReleaseEnvs;
+export declare const releaseEnvironment: ReleaseEnvs;
 export declare const isReleaseEnvUat: boolean;
 export declare const isReleaseEnvUAT: boolean;
 export declare const isUat: boolean;
 export declare const isUAT: boolean;
-export declare const releaseEnvShort: 'uat' | 'prod' | 'dev';
-export declare const releaseEnvAbbrev: "dev" | "prod" | "uat";
-export declare const releaseEnvAbbreviation: "dev" | "prod" | "uat";
-export declare const releaseEnvironmentShort: "dev" | "prod" | "uat";
-export declare const releaseEnvironmentAbbrev: "dev" | "prod" | "uat";
-export declare const releaseEnvironmentAbbreviation: "dev" | "prod" | "uat";
+export declare type ReleaseEnvsShort = 'uat' | 'prod' | 'dev';
+export declare const releaseEnvShort: ReleaseEnvsShort;
+export declare const releaseEnvAbbrev: ReleaseEnvsShort;
+export declare const releaseEnvAbbreviation: ReleaseEnvsShort;
+export declare const releaseEnvironmentShort: ReleaseEnvsShort;
+export declare const releaseEnvironmentAbbrev: ReleaseEnvsShort;
+export declare const releaseEnvironmentAbbreviation: ReleaseEnvsShort;
 /**************************** LOG LEVEL + TEST ENVIRONMENT SHORTHANDS *****************************/
 export declare const isVerboseMocha: boolean;
 export declare const isVerboseTest: boolean;
