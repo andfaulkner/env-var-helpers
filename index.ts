@@ -5,14 +5,6 @@ type ReleaseEnvs = 'production' | 'uat' | 'development';
 /******************************* COMMON ENVIRONMENT VALS COLLECTION *******************************/
 const processExists = typeof process !== 'undefined' && process != null;
 
-const RELEASE_ENV =
-    (processExists && process.env && process.env.RELEASE_ENV)
-        ? process.env.RELEASE_ENV.toString().toLowerCase()
-        : (process.env.NODE_ENV ? process.env.NODE_ENV.toString().toLowerCase() : 'dev');
-    // RELEASE_ENV: (processExists && process.env && process.env.RELEASE_ENV
-    //                ? process.env.RELEASE_ENV.toString().toLowerCase()
-    //                : 'dev'),
-
 export const env = {
     NODE_ENV:  (processExists && process.env && process.env.NODE_ENV
                    ? process.env.NODE_ENV.toString().toLowerCase()
