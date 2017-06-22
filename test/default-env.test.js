@@ -41,9 +41,12 @@ const { wasRunViaMocha, isMochaEnv, runViaMocha, runThruMocha, wasRunThruMocha,
 
 // RELEASE_ENV (release environment) exports
 const { releaseEnv, releaseEnvironment } = envVarHelpers;
+const { releaseEnvShort, releaseEnvironmentShort, releaseEnvironmentAbbrev,
+        releaseEnvAbbrev, releaseEnvAbbreviation, releaseEnvironmentAbbreviation } = envVarHelpers;
 
 // UAT release environment helpers
 const { isReleaseEnvUat, isReleaseEnvUAT, isUat, isUAT } = envVarHelpers;
+
 
 // Directly log the environment variables in verbose or silly mode.
 const { LOG_LEVEL } = process.env;
@@ -191,15 +194,32 @@ describe('releaseEnv tests :: ', function() {
         expect(releaseEnvironment).to.eql('development');
         expect(releaseEnvironment).to.eql(releaseEnv);
     });
-});
-
-describe('isReleaseEnvUat tests :: ', function() {
-    valsExistAndAreFalse([
-        { name: 'isReleaseEnvUat', value: isReleaseEnvUat },
-        { name: 'isReleaseEnvUAT', value: isReleaseEnvUAT },
-        { name: 'isUat',           value: isUat           },
-        { name: 'isUAT',           value: isUAT           },
-    ], null, { isReleaseEnvUat });
+    describe('isReleaseEnvUat tests :: ', function() {
+        valsExistAndAreFalse([
+            { name: 'isReleaseEnvUat', value: isReleaseEnvUat },
+            { name: 'isReleaseEnvUAT', value: isReleaseEnvUAT },
+            { name: 'isUat',           value: isUat           },
+            { name: 'isUAT',           value: isUAT           },
+        ], null, { isReleaseEnvUat });
+    });
+    describe('releaseEnvShort tests :: ', function() {
+        it(`releaseEnvShort defaults to 'dev'`, function() {
+            expect(releaseEnvShort).to.eql('dev');
+        });
+        it(`releaseEnvShort has aliases releaseEnvironmentShort, releaseEnvironmentAbbreviation,` +
+           ` releaseEnvAbbrev, releaseEnvAbbreviation, releaseEnvironmentAbbrev`, function() {
+            expect(releaseEnvironmentShort).to.eql('dev');
+            expect(releaseEnvironmentShort).to.eql(releaseEnvShort);
+            expect(releaseEnvironmentAbbreviation).to.eql('dev');
+            expect(releaseEnvironmentAbbreviation).to.eql(releaseEnvShort);
+            expect(releaseEnvAbbrev).to.eql('dev');
+            expect(releaseEnvAbbrev).to.eql(releaseEnvShort);
+            expect(releaseEnvAbbreviation).to.eql('dev');
+            expect(releaseEnvAbbreviation).to.eql(releaseEnvShort);
+            expect(releaseEnvironmentAbbrev).to.eql('dev');
+            expect(releaseEnvironmentAbbrev).to.eql(releaseEnvShort)           
+        });
+    });
 });
 
 describe('isAvoidWeb tests :: ', function() {
