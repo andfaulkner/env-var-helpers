@@ -116,6 +116,22 @@ export const isReleaseEnvUAT = isReleaseEnvUat;
 export const isUat = isReleaseEnvUat;
 export const isUAT = isReleaseEnvUat;
 
+// 3-4 letter version of release environment name.
+export const releaseEnvShort: 'uat' | 'prod' | 'dev' = (function() {
+    switch (releaseEnv) {
+      case "uat":                      return 'uat';
+      case "prod": case "production":  return 'prod';
+      default:
+      case "dev":  case "development": return 'dev';
+    }
+}());
+
+export const releaseEnvAbbrev = releaseEnvShort;
+export const releaseEnvAbbreviation = releaseEnvShort;
+export const releaseEnvironmentShort = releaseEnvShort;
+export const releaseEnvironmentAbbrev = releaseEnvShort;
+export const releaseEnvironmentAbbreviation = releaseEnvShort;
+
 /**************************** LOG LEVEL + TEST ENVIRONMENT SHORTHANDS *****************************/
 // More are defined for verbose + mocha because it's a much more common pattern.
 export const isVerboseMocha = env.WAS_RUN_THRU_MOCHA && isVerbose;
