@@ -1,3 +1,16 @@
+Version 3.2.0
+=============
+Ran prettier on main file & other misc cleanups
+
+Proper export method for aliases (export {name as alias})
+-   Previous did extraneous duplicate object creations/var assignments & exported
+
+lodash types updated (to 4.14.104)
+
+Typescript -> 2.7.2
+
+
+
 Version 3.0.0
 =============
 
