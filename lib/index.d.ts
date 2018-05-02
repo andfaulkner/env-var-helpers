@@ -1,4 +1,4 @@
-export declare type ReleaseEnvs = "production" | "prod" | "uat" | "development" | "dev";
+export declare type ReleaseEnvs = 'production' | 'prod' | 'uat' | 'qa' | 'development' | 'dev';
 export declare const env: {
     NODE_ENV: any;
     LOG_LEVEL: any;
@@ -67,7 +67,7 @@ export declare const isReleaseEnvUat: boolean;
 export { isReleaseEnvUat as isReleaseEnvUAT };
 export { isReleaseEnvUat as isUat };
 export { isReleaseEnvUat as isUAT };
-export declare type ReleaseEnvsShort = "uat" | "prod" | "dev";
+export declare type ReleaseEnvsShort = 'uat' | 'prod' | 'dev';
 export declare const releaseEnvShort: ReleaseEnvsShort;
 export declare const releaseEnvAbbrev: ReleaseEnvsShort;
 export { releaseEnvAbbrev as releaseEnvAbbreviation };
