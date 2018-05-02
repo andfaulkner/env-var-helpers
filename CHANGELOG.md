@@ -37,6 +37,8 @@ Tests:
 -   Adds LOG_LEVEL=error tests
 -   Adds default LOG_LEVEL tests
 -   Adds RELEASE_ENV=qa tests
+-   Adds RELEASE_ENV=uat tests
+-   Adds RELEASE_ENV=production tests
 
 3.2.0
 =====
