@@ -18,34 +18,52 @@ const envVarHelpers = require('../lib/index');
 const {isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWtf, isWTF} = envVarHelpers;
 
 /********************************************* TESTS **********************************************/
-describe('LOG_LEVEL=verbose', function() {
+describe('LOG_LEVEL=info', function() {
     describe('isSilly', function() {
-        it('is true when process.env.LOG_LEVEL=verbose', function() {
+        it('exists', function() {
+            expect(isSilly).to.exist;
+        });
+        it('is true when process.env.LOG_LEVEL=info', function() {
             expect(isSilly).to.be.false;
         });
     });
     describe('isVerbose', function() {
-        it('is true when process.env.LOG_LEVEL=verbose', function() {
+        it('exists', function() {
+            expect(isVerbose).to.exist;
+        });
+        it('is true when process.env.LOG_LEVEL=info', function() {
             expect(isVerbose).to.be.true;
         });
     });
     describe('isInfo', function() {
-        it('is true when process.env.LOG_LEVEL=verbose', function() {
+        it('exists', function() {
+            expect(isInfo).to.exist;
+        });
+        it('is true when process.env.LOG_LEVEL=info', function() {
             expect(isInfo).to.be.true;
         });
     });
     describe('isWarn', function() {
-        it('is true when process.env.LOG_LEVEL=verbose', function() {
+        it('exists', function() {
+            expect(isInfo).to.exist;
+        });
+        it('is true when process.env.LOG_LEVEL=info', function() {
             expect(isInfo).to.be.true;
         });
     });
     describe('isError', function() {
-        it('is true when process.env.LOG_LEVEL=verbose', function() {
+        it('exists', function() {
+            expect(isError).to.exist;
+        });
+        it('is true when process.env.LOG_LEVEL=info', function() {
             expect(isError).to.be.true;
         });
     });
     describe('isWTF', function() {
-        it('is true when process.env.LOG_LEVEL=verbose', function() {
+        it('exists', function() {
+            expect(isWtf).to.exist;
+        });
+        it('is true when process.env.LOG_LEVEL=info', function() {
             expect(isWtf).to.be.true;
         });
     });

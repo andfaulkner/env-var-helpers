@@ -17,17 +17,11 @@ const {isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWTF, isWtf} = env
 /********************************************* TESTS **********************************************/
 describe('LOG_LEVEL=silly', function() {
     describe('isSilly', function() {
-        it('exists', function() {
-            expect(isSilly).to.exist;
-        });
         it('is true when process.env.LOG_LEVEL=silly', function() {
             expect(isSilly).to.be.true;
         });
     });
     describe('isVerbose', function() {
-        it('exists', function() {
-            expect(isVerbose).to.exist;
-        });
         it('is true when process.env.LOG_LEVEL=silly', function() {
             expect(isVerbose).to.be.true;
         });
