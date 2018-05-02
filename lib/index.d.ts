@@ -73,6 +73,17 @@ export declare const isReleaseEnvUat: boolean;
 export { isReleaseEnvUat as isReleaseEnvUAT };
 export { isReleaseEnvUat as isUat };
 export { isReleaseEnvUat as isUAT };
+export declare const isReleaseEnvQa: boolean;
+export { isReleaseEnvQa as isReleaseEnvQA };
+export { isReleaseEnvQa as isQa };
+export { isReleaseEnvQa as isQA };
+export declare const isReleaseEnvDev: boolean;
+export { isReleaseEnvDev as isReleaseEnvDevelopment };
+export declare const isReleaseEnvProd: boolean;
+export { isReleaseEnvProd as isReleaseEnvProduction };
+/**
+ * 3-4 letter version of release environment name. Default: 'dev'
+ */
 export declare const releaseEnvShort: ReleaseEnvShort;
 export { releaseEnvShort as releaseEnvAbbrev };
 export { releaseEnvShort as releaseEnvAbbreviation };

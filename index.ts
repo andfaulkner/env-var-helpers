@@ -117,7 +117,15 @@ export {isReleaseEnvQa as isReleaseEnvQA};
 export {isReleaseEnvQa as isQa};
 export {isReleaseEnvQa as isQA};
 
-// 3-4 letter version of release environment name.
+export const isReleaseEnvDev = env.RELEASE_ENV === 'dev' || env.RELEASE_ENV === 'development';
+export {isReleaseEnvDev as isReleaseEnvDevelopment};
+
+export const isReleaseEnvProd = env.RELEASE_ENV === 'prod' || env.RELEASE_ENV === 'production';
+export {isReleaseEnvProd as isReleaseEnvProduction};
+
+/**
+ * 3-4 letter version of release environment name. Default: 'dev'
+ */
 export const releaseEnvShort: ReleaseEnvShort = (function() {
     return releaseEnv === 'uat'
         ? 'uat'
