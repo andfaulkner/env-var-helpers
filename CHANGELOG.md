@@ -14,6 +14,15 @@ Upgrades Node to v8.10.0
 
 Simplified CHANGELOG format
 
+New exported types:
+-   LogLevel
+-   NodeEnv
+-   ReleaseEnvs type renamed to ReleaseEnvs
+
+Adds trace log level
+
+Helpers generate exported env vars
+
 3.2.0
 =====
 Ran prettier on main file & other misc cleanups
