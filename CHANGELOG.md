@@ -22,6 +22,10 @@ Build environment / utils:
     -   tslint-microsoft-contrib
     -   vrsource-tslint-rules
 -   Adds typings for Mocha, Chai, & Sinon
+-   Removed dependencies:
+    -   detect-node (removed altogether)
+    -   string.prototype.padend (removed altogether)
+    -   mad-logs (moved to devDependencies)
 
 New exported types:
 -   LogLevel
