@@ -7,55 +7,67 @@ export type ReleaseEnvShort = 'dev' | 'prod' | 'qa' | 'uat';
 export type LogLevel = 'trace' | 'silly' | 'debug' | 'verbose' | 'info' | 'warn' | 'error' | 'wtf';
 
 /******************************************** HELPERS *********************************************/
-const processExists = typeof process !== 'undefined' && process != null;
-const processEnvExists = processExists && process.env;
+const envExists = typeof process !== 'undefined' && process != null && process.env;
+
+const toBool = (val, def) =>
+    val === 'true' || val === true ? true : val === 'false' || val === false ? false : def;
+
+const isEV = (name: string) => envExists && Object.keys(process.env).some(k => k === name);
+
+/********************************* GET & PROCESS ENVIRONMENT VALS *********************************/
+const NODE_ENV: NodeEnv = isEV('NODE_ENV') ? process.env.NODE_ENV.toLowerCase() : 'development';
+const LOG_LEVEL = isEV('LOG_LEVEL') ? process.env.LOG_LEVEL.toLowerCase() : 'info';
+
+const RELEASE_ENV: ReleaseEnv = isEV('RELEASE_ENV')
+    ? process.env.RELEASE_ENV.toLowerCase()
+    : NODE_ENV;
+
+const TEST_MODE = isEV('TEST_MODE') ? toBool(process.env.TEST_MODE, false) : false;
+const IE_COMPAT = isEV('IE_COMPAT') ? toBool(process.env.IE_COMPAT, false) : false;
+const AVOID_WEB = isEV('AVOID_WEB') ? toBool(process.env.AVOID_WEB, false) : false;
+
+const WAS_RUN_THRU_MOCHA =
+    Object.keys(process.env).some(k => k === 'mocha' || k === 'LOADED_MOCHA_OPTS') &&
+    toBool(process.env.mocha, false) !== false;
 
 const isTrueEV = (envVarPath: string) =>
     (process.env[envVarPath] || false) &&
     (process.env[envVarPath] === true ||
         process.env[envVarPath].toString().toLowerCase() === 'true');
 
-const formatVar = <T extends string | boolean | ReleaseEnv>(envVar: string, def: T): T =>
-    processEnvExists && process.env[envVar]
-        ? typeof def === 'string'
-            ? process.env[envVar].toString().toLowerCase()
-            : isTrueEV(envVar)
-        : def;
-
-const nodeEnv = formatVar('NODE_ENV', 'development') as NodeEnv;
-
-/******************************* COMMON ENVIRONMENT VALS COLLECTION *******************************/
 export const env = {
-    NODE_ENV: nodeEnv,
-    LOG_LEVEL: formatVar('LOG_LEVEL', 'info') as LogLevel,
-    IE_COMPAT: formatVar('IE_COMPAT', false),
-    TEST_MODE: formatVar('TEST_MODE', false),
-    AVOID_WEB: formatVar('AVOID_WEB', false),
-    // LOADED_MOCHA_OPTS set automatically by mocha on launch
-    WAS_RUN_THRU_MOCHA: formatVar('LOADED_MOCHA_OPTS', false) || formatVar('mocha', false),
-    RELEASE_ENV: formatVar('RELEASE_ENV', nodeEnv) as ReleaseEnv,
+    NODE_ENV,
+    LOG_LEVEL,
+    IE_COMPAT,
+    TEST_MODE,
+    AVOID_WEB,
+    WAS_RUN_THRU_MOCHA,
+    RELEASE_ENV,
 };
 
 /******************************************** NODE_ENV ********************************************/
-export const isDev = env.NODE_ENV === 'development' || env.NODE_ENV === 'dev';
+export const isDev = NODE_ENV === 'development' || NODE_ENV === 'dev';
 export {isDev as isDevelopment};
 
-export const isProd = env.NODE_ENV === 'production' || env.NODE_ENV === 'prod';
+export const isProd = NODE_ENV === 'production' || NODE_ENV === 'prod';
 export {isProd as isProduction};
 
 // True if NODE_ENV is production, TEST_SECURITY is true, or SECURITY_TEST is true
-export const prodOrSecurityTest = isProd || isTrueEV('TEST_SECURITY') || isTrueEV('SECURITY_TEST');
-export const isProdOrSecurityTest = prodOrSecurityTest;
+export const prodOrSecurityTest =
+    isProd ||
+    (envExists &&
+        (toBool(process.env.TEST_SECURITY, false) || toBool(process.env.SECURITY_TEST, false)));
+export {prodOrSecurityTest as isProdOrSecurityTest};
 
 /******************************************* LOG LEVEL ********************************************/
-export const isTrace = env.LOG_LEVEL === 'trace';
-export const isSilly = isTrace || env.LOG_LEVEL === 'silly';
-export const isVerbose = isSilly || env.LOG_LEVEL === 'verbose';
-export const isDebug = isVerbose || env.LOG_LEVEL === 'debug';
-export const isInfo = isDebug || env.LOG_LEVEL === 'info';
-export const isWarn = isInfo || env.LOG_LEVEL === 'warn';
-export const isError = isWarn || env.LOG_LEVEL === 'error';
-export const isWTF = isError || env.LOG_LEVEL === 'wtf';
+export const isTrace = LOG_LEVEL === 'trace';
+export const isSilly = isTrace || LOG_LEVEL === 'silly';
+export const isVerbose = isSilly || LOG_LEVEL === 'verbose';
+export const isDebug = isVerbose || LOG_LEVEL === 'debug';
+export const isInfo = isDebug || LOG_LEVEL === 'info';
+export const isWarn = isInfo || LOG_LEVEL === 'warn';
+export const isError = isWarn || LOG_LEVEL === 'error';
+export const isWTF = isError || LOG_LEVEL === 'wtf';
 
 /******************************************** ALIASES *********************************************/
 export {isSilly as logGtEqlSilly};
@@ -78,22 +90,22 @@ export {isWTF as isLogWTF};
 export {isWTF as isLogWtf};
 
 /**************************************** IE COMPATIBILITY ****************************************/
-export const isIeCompatMode = env.IE_COMPAT;
+export const isIeCompatMode = IE_COMPAT;
 export {isIeCompatMode as isIECompatMode};
 export {isIeCompatMode as isIECompat};
 export {isIeCompatMode as isIeCompat};
 
 // Check for env var requesting total avoidance of web; e.g. no CDNs (local bundles use instead)
-export const isAvoidWeb = env.AVOID_WEB;
+export const isAvoidWeb = AVOID_WEB;
 export {isAvoidWeb as avoidWeb};
 export {isAvoidWeb as doAvoidWeb};
 
 /**************************************** TEST ENVIRONMENT ****************************************/
 // For cases where TEST_MODE was run explicitly
-export const isTestMode = env.TEST_MODE && isTrueEV('TEST_MODE');
+export const isTestMode = TEST_MODE && toBool('TEST_MODE', false);
 
 // Check if current script was run via Mocha
-export const isMocha = env.WAS_RUN_THRU_MOCHA;
+export const isMocha = WAS_RUN_THRU_MOCHA;
 export {isMocha as isMochaEnv};
 export {isMocha as runByMocha};
 export {isMocha as runViaMocha};
@@ -104,23 +116,23 @@ export {isMocha as wasRunThruMocha};
 export {isMocha as loadedMochaOpts};
 
 /******************************* RELEASE ENVIRONMENT (RELEASE_ENV) ********************************/
-export const releaseEnv = env.RELEASE_ENV;
+export const releaseEnv = RELEASE_ENV;
 export {releaseEnv as releaseEnvironment};
 
-export const isReleaseEnvUat = env.RELEASE_ENV === 'uat';
+export const isReleaseEnvUat = RELEASE_ENV === 'uat';
 export {isReleaseEnvUat as isReleaseEnvUAT};
 export {isReleaseEnvUat as isUat};
 export {isReleaseEnvUat as isUAT};
 
-export const isReleaseEnvQa = env.RELEASE_ENV === 'qa';
+export const isReleaseEnvQa = RELEASE_ENV === 'qa';
 export {isReleaseEnvQa as isReleaseEnvQA};
 export {isReleaseEnvQa as isQa};
 export {isReleaseEnvQa as isQA};
 
-export const isReleaseEnvDev = env.RELEASE_ENV === 'dev' || env.RELEASE_ENV === 'development';
+export const isReleaseEnvDev = RELEASE_ENV === 'dev' || RELEASE_ENV === 'development';
 export {isReleaseEnvDev as isReleaseEnvDevelopment};
 
-export const isReleaseEnvProd = env.RELEASE_ENV === 'prod' || env.RELEASE_ENV === 'production';
+export const isReleaseEnvProd = RELEASE_ENV === 'prod' || RELEASE_ENV === 'production';
 export {isReleaseEnvProd as isReleaseEnvProduction};
 
 /**
@@ -144,7 +156,7 @@ export {releaseEnvShort as releaseEnvironmentAbbreviation};
 
 /**************************** LOG LEVEL + TEST ENVIRONMENT SHORTHANDS *****************************/
 // More are defined for verbose + mocha because it's a much more common pattern.
-export const isVerboseMocha = env.WAS_RUN_THRU_MOCHA && isVerbose;
+export const isVerboseMocha = WAS_RUN_THRU_MOCHA && isVerbose;
 export {isVerboseMocha as isVerboseTest};
 export {isVerboseMocha as isVTest};
 export {isVerboseMocha as isVMocha};
@@ -153,12 +165,12 @@ export {isVerboseMocha as isTestVerbose};
 export {isVerboseMocha as isMochaV};
 export {isVerboseMocha as isTestV};
 
-export const isDebugMocha = env.WAS_RUN_THRU_MOCHA && isDebug;
+export const isDebugMocha = WAS_RUN_THRU_MOCHA && isDebug;
 export {isDebugMocha as isDebugTest};
 export {isDebugMocha as isMochaDebug};
 export {isDebugMocha as isTestDebug};
 
-export const isSillyMocha = env.WAS_RUN_THRU_MOCHA && isSilly;
+export const isSillyMocha = WAS_RUN_THRU_MOCHA && isSilly;
 export {isSillyMocha as isSillyTest};
 export {isSillyMocha as isMochaSilly};
 export {isSillyMocha as isTestSilly};

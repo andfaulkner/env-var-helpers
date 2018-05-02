@@ -3,13 +3,12 @@ export declare type NodeEnv = 'development' | 'dev' | 'production' | 'prod';
 export declare type ReleaseEnv = 'development' | 'dev' | 'qa' | 'uat' | 'production' | 'prod';
 export declare type ReleaseEnvShort = 'dev' | 'prod' | 'qa' | 'uat';
 export declare type LogLevel = 'trace' | 'silly' | 'debug' | 'verbose' | 'info' | 'warn' | 'error' | 'wtf';
-/******************************* COMMON ENVIRONMENT VALS COLLECTION *******************************/
 export declare const env: {
     NODE_ENV: NodeEnv;
-    LOG_LEVEL: LogLevel;
-    IE_COMPAT: boolean;
-    TEST_MODE: boolean;
-    AVOID_WEB: boolean;
+    LOG_LEVEL: any;
+    IE_COMPAT: any;
+    TEST_MODE: any;
+    AVOID_WEB: any;
     WAS_RUN_THRU_MOCHA: boolean;
     RELEASE_ENV: ReleaseEnv;
 };
@@ -18,8 +17,8 @@ export declare const isDev: boolean;
 export { isDev as isDevelopment };
 export declare const isProd: boolean;
 export { isProd as isProduction };
-export declare const prodOrSecurityTest: boolean;
-export declare const isProdOrSecurityTest: boolean;
+export declare const prodOrSecurityTest: any;
+export { prodOrSecurityTest as isProdOrSecurityTest };
 /******************************************* LOG LEVEL ********************************************/
 export declare const isTrace: boolean;
 export declare const isSilly: boolean;
@@ -48,15 +47,15 @@ export { isError as isLogError };
 export { isWTF as isLogWTF };
 export { isWTF as isLogWtf };
 /**************************************** IE COMPATIBILITY ****************************************/
-export declare const isIeCompatMode: boolean;
+export declare const isIeCompatMode: any;
 export { isIeCompatMode as isIECompatMode };
 export { isIeCompatMode as isIECompat };
 export { isIeCompatMode as isIeCompat };
-export declare const isAvoidWeb: boolean;
+export declare const isAvoidWeb: any;
 export { isAvoidWeb as avoidWeb };
 export { isAvoidWeb as doAvoidWeb };
 /**************************************** TEST ENVIRONMENT ****************************************/
-export declare const isTestMode: boolean;
+export declare const isTestMode: any;
 export declare const isMocha: boolean;
 export { isMocha as isMochaEnv };
 export { isMocha as runByMocha };
