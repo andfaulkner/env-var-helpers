@@ -1,8 +1,8 @@
 // Ensure environment knows testing is occurring
 process.env.mocha = true;
 
-// Explicitly set LOG_LEVEL to verbose (just in case)
-process.env.LOG_LEVEL = 'verbose';
+// Explicitly set LOG_LEVEL to verbose if not set (just in case)
+process.env.LOG_LEVEL = process.env.LOG_LEVEL || 'verbose';
 
 /************************************** THIRD-PARTY IMPORTS ***************************************/
 const {expect} = require('chai');
@@ -20,7 +20,7 @@ const {isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWtf, isWTF} = env
 /********************************************* TESTS **********************************************/
 describe('LOG_LEVEL=verbose', function() {
     describe('isSilly', function() {
-        it('is true when process.env.LOG_LEVEL=verbose', function() {
+        it('is false when process.env.LOG_LEVEL=verbose', function() {
             expect(isSilly).to.be.false;
         });
     });
@@ -36,7 +36,7 @@ describe('LOG_LEVEL=verbose', function() {
     });
     describe('isWarn', function() {
         it('is true when process.env.LOG_LEVEL=verbose', function() {
-            expect(isInfo).to.be.true;
+            expect(isWarn).to.be.true;
         });
     });
     describe('isError', function() {

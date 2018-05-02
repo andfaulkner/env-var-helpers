@@ -1,6 +1,9 @@
 // ensure environment knows testing is occurring
 process.env.mocha = true;
 
+// Explicitly set LOG_LEVEL to silly if not set (just in case)
+process.env.LOG_LEVEL = process.env.LOG_LEVEL || 'silly';
+
 /************************************** THIRD-PARTY IMPORTS ***************************************/
 const {expect} = require('chai');
 const sinon = require('sinon');

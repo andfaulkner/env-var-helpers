@@ -1,8 +1,8 @@
 // Ensure environment knows testing is occurring
 process.env.mocha = true;
 
-// Explicitly set LOG_LEVEL to verbose (just in case)
-process.env.LOG_LEVEL = 'verbose';
+// Explicitly set LOG_LEVEL to info if not set (just in case)
+process.env.LOG_LEVEL = process.env.LOG_LEVEL || 'info';
 
 /************************************** THIRD-PARTY IMPORTS ***************************************/
 const {expect} = require('chai');
@@ -20,49 +20,31 @@ const {isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWtf, isWTF} = env
 /********************************************* TESTS **********************************************/
 describe('LOG_LEVEL=info', function() {
     describe('isSilly', function() {
-        it('exists', function() {
-            expect(isSilly).to.exist;
-        });
-        it('is true when process.env.LOG_LEVEL=info', function() {
+        it('is false when process.env.LOG_LEVEL=info', function() {
             expect(isSilly).to.be.false;
         });
     });
     describe('isVerbose', function() {
-        it('exists', function() {
-            expect(isVerbose).to.exist;
-        });
-        it('is true when process.env.LOG_LEVEL=info', function() {
-            expect(isVerbose).to.be.true;
+        it('is false when process.env.LOG_LEVEL=info', function() {
+            expect(isVerbose).to.be.false;
         });
     });
     describe('isInfo', function() {
-        it('exists', function() {
-            expect(isInfo).to.exist;
-        });
         it('is true when process.env.LOG_LEVEL=info', function() {
             expect(isInfo).to.be.true;
         });
     });
     describe('isWarn', function() {
-        it('exists', function() {
-            expect(isInfo).to.exist;
-        });
         it('is true when process.env.LOG_LEVEL=info', function() {
-            expect(isInfo).to.be.true;
+            expect(isWarn).to.be.true;
         });
     });
     describe('isError', function() {
-        it('exists', function() {
-            expect(isError).to.exist;
-        });
         it('is true when process.env.LOG_LEVEL=info', function() {
             expect(isError).to.be.true;
         });
     });
     describe('isWTF', function() {
-        it('exists', function() {
-            expect(isWtf).to.exist;
-        });
         it('is true when process.env.LOG_LEVEL=info', function() {
             expect(isWtf).to.be.true;
         });
