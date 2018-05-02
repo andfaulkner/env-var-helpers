@@ -12,6 +12,8 @@ const envExists = typeof process !== 'undefined' && process != null && process.e
 const toBool = (val, def) =>
     val === 'true' || val === true ? true : val === 'false' || val === false ? false : def;
 
+const nonEmpty = val => typeof val !== 'undefined' && val !== null && val !== '';
+
 const RAW_NODE_ENV = process.env.NODE_ENV;
 const RAW_LOG_LEVEL = process.env.LOG_LEVEL;
 const RAW_RELEASE_ENV = process.env.RELEASE_ENV;
@@ -33,15 +35,7 @@ const IE_COMPAT = RAW_IE_COMPAT ? toBool(process.env.IE_COMPAT, false) : false;
 const AVOID_WEB = RAW_AVOID_WEB ? toBool(process.env.AVOID_WEB, false) : false;
 
 const WAS_RUN_THRU_MOCHA =
-    (typeof RAW_LOADED_MOCHA_OPTS !== 'undefined' &&
-        RAW_LOADED_MOCHA_OPTS !== null &&
-        RAW_LOADED_MOCHA_OPTS !== '') ||
-    (!!RAW_mocha && toBool(RAW_mocha, false) !== false);
-
-const isTrueEV = (envVarPath: string) =>
-    (process.env[envVarPath] || false) &&
-    (process.env[envVarPath] === true ||
-        process.env[envVarPath].toString().toLowerCase() === 'true');
+    nonEmpty(RAW_LOADED_MOCHA_OPTS) || (!!RAW_mocha && toBool(RAW_mocha, false) !== false);
 
 export const env = {
     NODE_ENV,
@@ -63,14 +57,8 @@ export {isProd as isProduction};
 // True if NODE_ENV is production, TEST_SECURITY is true, or SECURITY_TEST is true
 export const prodOrSecurityTest =
     isProd ||
-    (typeof RAW_TEST_SECURITY !== 'undefined' &&
-        RAW_TEST_SECURITY !== null &&
-        RAW_TEST_SECURITY !== '' &&
-        toBool(RAW_TEST_SECURITY, false)) ||
-    (typeof RAW_SECURITY_TEST !== 'undefined' &&
-        RAW_SECURITY_TEST !== null &&
-        RAW_SECURITY_TEST !== '' &&
-        toBool(RAW_SECURITY_TEST, false));
+    (nonEmpty(RAW_TEST_SECURITY) && toBool(RAW_TEST_SECURITY, false)) ||
+    (nonEmpty(RAW_SECURITY_TEST) && toBool(RAW_SECURITY_TEST, false));
 
 export {prodOrSecurityTest as isProdOrSecurityTest};
 
