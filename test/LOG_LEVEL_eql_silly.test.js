@@ -2,37 +2,34 @@
 process.env.mocha = true;
 
 /************************************** THIRD-PARTY IMPORTS ***************************************/
-const { expect } = require('chai');
+const {expect} = require('chai');
 const sinon = require('sinon');
 const mocha = require('mocha');
 
 const fs = require('fs');
 const path = require('path');
-const { stderr, stdout } = require('test-console');
+const {stderr, stdout} = require('test-console');
 
 /*********************************** IMPORT FILES TO BE TESTED ************************************/
 const envVarHelpers = require('../lib/index');
-const {
-    logGtEqlSilly, logGtEqlVerbose, logGtEqlDebug, logGtEqlInfo, logGtEqlWarn, logGtEqlError,
-    logGtEqlWtf, logGtEqlWTF
-} = envVarHelpers;
+const {isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWTF, isWtf} = envVarHelpers;
 
 /********************************************* TESTS **********************************************/
 describe('LOG_LEVEL=silly', function() {
-    describe('logGtEqlSilly', function() {
+    describe('isSilly', function() {
         it('exists', function() {
-            expect(logGtEqlSilly).to.exist;
+            expect(isSilly).to.exist;
         });
         it('is true when process.env.LOG_LEVEL=silly', function() {
-            expect(logGtEqlSilly).to.be.true;
+            expect(isSilly).to.be.true;
         });
     });
-    describe('logGtEqlVerbose', function() {
+    describe('isVerbose', function() {
         it('exists', function() {
-            expect(logGtEqlVerbose).to.exist;
+            expect(isVerbose).to.exist;
         });
         it('is true when process.env.LOG_LEVEL=silly', function() {
-            expect(logGtEqlVerbose).to.be.true;
+            expect(isVerbose).to.be.true;
         });
     });
 });
