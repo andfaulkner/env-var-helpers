@@ -18,25 +18,35 @@ const envVarHelpers = require('../lib/index');
 const {isQA, isUAT, isReleaseEnvDev, isReleaseEnvProd, releaseEnvShort, releaseEnv} = envVarHelpers;
 
 /********************************************* TESTS **********************************************/
-describe('RELEASE_ENV=qa', function() {
-    describe('isQA', function() {
-        it('is true when RELEASE_ENV=qa', function() {
+describe(`RELEASE_ENV=qa`, function() {
+    describe(`isQA`, function() {
+        it(`is true when RELEASE_ENV=qa`, function() {
             expect(isQA).to.be.true;
         });
     });
-    describe('isUAT', function() {
-        it('is false when RELEASE_ENV=qa', function() {
+    describe(`isUAT`, function() {
+        it(`is false when RELEASE_ENV=qa`, function() {
             expect(isUAT).to.be.false;
         });
     });
-    describe('isReleaseEnvDev', function() {
-        it('is false when RELEASE_ENV=qa', function() {
+    describe(`isReleaseEnvDev`, function() {
+        it(`is false when RELEASE_ENV=qa`, function() {
             expect(isReleaseEnvDev).to.be.false;
         });
     });
-    describe('isReleaseEnvProd', function() {
-        it('is false when RELEASE_ENV=qa', function() {
+    describe(`isReleaseEnvProd`, function() {
+        it(`is false when RELEASE_ENV=qa`, function() {
             expect(isReleaseEnvProd).to.be.false;
+        });
+    });
+    describe(`releaseEnvShort`, function() {
+        it(`is 'qa' when RELEASE_ENV=qa`, function() {
+            expect(releaseEnvShort).to.eql(`qa`);
+        });
+    });
+    describe(`releaseEnv`, function() {
+        it(`is 'qa' when RELEASE_ENV=qa`, function() {
+            expect(releaseEnv).to.eql(`qa`);
         });
     });
 });
