@@ -4,6 +4,7 @@ declare const process: any;
 export type NodeEnv = 'development' | 'dev' | 'production' | 'prod';
 export type ReleaseEnv = 'development' | 'dev' | 'uat' | 'production' | 'prod';
 export type ReleaseEnvShort = 'dev' | 'prod' | 'uat';
+export type LogLevel = 'trace' | 'silly' | 'debug' | 'verbose' | 'info' | 'warn' | 'error' | 'wtf';
 
 
 /******************************************** HELPERS *********************************************/
@@ -27,7 +28,7 @@ const nodeEnv = formatVar('NODE_ENV', 'development') as NodeEnv;
 /******************************* COMMON ENVIRONMENT VALS COLLECTION *******************************/
 export const env = {
     NODE_ENV: nodeEnv,
-    LOG_LEVEL: formatVar('LOG_LEVEL', 'info'),
+    LOG_LEVEL: formatVar('LOG_LEVEL', 'info') as LogLevel,
     IE_COMPAT: formatVar('IE_COMPAT', false),
     TEST_MODE: formatVar('TEST_MODE', false),
     AVOID_WEB: formatVar('AVOID_WEB', false),
