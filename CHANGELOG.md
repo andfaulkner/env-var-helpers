@@ -1,3 +1,7 @@
+3.4.0
+=====
+Revamped so process.env.* vars are directly exposed (for webpack injection)
+
 3.3.0
 =====
 Cleaner, shorter codebase: helpers generate exported env vars
