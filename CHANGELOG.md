@@ -1,27 +1,34 @@
 3.3.0
 =====
-Adds QA environment
+Module upgrades:
+-   Upgrades prettier -> v1.12
+-   Upgrades Typescript to v2.8.3
+-   Upgrades Node to v8.10.0
 
-Upgrades prettier -> v1.12
-Adds prettier config
+Build environment / utils:
+-   Adds prettier config
+-   Adds TSLint & TSLint config
+-   Updates tsconfig.json to match new TS version
+-   Simplified CHANGELOG format
 
-Adds TSLint & TSLint config
-
-Upgrades Typescript to v2.8.3
-Updates tsconfig.json to match new TS version
-
-Upgrades Node to v8.10.0
-
-Simplified CHANGELOG format
+Cleaner, shorter codebase: helpers generate exported env vars
 
 New exported types:
 -   LogLevel
 -   NodeEnv
 -   ReleaseEnvs type renamed to ReleaseEnvs
 
-Adds trace log level
+New 'trace' LOG_LEVEL:
+-   Adds trace log level (at lowest level)
+-   Adds function isTrace (true if LOG_LEVEL=trace)
 
-Helpers generate exported env vars
+Adds QA environment:
+-   QA functions: isQA, isQa, isReleaseEnvQA, isReleaseEnvQa
+-   Adds 'qa' as option to ReleaseEnv & ReleaseEnvShort types
+-   Sets releaseEnvShort to 'qa' if detected RELEASE_ENV is QA (RELEASE_ENV=qa)
+
+Tests:
+-   Adds LOG_LEVEL=verbose tests
 
 3.2.0
 =====
