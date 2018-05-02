@@ -2,8 +2,8 @@ declare const process: any;
 
 /****************************************** TYPE EXPORTS ******************************************/
 export type NodeEnv = 'development' | 'dev' | 'production' | 'prod';
-export type ReleaseEnv = 'development' | 'dev' | 'uat' | 'production' | 'prod';
-export type ReleaseEnvShort = 'dev' | 'prod' | 'uat';
+export type ReleaseEnv = 'development' | 'dev' | 'qa' | 'uat' | 'production' | 'prod';
+export type ReleaseEnvShort = 'dev' | 'prod' | 'qa' | 'uat';
 export type LogLevel = 'trace' | 'silly' | 'debug' | 'verbose' | 'info' | 'warn' | 'error' | 'wtf';
 
 
@@ -119,7 +119,9 @@ export const releaseEnvShort: ReleaseEnvShort = (function() {
         ? 'uat'
         : releaseEnv === 'prod' || releaseEnv === 'production'
             ? 'prod'
-            : 'dev';
+            : releaseEnv === 'qa'
+                ? 'qa'
+                : 'dev';
 })();
 
 export {releaseEnvShort as releaseEnvAbbrev};
