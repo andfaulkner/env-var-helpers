@@ -1,6 +1,6 @@
 declare const process: any;
 
-export type ReleaseEnvs = "production" | "prod" | "uat" | "development" | "dev";
+export type ReleaseEnvs = "production" | "prod" | "uat" | "qa" | "development" | "dev";
 
 /******************************* COMMON ENVIRONMENT VALS COLLECTION *******************************/
 const processExists = typeof process !== "undefined" && process != null;
