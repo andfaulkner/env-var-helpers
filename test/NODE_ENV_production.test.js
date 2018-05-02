@@ -6,17 +6,17 @@ console.log(`process.env.mocha:`, process.env.mocha);
 const oldProcArgs = Object.assign({}, process.argv);
 
 /************************************** THIRD-PARTY IMPORTS ***************************************/
-const { expect } = require('chai');
+const {expect} = require('chai');
 const sinon = require('sinon');
 const mocha = require('mocha');
 
 const fs = require('fs');
 const path = require('path');
-const { stderr, stdout } = require('test-console');
+const {stderr, stdout} = require('test-console');
 
 /*********************************** IMPORT FILES TO BE TESTED ************************************/
 const envVarHelpers = require('../lib/index');
-const { isDev, isProd, prodOrSecurityTest } = envVarHelpers;
+const {isDev, isProd, prodOrSecurityTest} = envVarHelpers;
 
 /********************************************* TESTS **********************************************/
 describe('NODE_ENV=production', function() {
