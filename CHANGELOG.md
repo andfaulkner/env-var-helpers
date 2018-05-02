@@ -1,3 +1,7 @@
+3.4.1
+=====
+Converted arrow functions to regular functions to satisfy Webpack + UglifyJS edge case
+
 3.4.0
 =====
 Revamped so process.env.* vars are directly exposed (for webpack injection)
