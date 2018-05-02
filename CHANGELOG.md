@@ -1,5 +1,21 @@
-Version 3.2.0
-=============
+3.3.0
+=====
+Adds QA environment
+
+Upgrades prettier -> v1.12
+Adds prettier config
+
+Adds TSLint & TSLint config
+
+Upgrades Typescript to v2.8.3
+Updates tsconfig.json to match new TS version
+
+Upgrades Node to v8.10.0
+
+Simplified CHANGELOG format
+
+3.2.0
+=====
 Ran prettier on main file & other misc cleanups
 
 Proper export method for aliases (export {name as alias})
@@ -9,12 +25,9 @@ lodash types updated (to 4.14.104)
 
 Typescript -> 2.7.2
 
-
-
-Version 3.0.0
-=============
-
-Major overhaul.
+3.0.0
+=====
+Major overhaul
 
 Numerous subtle bugs were fixed, most/all of which were runtime and some of which could hypothetically reach production unnoticed. Some had the potential to result in e.g.:
 -   parts of the application silently disappearing;
