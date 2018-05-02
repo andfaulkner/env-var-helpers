@@ -6,7 +6,6 @@ export type ReleaseEnv = 'development' | 'dev' | 'qa' | 'uat' | 'production' | '
 export type ReleaseEnvShort = 'dev' | 'prod' | 'qa' | 'uat';
 export type LogLevel = 'trace' | 'silly' | 'debug' | 'verbose' | 'info' | 'warn' | 'error' | 'wtf';
 
-
 /******************************************** HELPERS *********************************************/
 const processExists = typeof process !== 'undefined' && process != null;
 const processEnvExists = processExists && process.env;
@@ -112,6 +111,11 @@ export const isReleaseEnvUat = env.RELEASE_ENV === 'uat';
 export {isReleaseEnvUat as isReleaseEnvUAT};
 export {isReleaseEnvUat as isUat};
 export {isReleaseEnvUat as isUAT};
+
+export const isReleaseEnvQa = env.RELEASE_ENV === 'qa';
+export {isReleaseEnvQa as isReleaseEnvQA};
+export {isReleaseEnvQa as isQa};
+export {isReleaseEnvQa as isQA};
 
 // 3-4 letter version of release environment name.
 export const releaseEnvShort: ReleaseEnvShort = (function() {
