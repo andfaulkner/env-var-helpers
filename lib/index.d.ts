@@ -1,21 +1,27 @@
-export declare type ReleaseEnvs = 'production' | 'prod' | 'uat' | 'qa' | 'development' | 'dev';
+/****************************************** TYPE EXPORTS ******************************************/
+export declare type NodeEnv = 'development' | 'dev' | 'production' | 'prod';
+export declare type ReleaseEnv = 'development' | 'dev' | 'qa' | 'uat' | 'production' | 'prod';
+export declare type ReleaseEnvShort = 'dev' | 'prod' | 'qa' | 'uat';
+export declare type LogLevel = 'trace' | 'silly' | 'debug' | 'verbose' | 'info' | 'warn' | 'error' | 'wtf';
+/******************************* COMMON ENVIRONMENT VALS COLLECTION *******************************/
 export declare const env: {
-    NODE_ENV: any;
-    LOG_LEVEL: any;
+    NODE_ENV: NodeEnv;
+    LOG_LEVEL: LogLevel;
     IE_COMPAT: boolean;
     TEST_MODE: boolean;
     AVOID_WEB: boolean;
     WAS_RUN_THRU_MOCHA: boolean;
-    RELEASE_ENV: ReleaseEnvs;
+    RELEASE_ENV: ReleaseEnv;
 };
 /******************************************** NODE_ENV ********************************************/
-export declare const isDevelopment: boolean;
-export { isDevelopment as isDev };
-export declare const isProduction: boolean;
-export { isProduction as isProd };
+export declare const isDev: boolean;
+export { isDev as isDevelopment };
+export declare const isProd: boolean;
+export { isProd as isProduction };
 export declare const prodOrSecurityTest: boolean;
 export declare const isProdOrSecurityTest: boolean;
 /******************************************* LOG LEVEL ********************************************/
+export declare const isTrace: boolean;
 export declare const isSilly: boolean;
 export declare const isVerbose: boolean;
 export declare const isDebug: boolean;
@@ -61,19 +67,22 @@ export { isMocha as wasRunViaMocha };
 export { isMocha as wasRunThruMocha };
 export { isMocha as loadedMochaOpts };
 /******************************* RELEASE ENVIRONMENT (RELEASE_ENV) ********************************/
-export declare const releaseEnv: ReleaseEnvs;
-export declare const releaseEnvironment: ReleaseEnvs;
+export declare const releaseEnv: ReleaseEnv;
+export { releaseEnv as releaseEnvironment };
 export declare const isReleaseEnvUat: boolean;
 export { isReleaseEnvUat as isReleaseEnvUAT };
 export { isReleaseEnvUat as isUat };
 export { isReleaseEnvUat as isUAT };
-export declare type ReleaseEnvsShort = 'uat' | 'prod' | 'dev';
-export declare const releaseEnvShort: ReleaseEnvsShort;
-export declare const releaseEnvAbbrev: ReleaseEnvsShort;
-export { releaseEnvAbbrev as releaseEnvAbbreviation };
-export { releaseEnvAbbrev as releaseEnvironmentShort };
-export { releaseEnvAbbrev as releaseEnvironmentAbbrev };
-export { releaseEnvAbbrev as releaseEnvironmentAbbreviation };
+export declare const isReleaseEnvQa: boolean;
+export { isReleaseEnvQa as isReleaseEnvQA };
+export { isReleaseEnvQa as isQa };
+export { isReleaseEnvQa as isQA };
+export declare const releaseEnvShort: ReleaseEnvShort;
+export { releaseEnvShort as releaseEnvAbbrev };
+export { releaseEnvShort as releaseEnvAbbreviation };
+export { releaseEnvShort as releaseEnvironmentShort };
+export { releaseEnvShort as releaseEnvironmentAbbrev };
+export { releaseEnvShort as releaseEnvironmentAbbreviation };
 /**************************** LOG LEVEL + TEST ENVIRONMENT SHORTHANDS *****************************/
 export declare const isVerboseMocha: boolean;
 export { isVerboseMocha as isVerboseTest };
