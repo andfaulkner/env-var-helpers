@@ -9,7 +9,7 @@ export declare const env: {
     IE_COMPAT: any;
     TEST_MODE: any;
     AVOID_WEB: any;
-    WAS_RUN_THRU_MOCHA: boolean;
+    WAS_RUN_THRU_MOCHA: any;
     RELEASE_ENV: ReleaseEnv;
 };
 /******************************************** NODE_ENV ********************************************/
@@ -56,7 +56,7 @@ export { isAvoidWeb as avoidWeb };
 export { isAvoidWeb as doAvoidWeb };
 /**************************************** TEST ENVIRONMENT ****************************************/
 export declare const isTestMode: any;
-export declare const isMocha: boolean;
+export declare const isMocha: any;
 export { isMocha as isMochaEnv };
 export { isMocha as runByMocha };
 export { isMocha as runViaMocha };

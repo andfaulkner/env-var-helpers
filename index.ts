@@ -7,13 +7,11 @@ export type ReleaseEnvShort = 'dev' | 'prod' | 'qa' | 'uat';
 export type LogLevel = 'trace' | 'silly' | 'debug' | 'verbose' | 'info' | 'warn' | 'error' | 'wtf';
 
 /******************************************** HELPERS *********************************************/
-const envExists = typeof process !== 'undefined' && process != null && process.env;
-
 const toBool = (val, def) =>
     val === 'true' || val === true ? true : val === 'false' || val === false ? false : def;
+const hasVal = val => typeof val !== 'undefined' && val !== null && val !== '';
 
-const nonEmpty = val => typeof val !== 'undefined' && val !== null && val !== '';
-
+// Raw environment variables, extracted from process.env
 const RAW_NODE_ENV = process.env.NODE_ENV;
 const RAW_LOG_LEVEL = process.env.LOG_LEVEL;
 const RAW_RELEASE_ENV = process.env.RELEASE_ENV;
@@ -26,16 +24,14 @@ const RAW_TEST_SECURITY = process.env.TEST_SECURITY;
 const RAW_SECURITY_TEST = process.env.SECURITY_TEST;
 
 /********************************* GET & PROCESS ENVIRONMENT VALS *********************************/
-const NODE_ENV: NodeEnv = RAW_NODE_ENV ? process.env.NODE_ENV.toLowerCase() : 'development';
-const RELEASE_ENV: ReleaseEnv = RAW_RELEASE_ENV ? process.env.RELEASE_ENV.toLowerCase() : NODE_ENV;
-const LOG_LEVEL = RAW_LOG_LEVEL ? process.env.LOG_LEVEL.toLowerCase() : 'info';
+const NODE_ENV: NodeEnv = hasVal(RAW_NODE_ENV) ? RAW_NODE_ENV.toLowerCase() : 'development';
+const RELEASE_ENV: ReleaseEnv = hasVal(RAW_RELEASE_ENV) ? RAW_RELEASE_ENV.toLowerCase() : NODE_ENV;
+const LOG_LEVEL = hasVal(RAW_LOG_LEVEL) ? RAW_LOG_LEVEL.toLowerCase() : 'info';
+const TEST_MODE = hasVal(RAW_TEST_MODE) ? toBool(RAW_TEST_MODE, false) : false;
+const IE_COMPAT = hasVal(RAW_IE_COMPAT) ? toBool(RAW_IE_COMPAT, false) : false;
+const AVOID_WEB = hasVal(RAW_AVOID_WEB) ? toBool(RAW_AVOID_WEB, false) : false;
 
-const TEST_MODE = RAW_TEST_MODE ? toBool(process.env.TEST_MODE, false) : false;
-const IE_COMPAT = RAW_IE_COMPAT ? toBool(process.env.IE_COMPAT, false) : false;
-const AVOID_WEB = RAW_AVOID_WEB ? toBool(process.env.AVOID_WEB, false) : false;
-
-const WAS_RUN_THRU_MOCHA =
-    nonEmpty(RAW_LOADED_MOCHA_OPTS) || (!!RAW_mocha && toBool(RAW_mocha, false) !== false);
+const WAS_RUN_THRU_MOCHA = hasVal(RAW_LOADED_MOCHA_OPTS) || (RAW_mocha && toBool(RAW_mocha, false));
 
 export const env = {
     NODE_ENV,
@@ -57,8 +53,8 @@ export {isProd as isProduction};
 // True if NODE_ENV is production, TEST_SECURITY is true, or SECURITY_TEST is true
 export const prodOrSecurityTest =
     isProd ||
-    (nonEmpty(RAW_TEST_SECURITY) && toBool(RAW_TEST_SECURITY, false)) ||
-    (nonEmpty(RAW_SECURITY_TEST) && toBool(RAW_SECURITY_TEST, false));
+    (hasVal(RAW_TEST_SECURITY) && toBool(RAW_TEST_SECURITY, false)) ||
+    (hasVal(RAW_SECURITY_TEST) && toBool(RAW_SECURITY_TEST, false));
 
 export {prodOrSecurityTest as isProdOrSecurityTest};
 
@@ -177,6 +173,3 @@ export const isSillyMocha = WAS_RUN_THRU_MOCHA && isSilly;
 export {isSillyMocha as isSillyTest};
 export {isSillyMocha as isMochaSilly};
 export {isSillyMocha as isTestSilly};
-
-// No need for isWarnMocha, isErrorMocha, or isWtfMocha: suppressing warning & error
-// error logs in unit tests is virtually never needed, and terrible practice besides.
