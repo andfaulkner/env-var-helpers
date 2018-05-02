@@ -2,16 +2,26 @@
 =====
 Cleaner, shorter codebase: helpers generate exported env vars
 
-Module upgrades:
--   Upgrades prettier -> v1.12
--   Upgrades Typescript to v2.8.3
--   Upgrades Node to v8.10.0
+Module/Library/Engine upgrades:
+-   Prettier -> v1.12
+-   Typescript -> v2.8.3
+-   Node -> v8.10.0
+-   ts-node: v5.0.0 -> v6.0.2
+-   mocha: v5.0.5 -> v5.1.1
+-   nodemon: v1.15.1 -> v1.17.3
+-   sinon: v4.4.9 -> v5.0.2
+
+Simplified CHANGELOG format
 
 Build environment / utils:
 -   Adds prettier config
 -   Adds TSLint & TSLint config
 -   Updates tsconfig.json to match new TS version
--   Simplified CHANGELOG format
+-   Adds TSLint rules plugins:
+    -   tslint-eslint-rules
+    -   tslint-microsoft-contrib
+    -   vrsource-tslint-rules
+-   Adds typings for Mocha, Chai, & Sinon
 
 New exported types:
 -   LogLevel
