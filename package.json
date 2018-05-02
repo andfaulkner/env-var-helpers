@@ -62,6 +62,7 @@
         "sinon": "^4.4.9",
         "test-console": "^1.1.0",
         "ts-node": "^5.0.0",
+        "tslint": "^5.9.1",
         "typescript": "^2.7.2"
     },
     "peerDependencies": {
