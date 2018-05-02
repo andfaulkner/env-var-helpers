@@ -113,6 +113,11 @@ export {isReleaseEnvUat as isReleaseEnvUAT};
 export {isReleaseEnvUat as isUat};
 export {isReleaseEnvUat as isUAT};
 
+export const isReleaseEnvQa = env.RELEASE_ENV === 'qa';
+export {isReleaseEnvQa as isReleaseEnvQA};
+export {isReleaseEnvQa as isQa};
+export {isReleaseEnvQa as isQA};
+
 // 3-4 letter version of release environment name.
 export const releaseEnvShort: ReleaseEnvShort = (function() {
     return releaseEnv === 'uat'
