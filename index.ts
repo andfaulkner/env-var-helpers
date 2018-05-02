@@ -1,66 +1,56 @@
 declare const process: any;
 
-export type ReleaseEnvs = 'production' | 'prod' | 'uat' | 'qa' | 'development' | 'dev';
+/****************************************** TYPE EXPORTS ******************************************/
+export type NodeEnv = 'development' | 'dev' | 'production' | 'prod';
+export type ReleaseEnv = 'development' | 'dev' | 'uat' | 'production' | 'prod';
+export type ReleaseEnvShort = 'dev' | 'prod' | 'uat';
+export type LogLevel = 'trace' | 'silly' | 'debug' | 'verbose' | 'info' | 'warn' | 'error' | 'wtf';
+
+
+/******************************************** HELPERS *********************************************/
+const processExists = typeof process !== 'undefined' && process != null;
+const processEnvExists = processExists && process.env;
+
+const isTrueEV = (envVarPath: string) =>
+    (process.env[envVarPath] || false) &&
+    (process.env[envVarPath] === true ||
+        process.env[envVarPath].toString().toLowerCase() === 'true');
+
+const formatVar = <T extends string | boolean | ReleaseEnv>(envVar: string, def: T): T =>
+    processEnvExists && process.env[envVar]
+        ? typeof def === 'string'
+            ? process.env[envVar].toString().toLowerCase()
+            : isTrueEV(envVar)
+        : def;
+
+const nodeEnv = formatVar('NODE_ENV', 'development') as NodeEnv;
 
 /******************************* COMMON ENVIRONMENT VALS COLLECTION *******************************/
-const processExists = typeof process !== 'undefined' && process != null;
-
 export const env = {
-  NODE_ENV:
-    processExists && process.env && process.env.NODE_ENV
-      ? process.env.NODE_ENV.toString().toLowerCase()
-      : 'development',
-
-  LOG_LEVEL:
-    processExists && process.env && process.env.LOG_LEVEL
-      ? process.env.LOG_LEVEL.toString().toLowerCase()
-      : 'info',
-
-  IE_COMPAT:
-    processExists && process.env && process.env.IE_COMPAT
-      ? process.env.IE_COMPAT === true || process.env.IE_COMPAT === 'true'
-      : false,
-
-  TEST_MODE:
-    processExists && process.env && process.env.TEST_MODE
-      ? process.env.TEST_MODE === true || process.env.TEST_MODE === 'true'
-      : false,
-
-  AVOID_WEB:
-    processExists && process.env && process.env.AVOID_WEB
-      ? process.env.AVOID_WEB === true || process.env.AVOID_WEB === 'true'
-      : false,
-
-  WAS_RUN_THRU_MOCHA:
-    processExists && process.env && process.env.LOADED_MOCHA_OPTS
-      ? process.env.LOADED_MOCHA_OPTS === 'true' || process.env.LOADED_MOCHA_OPTS === true
-      : false,
-
-  RELEASE_ENV:
-    processExists && process.env && process.env.RELEASE_ENV
-      ? (process.env.RELEASE_ENV.toString().toLowerCase() as ReleaseEnvs)
-      : (((process.env.NODE_ENV && process.env.NODE_ENV.toString().toLowerCase()) ||
-          'development') as ReleaseEnvs),
+    NODE_ENV: nodeEnv,
+    LOG_LEVEL: formatVar('LOG_LEVEL', 'info') as LogLevel,
+    IE_COMPAT: formatVar('IE_COMPAT', false),
+    TEST_MODE: formatVar('TEST_MODE', false),
+    AVOID_WEB: formatVar('AVOID_WEB', false),
+    // LOADED_MOCHA_OPTS set automatically by mocha on launch
+    WAS_RUN_THRU_MOCHA: formatVar('LOADED_MOCHA_OPTS', false) || formatVar('mocha', false),
+    RELEASE_ENV: formatVar('RELEASE_ENV', nodeEnv) as ReleaseEnv,
 };
 
 /******************************************** NODE_ENV ********************************************/
-export const isDevelopment = env.NODE_ENV === 'development' || env.NODE_ENV === 'dev';
-export {isDevelopment as isDev};
+export const isDev = env.NODE_ENV === 'development' || env.NODE_ENV === 'dev';
+export {isDev as isDevelopment};
 
-export const isProduction = env.NODE_ENV === 'production' || env.NODE_ENV === 'prod';
-export {isProduction as isProd};
+export const isProd = env.NODE_ENV === 'production' || env.NODE_ENV === 'prod';
+export {isProd as isProduction};
 
 // True if NODE_ENV is production, TEST_SECURITY is true, or SECURITY_TEST is true
-export const prodOrSecurityTest =
-  isProduction ||
-  process.env.TEST_SECURITY === true ||
-  process.env.TEST_SECURITY === 'true' ||
-  process.env.SECURITY_TEST === true ||
-  process.env.SECURITY_TEST === 'true';
+export const prodOrSecurityTest = isProd || isTrueEV('TEST_SECURITY') || isTrueEV('SECURITY_TEST');
 export const isProdOrSecurityTest = prodOrSecurityTest;
 
 /******************************************* LOG LEVEL ********************************************/
-export const isSilly = env.LOG_LEVEL === 'silly';
+export const isTrace = env.LOG_LEVEL === 'trace';
+export const isSilly = isTrace || env.LOG_LEVEL === 'silly';
 export const isVerbose = isSilly || env.LOG_LEVEL === 'verbose';
 export const isDebug = isVerbose || env.LOG_LEVEL === 'debug';
 export const isInfo = isDebug || env.LOG_LEVEL === 'info';
@@ -101,7 +91,7 @@ export {isAvoidWeb as doAvoidWeb};
 
 /**************************************** TEST ENVIRONMENT ****************************************/
 // For cases where TEST_MODE was run explicitly
-export const isTestMode = env.TEST_MODE && (env.TEST_MODE === true || env.TEST_MODE === 'true');
+export const isTestMode = env.TEST_MODE && isTrueEV('TEST_MODE');
 
 // Check if current script was run via Mocha
 export const isMocha = env.WAS_RUN_THRU_MOCHA;
@@ -116,29 +106,27 @@ export {isMocha as loadedMochaOpts};
 
 /******************************* RELEASE ENVIRONMENT (RELEASE_ENV) ********************************/
 export const releaseEnv = env.RELEASE_ENV;
-export const releaseEnvironment = env.RELEASE_ENV;
+export {releaseEnv as releaseEnvironment};
 
 export const isReleaseEnvUat = env.RELEASE_ENV === 'uat';
 export {isReleaseEnvUat as isReleaseEnvUAT};
 export {isReleaseEnvUat as isUat};
 export {isReleaseEnvUat as isUAT};
 
-export type ReleaseEnvsShort = 'uat' | 'prod' | 'dev';
-
 // 3-4 letter version of release environment name.
-export const releaseEnvShort: ReleaseEnvsShort = (function() {
-  return releaseEnv === 'uat'
-    ? 'uat'
-    : releaseEnv === 'prod' || releaseEnv === 'production'
-      ? 'prod'
-      : 'dev';
+export const releaseEnvShort: ReleaseEnvShort = (function() {
+    return releaseEnv === 'uat'
+        ? 'uat'
+        : releaseEnv === 'prod' || releaseEnv === 'production'
+            ? 'prod'
+            : 'dev';
 })();
 
-export const releaseEnvAbbrev = releaseEnvShort;
-export {releaseEnvAbbrev as releaseEnvAbbreviation};
-export {releaseEnvAbbrev as releaseEnvironmentShort};
-export {releaseEnvAbbrev as releaseEnvironmentAbbrev};
-export {releaseEnvAbbrev as releaseEnvironmentAbbreviation};
+export {releaseEnvShort as releaseEnvAbbrev};
+export {releaseEnvShort as releaseEnvAbbreviation};
+export {releaseEnvShort as releaseEnvironmentShort};
+export {releaseEnvShort as releaseEnvironmentAbbrev};
+export {releaseEnvShort as releaseEnvironmentAbbreviation};
 
 /**************************** LOG LEVEL + TEST ENVIRONMENT SHORTHANDS *****************************/
 // More are defined for verbose + mocha because it's a much more common pattern.
