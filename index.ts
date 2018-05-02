@@ -12,23 +12,31 @@ const envExists = typeof process !== 'undefined' && process != null && process.e
 const toBool = (val, def) =>
     val === 'true' || val === true ? true : val === 'false' || val === false ? false : def;
 
-const isEV = (name: string) => envExists && Object.keys(process.env).some(k => k === name);
+const RAW_NODE_ENV = process.env.NODE_ENV;
+const RAW_LOG_LEVEL = process.env.LOG_LEVEL;
+const RAW_RELEASE_ENV = process.env.RELEASE_ENV;
+const RAW_TEST_MODE = process.env.TEST_MODE;
+const RAW_IE_COMPAT = process.env.IE_COMPAT;
+const RAW_AVOID_WEB = process.env.AVOID_WEB;
+const RAW_LOADED_MOCHA_OPTS = process.env.LOADED_MOCHA_OPTS;
+const RAW_mocha = process.env.mocha;
+const RAW_TEST_SECURITY = process.env.TEST_SECURITY;
+const RAW_SECURITY_TEST = process.env.SECURITY_TEST;
 
 /********************************* GET & PROCESS ENVIRONMENT VALS *********************************/
-const NODE_ENV: NodeEnv = isEV('NODE_ENV') ? process.env.NODE_ENV.toLowerCase() : 'development';
-const LOG_LEVEL = isEV('LOG_LEVEL') ? process.env.LOG_LEVEL.toLowerCase() : 'info';
+const NODE_ENV: NodeEnv = RAW_NODE_ENV ? process.env.NODE_ENV.toLowerCase() : 'development';
+const RELEASE_ENV: ReleaseEnv = RAW_RELEASE_ENV ? process.env.RELEASE_ENV.toLowerCase() : NODE_ENV;
+const LOG_LEVEL = RAW_LOG_LEVEL ? process.env.LOG_LEVEL.toLowerCase() : 'info';
 
-const RELEASE_ENV: ReleaseEnv = isEV('RELEASE_ENV')
-    ? process.env.RELEASE_ENV.toLowerCase()
-    : NODE_ENV;
-
-const TEST_MODE = isEV('TEST_MODE') ? toBool(process.env.TEST_MODE, false) : false;
-const IE_COMPAT = isEV('IE_COMPAT') ? toBool(process.env.IE_COMPAT, false) : false;
-const AVOID_WEB = isEV('AVOID_WEB') ? toBool(process.env.AVOID_WEB, false) : false;
+const TEST_MODE = RAW_TEST_MODE ? toBool(process.env.TEST_MODE, false) : false;
+const IE_COMPAT = RAW_IE_COMPAT ? toBool(process.env.IE_COMPAT, false) : false;
+const AVOID_WEB = RAW_AVOID_WEB ? toBool(process.env.AVOID_WEB, false) : false;
 
 const WAS_RUN_THRU_MOCHA =
-    Object.keys(process.env).some(k => k === 'mocha' || k === 'LOADED_MOCHA_OPTS') &&
-    toBool(process.env.mocha, false) !== false;
+    (typeof RAW_LOADED_MOCHA_OPTS !== 'undefined' &&
+        RAW_LOADED_MOCHA_OPTS !== null &&
+        RAW_LOADED_MOCHA_OPTS !== '') ||
+    (!!RAW_mocha && toBool(RAW_mocha, false) !== false);
 
 const isTrueEV = (envVarPath: string) =>
     (process.env[envVarPath] || false) &&
@@ -55,8 +63,15 @@ export {isProd as isProduction};
 // True if NODE_ENV is production, TEST_SECURITY is true, or SECURITY_TEST is true
 export const prodOrSecurityTest =
     isProd ||
-    (envExists &&
-        (toBool(process.env.TEST_SECURITY, false) || toBool(process.env.SECURITY_TEST, false)));
+    (typeof RAW_TEST_SECURITY !== 'undefined' &&
+        RAW_TEST_SECURITY !== null &&
+        RAW_TEST_SECURITY !== '' &&
+        toBool(RAW_TEST_SECURITY, false)) ||
+    (typeof RAW_SECURITY_TEST !== 'undefined' &&
+        RAW_SECURITY_TEST !== null &&
+        RAW_SECURITY_TEST !== '' &&
+        toBool(RAW_SECURITY_TEST, false));
+
 export {prodOrSecurityTest as isProdOrSecurityTest};
 
 /******************************************* LOG LEVEL ********************************************/
