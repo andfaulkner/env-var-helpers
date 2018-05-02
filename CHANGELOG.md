@@ -1,5 +1,7 @@
 3.3.0
 =====
+Cleaner, shorter codebase: helpers generate exported env vars
+
 Module upgrades:
 -   Upgrades prettier -> v1.12
 -   Upgrades Typescript to v2.8.3
@@ -10,8 +12,6 @@ Build environment / utils:
 -   Adds TSLint & TSLint config
 -   Updates tsconfig.json to match new TS version
 -   Simplified CHANGELOG format
-
-Cleaner, shorter codebase: helpers generate exported env vars
 
 New exported types:
 -   LogLevel
@@ -27,8 +27,16 @@ Adds QA environment:
 -   Adds 'qa' as option to ReleaseEnv & ReleaseEnvShort types
 -   Sets releaseEnvShort to 'qa' if detected RELEASE_ENV is QA (RELEASE_ENV=qa)
 
+New release environment detection functions (for existing release environments):
+-   isReleaseEnvDev & isReleaseEnvDevelopment
+-   isReleaseEnvProd & isReleaseEnvProduction
+
 Tests:
 -   Adds LOG_LEVEL=verbose tests
+-   Adds LOG_LEVEL=info tests
+-   Adds LOG_LEVEL=error tests
+-   Adds default LOG_LEVEL tests
+-   Adds RELEASE_ENV=qa tests
 
 3.2.0
 =====
