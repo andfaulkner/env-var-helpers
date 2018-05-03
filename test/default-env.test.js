@@ -4,12 +4,7 @@ console.log(`mocha:`, process.env.mocha);
 
 /************************************** THIRD-PARTY IMPORTS ***************************************/
 const {expect} = require('chai');
-const sinon = require('sinon');
 const mocha = require('mocha');
-
-const fs = require('fs');
-const path = require('path');
-const {stderr, stdout} = require('test-console');
 
 /*********************************** IMPORT FILES TO BE TESTED ************************************/
 const envVarHelpers = require('../lib/index');
@@ -33,8 +28,7 @@ const {isDev, isDevelopment, isProd, isProduction} = envVarHelpers;
 const {isMochaEnv, runByMocha, isMocha} = envVarHelpers;
 
 // RELEASE_ENV (release environment) exports
-const {releaseEnv, releaseEnvironment} = envVarHelpers;
-const {releaseEnvShort, releaseEnvAbbrev} = envVarHelpers;
+const {releaseEnv, releaseEnvironment, releaseEnvShort, releaseEnvAbbrev} = envVarHelpers;
 
 // UAT release environment helpers
 const {isReleaseEnvUAT, isUAT} = envVarHelpers;
@@ -55,6 +49,8 @@ if (LOG_LEVEL && (LOG_LEVEL === 'verbose' || LOG_LEVEL === 'silly')) {
 }
 
 /********************************************* TESTS **********************************************/
+/** NODE_ENV **/
+
 describe('isDevelopment (and aliases) :: ', function() {
     valsExistAndAreTrue(
         [{name: 'isDev', value: isDev}, {name: 'isDevelopment', value: isDevelopment}],
@@ -222,14 +218,15 @@ function propHasExpectedVal(val, prop, msg) {
 }
 
 /**
- * Tests if a provided property value matches a given alias.
- * @param {RealAny} aliasValue - value of property doing the aliasing.
- * @param {string} name - name of aliased property.
- * @param {RealAny} propValue - value of aliased property.
+ * Tests if a provided property value matches a given alias
+ * @param {RealAny} aliasValue - value of property doing the aliasing
+ * @param {string} name - name of aliased property
+ * @param {RealAny} propValue - value of aliased property
  */
 function propIsAliasOf(aliasValue, propName, propValue) {
     console.log(
-        `propIsAliasOf :: aliasValue: ${aliasValue};\n propName: ${propName}\n propValue: ${propValue}`
+        `propIsAliasOf :: aliasValue: ${aliasValue};\n`,
+        `propName: ${propName}\n propValue: ${propValue}`
     );
     it(`is alias of ${propName}`, function() {
         expect(aliasValue).to.eql(propValue);
@@ -237,28 +234,19 @@ function propIsAliasOf(aliasValue, propName, propValue) {
 }
 
 /**
- * Dynamically creates tests for whether each property given in valObjArr exists & is set to true.
+ * Dynamically creates tests for whether each property given in valObjArr exists & is set to true
  * @param {string} msg - [OPTIONAL] an additional message to display in the truthiness test
- * @param {Object} aliasOf - [OPTIONAL] generate test of whether prop aliases of another given prop.
- *                           Format of aliasOf object: { nameOfAliasedProp: valueOfAliasedProp }
- *                           If no value provided, it excludes the test.
+ * @param {Object} aliasOf - [OPTIONAL] generate test of whether prop aliases of another given prop
+ *                           Format of aliasOf object: {nameOfAliasedProp: valueOfAliasedProp}
+ *                           If no value provided, it excludes the test
  */
 function valsExistAndAreExpectedVal(valObjArr, msg, aliasOf, expectedVal = true) {
-    console.log(`valsExistAndAreExpectedVal :: expectedVal: ${expectedVal}\n`);
     valObjArr.forEach(valObj => {
-        console.log(`valsExistAndAreExpectedVal :: name of tested prop: ${valObj['name']}`);
-        console.log(`valsExistAndAreExpectedVal :: value of tested prop: ${valObj['value']}`);
-
         describe(valObj['name'], function() {
             propExists(valObj['value']);
-            console.log(`valsExistAndAreExpectedVal :: expectedVal: ${expectedVal}`);
             propHasExpectedVal(expectedVal, valObj['value'], msg || false);
             if (aliasOf) {
                 const propName = Object.keys(aliasOf)[0];
-                console.log(`valsExistAndAreExpectedVal :: name of aliased prop: ${propName}`);
-                console.log(
-                    `valsExistAndAreExpectedVal :: value of aliased prop: ${aliasOf[propName]}`
-                );
                 if (propName !== valObj['name']) {
                     propIsAliasOf(valObj['value'], propName, aliasOf[propName]);
                 }
