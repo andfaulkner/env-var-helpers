@@ -29,4 +29,24 @@ describe('LOG_LEVEL=silly', function() {
             expect(isVerbose).to.be.true;
         });
     });
+    describe('isDebug', function() {
+        it('is true when process.env.LOG_LEVEL=silly', function() {
+            expect(isDebug).to.be.true;
+        });
+    });
+    describe('isInfo', function() {
+        it('is true when process.env.LOG_LEVEL=silly', function() {
+            expect(isInfo).to.be.true;
+        });
+    });
+    describe('isError', function() {
+        it('is true when process.env.LOG_LEVEL=silly', function() {
+            expect(isError).to.be.true;
+        });
+    });
+    describe('isWtf', function() {
+        it('is true when process.env.LOG_LEVEL=silly', function() {
+            expect(isWtf).to.be.true;
+        });
+    });
 });
