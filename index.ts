@@ -115,9 +115,8 @@ export {releaseEnv as releaseEnvironment};
 export const isReleaseEnvUAT = RELEASE_ENV === 'uat';
 export {isReleaseEnvUAT as isUAT};
 
-export const isReleaseEnvQa = RELEASE_ENV === 'qa';
-export {isReleaseEnvQa as isReleaseEnvQA};
-export {isReleaseEnvQa as isQA};
+export const isReleaseEnvQA = RELEASE_ENV === 'qa';
+export {isReleaseEnvQA as isQA};
 
 export const isReleaseEnvDev = RELEASE_ENV === 'dev' || RELEASE_ENV === 'development';
 export {isReleaseEnvDev as isReleaseEnvDevelopment};
