@@ -1,59 +1,79 @@
 Environment variable helpers
 ============================
+*   Convenience functions to extract commonly used values from process.env without fuss
+*   Helpers to get info from NODE_ENV, LOG_LEVEL, RELEASE_ENV, LOADED_MOCHA_OPTS
 
-*   set of convenience functions to extract quick info from process.env with little fuss
-*   handles true and "true" identically
-*   case-insensitive environment variable value detections (NODE_ENV=development, NODE_ENV=Development, and NODE_ENV=DEVELOPMENT are treated identically)
-*   works cross-environment and platform - Typescript, Node, Babel, Webpack, standard browser JS are all cool with it 
+*   Handles true, "true", and "TRUE" identically
+*   Case-insensitive environment variable value detections
+    *   e.g. NODE_ENV=development, NODE_ENV=Development, and NODE_ENV=DEVELOPMENT are treated identically
+*   Works cross-environment/platform:
+    *   can be used with Typescript, Node, Babel, Webpack, and standard browser JS (ES5 and up)
 
 ----
-## isDev
-    import { isDev } from 'env-var-helpers';
 
-    if (isDev) {
-        // run this if NODE_ENV is 'development'
+API
+===
+## isDev / isDevelopment (NODE_ENV - i.e. process.env.NODE_ENV)
+True if NODE_ENV=dev or NODE_ENV=development
+
+    import {isDev, isDevelopment} from 'env-var-helpers';
+
+    if (isDev) console.log("run if NODE_ENV is 'development'");
+    if (isDevelopment) console.log("run if NODE_ENV is 'development'");
+
+## isProd / isProduction (NODE_ENV)
+True if NODE_ENV=prod or NODE_ENV=production
+
+    import {isProd, isProduction} from 'env-var-helpers';
+
+    if (isProd) console.log("run if NODE_ENV is 'production'");
+    if (isProduction) console.log("run if NODE_ENV is 'production'");
+
+# isTrace, isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWTF/isWtf (LOG_LEVEL) 
+True if LOG_LEVEL is set to the namesake log level or one that is more verbose
+
+    import {isVerbose, isWTF} from 'env-var-helpers';
+
+    if (isVerbose) console.log('Display this if LOG_LEVEL is "trace", "silly", or "verbose"');
+    if (isWTF) {
+        console.log("Log if LOG_LEVEL is wtf, error, warn, info, debug, verbose, silly, or trace");
     }
 
-## isProd
-    import { isProd } from 'env-var-helpers';
+# isReleaseEnvDev, isReleaseEnvProd, isReleaseEnvQA, isReleaseEnvUAT, isQA, isUAT
+True if RELEASE_ENV is set to the namesake environment type. Defaults to 'dev'.
+e.g. if we run a script with `RELEASE_ENV=qa node some-script.js`:
 
-    if (isProd) {
-        // run this if NODE_ENV is 'production'
-    }
+    import {isQA, isReleaseEnvQA} from 'env-var-helpers';
+    import {isUAT, isReleaseEnvUAT, isReleaseEnvDev, isReleaseEnvProd} from 'env-var-helpers';
 
-## logGtEqlSilly, logGtEqlVerbose, logGtEqlDebug, logGtEqlInfo, logGtEqlWarn, logGtEqlError, logGtEqlWTF
-true if process.env.LOG_LEVEL is set to the namesake log level, or one that is more verbose.
+    // Below both output "Runs if process.env.RELEASE_ENV=qa"
+    if (isReleaseEnvQA) console.log('Runs if process.env.RELEASE_ENV=qa');
+    if (isQA)           console.log('Runs if process.env.RELEASE_ENV=qa');
 
-    import { logGtEqlVerbose } from 'env-var-helpers';
-
-    if (logGtEqlVerbose) console.log('Display some mostly unneccessary info if LOG_LEVEL is "silly" or "verbose"');
-
-## isSilly
-true if process.env.LOG_LEVEL is set to 'silly'
-
-## isVerbose
-true if process.env.LOG_LEVEL is set to 'verbose' or 'silly'.
-
-## isDebug
-true if process.env.LOG_LEVEL is set to 'verbose', 'silly', or 'debug'.
+    // The following don't run, because the RELEASE_ENV doesn't match
+    if (isReleaseEnvDev)  console.log('Runs if process.env.RELEASE_ENV=dev or development');
+    if (isReleaseEnvProd) console.log('Runs if process.env.RELEASE_ENV=prod or production');
+    if (isReleaseEnvUAT)  console.log('Runs if process.env.RELEASE_ENV=uat');
+    if (isUAT)            console.log('Runs if process.env.RELEASE_ENV=uat');
 
 ## isTestMode
 Is true if process.env.TEST_MODE was set to true.
 
-## isIeCompatMode, isIeCompat, isIECompatMode, isIeCompatMode
+## isIeCompat / isIECompat
 Is true if process.env.IE_COMPAT was set to true.
 
-### prodOrSecurityTest
+### isProdOrSecurityTest / prodOrSecurityTest
 Is true if NODE_ENV is production, TEST_SECURITY is true, or SECURITY_TEST is true
 
-### isAvoidWeb, avoidWeb, doAvoidWeb
+### isAvoidWeb, avoidWeb
 Is true if AVOID_WEB is true.
 This is an environment variable requesting total avoidance of internet usage in a build.
 *   e.g. no CDNs (usage of local bundles instead)
 
-### isMochaEnv, wasRunViaMocha, runViaMocha, runThruMocha, wasRunThruMocha, loadedMochaOpts
-Is true if LOADED_MOCHA_OPTS is 'true'.
-Should always be true if the current script was run through Mocha, and never true otherwise. Mocha sets this value automatically when it is launched.
+### isMocha, isMochaEnv, runByMocha
+Is true if process.env.mocha or process.env.LOADED_MOCHA_OPTS is 'true'.
+Should always be true if the current script was run through Mocha, and never true otherwise
+*   Mocha sets this value automatically when it is launched.
 
 ### Simultaneous checks of log level & whether Mocha launched the current process
 Each value is true if both:
@@ -61,53 +81,27 @@ Each value is true if both:
     b)  The log level is above the corresponding log level
         *   (i.e. about the log level in the name of the property)
 
-Each function of this type also has numerous aliases. Full list:
-*   true if LOG_LEVEL is set to silly:
-    *   isSillyMocha
-    *   isSillyTest
-    *   isMochaSilly
-    *   isTestSilly
-*   true if LOG_LEVEL is set to verbose or silly:
-    *   isVerboseMocha,
-    *   isVerboseTest,
-    *   isVTest,
-    *   isVMocha,
-    *   isMochaVerbose,
-    *   isTestVerbose,
-    *   isMochaV,
-    *   isTestV,
-*   true if LOG_LEVEL is set to debug, verbose or silly:
-    *   isDebugMocha
-    *   isDebugTest
-    *   isMochaDebug
-    *   isTestDebug
-
-Note that properties only exist for LOG_LEVEL values of silly, verbose, and debug, because it's near-universally bad practice to suppressing errors & warnings in unit tests:
-*   Note that there isn't necessarily no reason to suppress them ever, but adding the resistance of having to manually check these environment variables ensures we really think about it before doing so.
-*   Why is it bad practice?
-    *   Errors and warnings provide information on parts of the codebase not (yet) directly covered by the test suite. This has the potential to prevent runtime bugs you'd otherwise miss
-        *   (especially in cases where whatever your testing still works despite a function that gets run in the process going off the "happy path")
-    *   Including them makes it easy to use them without thinking, then forget about them.
-        *   Worst-case scenario: hours of frustration trying to determine why your tests are failing yet not providing any information on the reasons why
-            *   ![NEVER AGAIN](http://i0.kym-cdn.com/entries/icons/original/000/006/216/7nTnr.png)
+----
 
 Environment variables handled
 =============================
-
 Environment options / variables
 -------------------------------
 ### NODE_ENV
+Standard NODE_ENV values, as used by Express and React
+
 Values:
 *   development (DEFAULT)
 *   production
 
-### IE_COMPAT
-Turn on to compile app to run in Internet Explorer.
-Automatically set to true (if env-var-helpers imported), if NODE_ENV=production.
+### RELEASE_ENV
+Generally used to "mark" different deployment targets: e.g. www.dev.example.com, www.qa.example.com
 
 Values:
-*   true
-*   false (DEFAULT)
+*   dev / development
+*   prod / production
+*   qa
+*   uat
 
 ### LOG_LEVEL
 Values:
@@ -120,13 +114,28 @@ Values:
 *   wtf
 
 ### TEST_MODE
-If unit tests are currently being run, set to true
+If unit tests are currently being run, set this to true
+
 Values:
 *   true
 *   false (DEFAULT)
 
-### SECURITY_TEST   or   TEST_SECURITY
-*   It's often useful to have a flag to turn security features on and off in development without having to switch to full-on production mode, e.g. when working with TLS, authentication, CSRF blockers, etc.
+### SECURITY_TEST / TEST_SECURITY
+Flag to turn security features on/off in dev without switching to full prod mode
+For use e.g. when working with TLS, authentication, CSRF blockers, etc.
 
+Values:
+*   true
+*   false (DEFAULT)
+
+### IE_COMPAT
+Turn on to compile app to run in Internet Explorer.
+Automatically set to true (if env-var-helpers imported), if NODE_ENV=production.
+
+Values:
+*   true
+*   false (DEFAULT)
+
+----
 # Why?
 *   I hate duplicating functions between projects. These come up again and again.
