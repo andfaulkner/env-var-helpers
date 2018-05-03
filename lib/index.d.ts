@@ -59,9 +59,8 @@ export { isMocha as runByMocha };
 /******************************* RELEASE ENVIRONMENT (RELEASE_ENV) ********************************/
 export declare const releaseEnv: ReleaseEnv;
 export { releaseEnv as releaseEnvironment };
-export declare const isReleaseEnvUat: boolean;
-export { isReleaseEnvUat as isReleaseEnvUAT };
-export { isReleaseEnvUat as isUAT };
+export declare const isReleaseEnvUAT: boolean;
+export { isReleaseEnvUAT as isUAT };
 export declare const isReleaseEnvQa: boolean;
 export { isReleaseEnvQa as isReleaseEnvQA };
 export { isReleaseEnvQa as isQA };

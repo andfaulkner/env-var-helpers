@@ -112,9 +112,8 @@ export {isMocha as runByMocha};
 export const releaseEnv = RELEASE_ENV;
 export {releaseEnv as releaseEnvironment};
 
-export const isReleaseEnvUat = RELEASE_ENV === 'uat';
-export {isReleaseEnvUat as isReleaseEnvUAT};
-export {isReleaseEnvUat as isUAT};
+export const isReleaseEnvUAT = RELEASE_ENV === 'uat';
+export {isReleaseEnvUAT as isUAT};
 
 export const isReleaseEnvQa = RELEASE_ENV === 'qa';
 export {isReleaseEnvQa as isReleaseEnvQA};

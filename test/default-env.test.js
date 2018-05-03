@@ -66,7 +66,7 @@ const {releaseEnv, releaseEnvironment} = envVarHelpers;
 const {releaseEnvShort, releaseEnvAbbrev} = envVarHelpers;
 
 // UAT release environment helpers
-const {isReleaseEnvUat, isReleaseEnvUAT, isUAT} = envVarHelpers;
+const {isReleaseEnvUAT, isUAT} = envVarHelpers;
 
 // Directly log the environment variables in verbose or silly mode.
 const {LOG_LEVEL} = process.env;
@@ -126,7 +126,10 @@ describe('logGtEqlError (and aliases) :: ', function() {
 
 describe('logGtEqlWTF :: ', function() {
     valsExistAndAreTrue(
-        [{name: 'logGtEqlWtf', value: logGtEqlWtf}, {name: 'logGtEqlWTF', value: logGtEqlWTF}],
+        [
+            {name: 'logGtEqlWtf', value: logGtEqlWtf},
+            {name: 'logGtEqlWTF', value: logGtEqlWTF}
+        ],
         null,
         {logGtEqlWtf}
     );
@@ -145,7 +148,10 @@ describe('isIECompat (and alias isIeCompat) :: ', function() {
 
 describe('isSilly (and alias isLogSilly) :: ', function() {
     valsExistAndAreFalse(
-        [{name: 'isSilly', value: isSilly}, {name: 'isLogSilly', value: isLogSilly}],
+        [
+            {name: 'isSilly', value: isSilly},
+            {name: 'isLogSilly', value: isLogSilly}
+        ],
         '(since LOG_LEVEL value defaults to info)',
         {logGtEqlSilly}
     );
@@ -153,7 +159,10 @@ describe('isSilly (and alias isLogSilly) :: ', function() {
 
 describe('isVerbose (and alias isLogVerbose) :: ', function() {
     valsExistAndAreFalse(
-        [{name: 'isVerbose', value: isVerbose}, {name: 'isLogVerbose', value: isLogVerbose}],
+        [
+            {name: 'isVerbose', value: isVerbose},
+            {name: 'isLogVerbose', value: isLogVerbose}
+        ],
         '(since LOG_LEVEL value defaults to info)',
         {logGtEqlVerbose}
     );
@@ -161,7 +170,10 @@ describe('isVerbose (and alias isLogVerbose) :: ', function() {
 
 describe('isDebug (and alias isLogDebug) :: ', function() {
     valsExistAndAreFalse(
-        [{name: 'isDebug', value: isDebug}, {name: 'isLogDebug', value: isLogDebug}],
+        [
+            {name: 'isDebug', value: isDebug},
+            {name: 'isLogDebug', value: isLogDebug}
+        ],
         '(since LOG_LEVEL value defaults to info)',
         {logGtEqlDebug}
     );
@@ -169,7 +181,10 @@ describe('isDebug (and alias isLogDebug) :: ', function() {
 
 describe('isInfo (and alias isLogInfo) :: ', function() {
     valsExistAndAreTrue(
-        [{name: 'isInfo', value: isInfo}, {name: 'isLogInfo', value: isLogInfo}],
+        [
+            {name: 'isInfo', value: isInfo},
+            {name: 'isLogInfo', value: isLogInfo}
+        ],
         '(since LOG_LEVEL value defaults to info)',
         {logGtEqlInfo}
     );
@@ -177,7 +192,10 @@ describe('isInfo (and alias isLogInfo) :: ', function() {
 
 describe('isWarn (and alias isLogWarn) :: ', function() {
     valsExistAndAreTrue(
-        [{name: 'isWarn', value: isWarn}, {name: 'isLogWarn', value: isLogWarn}],
+        [
+            {name: 'isWarn', value: isWarn},
+            {name: 'isLogWarn', value: isLogWarn}
+        ],
         '(since LOG_LEVEL value defaults to info)',
         {logGtEqlWarn}
     );
@@ -185,7 +203,10 @@ describe('isWarn (and alias isLogWarn) :: ', function() {
 
 describe('isError (and alias isLogError) :: ', function() {
     valsExistAndAreTrue(
-        [{name: 'isError', value: isError}, {name: 'isLogError', value: isLogError}],
+        [
+            {name: 'isError', value: isError},
+            {name: 'isLogError', value: isLogError}
+        ],
         '(since LOG_LEVEL value defaults to info)',
         {logGtEqlError}
     );
@@ -232,15 +253,14 @@ describe('releaseEnv tests :: ', function() {
         expect(releaseEnvironment).to.eql('development');
         expect(releaseEnvironment).to.eql(releaseEnv);
     });
-    describe('isReleaseEnvUat tests :: ', function() {
+    describe('isUAT (isReleaseEnvUAT) tests :: ', function() {
         valsExistAndAreFalse(
             [
-                {name: 'isReleaseEnvUat', value: isReleaseEnvUat},
                 {name: 'isReleaseEnvUAT', value: isReleaseEnvUAT},
                 {name: 'isUAT', value: isUAT}
             ],
             null,
-            {isReleaseEnvUat}
+            {isReleaseEnvUAT}
         );
     });
     describe('releaseEnvShort tests :: ', function() {
