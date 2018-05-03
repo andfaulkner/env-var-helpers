@@ -1,3 +1,27 @@
+4.0.0
+=====
+Remove most releaseEnvShort aliases:
+-   releaseEnvAbbreviation
+-   releaseEnvironmentShort
+-   releaseEnvironmentAbbrev
+-   releaseEnvironmentAbbreviation
+
+Remove all combined Mocha + LOG_LEVEL environment variable status aliases:
+-   isVerboseMocha, isVerboseTest, isMochaVerbose, isTestVerbose
+-   isVTest, isVMocha, isMochaV, isTestV
+-   isDebugMocha, isDebugTest, isMochaDebug, isTestDebug
+-   isSillyMocha, isSillyTest, isMochaSilly, isTestSilly
+
+Remove all isMocha (i.e. "Was this code run by Mocha?") aliases except isMochaEnv & runByMocha:
+-   runViaMocha
+-   runThruMocha
+-   wasRunByMocha
+-   wasRunViaMocha
+-   wasRunThruMocha
+-   loadedMochaOpts
+
+Remove isAvoidWeb alias: "doAvoidWeb"
+
 3.4.1
 =====
 Converted arrow functions to regular functions to satisfy Webpack + UglifyJS edge case
