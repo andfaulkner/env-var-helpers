@@ -29,7 +29,7 @@ True if NODE_ENV=prod or NODE_ENV=production
     if (isProd) console.log("run if NODE_ENV is 'production'");
     if (isProduction) console.log("run if NODE_ENV is 'production'");
 
-# isTrace, isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWTF/isWtf (LOG_LEVEL) 
+## isTrace, isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWTF/isWtf (LOG_LEVEL) 
 True if LOG_LEVEL is set to the namesake log level or one that is more verbose
 
     import {isVerbose, isWTF} from 'env-var-helpers';
@@ -38,23 +38,6 @@ True if LOG_LEVEL is set to the namesake log level or one that is more verbose
     if (isWTF) {
         console.log("Log if LOG_LEVEL is wtf, error, warn, info, debug, verbose, silly, or trace");
     }
-
-# isReleaseEnvDev, isReleaseEnvProd, isReleaseEnvQA, isReleaseEnvUAT, isQA, isUAT
-True if RELEASE_ENV is set to the namesake environment type. Defaults to 'dev'.
-e.g. if we run a script with `RELEASE_ENV=qa node some-script.js`:
-
-    import {isQA, isReleaseEnvQA} from 'env-var-helpers';
-    import {isUAT, isReleaseEnvUAT, isReleaseEnvDev, isReleaseEnvProd} from 'env-var-helpers';
-
-    // Below both output "Runs if process.env.RELEASE_ENV=qa"
-    if (isReleaseEnvQA) console.log('Runs if process.env.RELEASE_ENV=qa');
-    if (isQA)           console.log('Runs if process.env.RELEASE_ENV=qa');
-
-    // The following don't run, because the RELEASE_ENV doesn't match
-    if (isReleaseEnvDev)  console.log('Runs if process.env.RELEASE_ENV=dev or development');
-    if (isReleaseEnvProd) console.log('Runs if process.env.RELEASE_ENV=prod or production');
-    if (isReleaseEnvUAT)  console.log('Runs if process.env.RELEASE_ENV=uat');
-    if (isUAT)            console.log('Runs if process.env.RELEASE_ENV=uat');
 
 ## isTestMode
 Is true if process.env.TEST_MODE was set to true.
@@ -75,11 +58,22 @@ Is true if process.env.mocha or process.env.LOADED_MOCHA_OPTS is 'true'.
 Should always be true if the current script was run through Mocha, and never true otherwise
 *   Mocha sets this value automatically when it is launched.
 
-### Simultaneous checks of log level & whether Mocha launched the current process
-Each value is true if both:
-    a)  LOADED_MOCHA_OPTS is 'true'; and
-    b)  The log level is above the corresponding log level
-        *   (i.e. about the log level in the name of the property)
+## isReleaseEnvDev, isReleaseEnvProd, isReleaseEnvQA/isQA, isReleaseEnvUAT/isUAT (RELEASE_ENV)
+True if RELEASE_ENV is set to the namesake environment type. Defaults to 'dev'.
+e.g. if we run a script with `RELEASE_ENV=qa node some-script.js`:
+
+    import {isQA, isReleaseEnvQA} from 'env-var-helpers';
+    import {isUAT, isReleaseEnvUAT, isReleaseEnvDev, isReleaseEnvProd} from 'env-var-helpers';
+
+    // Below both output "Runs if process.env.RELEASE_ENV=qa"
+    if (isReleaseEnvQA) console.log('Runs if process.env.RELEASE_ENV=qa');
+    if (isQA)           console.log('Runs if process.env.RELEASE_ENV=qa');
+
+    // The following don't run, because the RELEASE_ENV doesn't match
+    if (isReleaseEnvDev)  console.log('Runs if process.env.RELEASE_ENV=dev or development');
+    if (isReleaseEnvProd) console.log('Runs if process.env.RELEASE_ENV=prod or production');
+    if (isReleaseEnvUAT)  console.log('Runs if process.env.RELEASE_ENV=uat');
+    if (isUAT)            console.log('Runs if process.env.RELEASE_ENV=uat');
 
 ----
 
