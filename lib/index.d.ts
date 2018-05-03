@@ -102,7 +102,3 @@ export declare const isDebugMocha: boolean;
 export { isDebugMocha as isDebugTest };
 export { isDebugMocha as isMochaDebug };
 export { isDebugMocha as isTestDebug };
-export declare const isSillyMocha: boolean;
-export { isSillyMocha as isSillyTest };
-export { isSillyMocha as isMochaSilly };
-export { isSillyMocha as isTestSilly };

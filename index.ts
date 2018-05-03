@@ -171,8 +171,3 @@ export const isDebugMocha = WAS_RUN_THRU_MOCHA && isDebug;
 export {isDebugMocha as isDebugTest};
 export {isDebugMocha as isMochaDebug};
 export {isDebugMocha as isTestDebug};
-
-export const isSillyMocha = WAS_RUN_THRU_MOCHA && isSilly;
-export {isSillyMocha as isSillyTest};
-export {isSillyMocha as isMochaSilly};
-export {isSillyMocha as isTestSilly};
