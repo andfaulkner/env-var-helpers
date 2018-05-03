@@ -52,6 +52,9 @@ Remove LOG_LEVEL env var helper aliases:
 -   logGtEqlWTF
 -   logGtEqlWtf
 
+Overhaul & massively expand test suite
+Reformatted code, added more in-code docs
+
 3.4.1
 =====
 Converted arrow functions to regular functions to satisfy Webpack + UglifyJS edge case
