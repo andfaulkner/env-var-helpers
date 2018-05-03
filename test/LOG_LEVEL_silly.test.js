@@ -15,10 +15,15 @@ const {stderr, stdout} = require('test-console');
 
 /*********************************** IMPORT FILES TO BE TESTED ************************************/
 const envVarHelpers = require('../lib/index');
-const {isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWTF, isWtf} = envVarHelpers;
+const {isTrace, isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWTF, isWtf} = envVarHelpers;
 
 /********************************************* TESTS **********************************************/
 describe('LOG_LEVEL=silly', function() {
+    describe('isTrace', function() {
+        it('is true when process.env.LOG_LEVEL=silly', function() {
+            expect(isTrace).to.be.false;
+        });
+    });
     describe('isSilly', function() {
         it('is true when process.env.LOG_LEVEL=silly', function() {
             expect(isSilly).to.be.true;
