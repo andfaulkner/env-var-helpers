@@ -2,6 +2,7 @@
 
 ./node_modules/.bin/mocha ./test/default-env.test.js
 
+NODE_ENV=development ./node_modules/.bin/mocha ./test/NODE_ENV_development.test.js
 NODE_ENV=production ./node_modules/.bin/mocha ./test/NODE_ENV_production.test.js
 
 ./node_modules/.bin/mocha ./test/LOG_LEVEL.test.js
