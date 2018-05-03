@@ -41,7 +41,7 @@ describe(`RELEASE_ENV=development`, function() {
     });
     describe(`releaseEnvShort`, function() {
         it(`is 'prod' when RELEASE_ENV=development`, function() {
-            expect(releaseEnvShort).to.eql(`prod`);
+            expect(releaseEnvShort).to.eql(`dev`);
         });
     });
     describe(`releaseEnv`, function() {
