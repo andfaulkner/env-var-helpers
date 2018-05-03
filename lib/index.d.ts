@@ -47,10 +47,8 @@ export { isError as isLogError };
 export { isWTF as isLogWTF };
 export { isWTF as isLogWtf };
 /**************************************** IE COMPATIBILITY ****************************************/
-export declare const isIeCompatMode: any;
-export { isIeCompatMode as isIECompatMode };
-export { isIeCompatMode as isIECompat };
-export { isIeCompatMode as isIeCompat };
+export declare const isIECompat: any;
+export { isIECompat as isIeCompat };
 export declare const isAvoidWeb: any;
 export { isAvoidWeb as avoidWeb };
 /**************************************** TEST ENVIRONMENT ****************************************/

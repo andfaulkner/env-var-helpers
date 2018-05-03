@@ -18,7 +18,7 @@ const envVarHelpers = require('../lib/index');
 const {prodOrSecurityTest, isProdOrSecurityTest} = envVarHelpers;
 
 // IE_COMPAT exports
-const {isIECompatMode, isIeCompatMode} = envVarHelpers;
+const {isIECompat, isIeCompat} = envVarHelpers;
 
 // LOG_LEVEL (long-form) property exports
 const {
@@ -132,14 +132,14 @@ describe('logGtEqlWTF :: ', function() {
     );
 });
 
-describe('isIECompatMode (and alias isIeCompatMode) :: ', function() {
+describe('isIECompat (and alias isIeCompat) :: ', function() {
     valsExistAndAreFalse(
         [
-            {name: 'isIECompatMode', value: isIECompatMode},
-            {name: 'isIECompatMode', value: isIECompatMode}
+            {name: 'isIECompat', value: isIECompat},
+            {name: 'isIECompat', value: isIECompat}
         ],
         null,
-        {isIECompatMode}
+        {isIECompat}
     );
 });
 

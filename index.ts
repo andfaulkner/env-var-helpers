@@ -92,10 +92,8 @@ export {isWTF as isLogWTF};
 export {isWTF as isLogWtf};
 
 /**************************************** IE COMPATIBILITY ****************************************/
-export const isIeCompatMode = IE_COMPAT;
-export {isIeCompatMode as isIECompatMode};
-export {isIeCompatMode as isIECompat};
-export {isIeCompatMode as isIeCompat};
+export const isIECompat = IE_COMPAT;
+export {isIECompat as isIeCompat};
 
 // Check for env var requesting total avoidance of web; e.g. no CDNs (local bundles use instead)
 export const isAvoidWeb = AVOID_WEB;
