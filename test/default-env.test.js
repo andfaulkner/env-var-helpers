@@ -224,10 +224,6 @@ function propHasExpectedVal(val, prop, msg) {
  * @param {RealAny} propValue - value of aliased property
  */
 function propIsAliasOf(aliasValue, propName, propValue) {
-    console.log(
-        `propIsAliasOf :: aliasValue: ${aliasValue};\n`,
-        `propName: ${propName}\n propValue: ${propValue}`
-    );
     it(`is alias of ${propName}`, function() {
         expect(aliasValue).to.eql(propValue);
     });
