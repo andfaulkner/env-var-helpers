@@ -123,12 +123,10 @@ export {releaseEnv as releaseEnvironment};
 
 export const isReleaseEnvUat = RELEASE_ENV === 'uat';
 export {isReleaseEnvUat as isReleaseEnvUAT};
-export {isReleaseEnvUat as isUat};
 export {isReleaseEnvUat as isUAT};
 
 export const isReleaseEnvQa = RELEASE_ENV === 'qa';
 export {isReleaseEnvQa as isReleaseEnvQA};
-export {isReleaseEnvQa as isQa};
 export {isReleaseEnvQa as isQA};
 
 export const isReleaseEnvDev = RELEASE_ENV === 'dev' || RELEASE_ENV === 'development';

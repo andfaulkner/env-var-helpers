@@ -83,7 +83,7 @@ const {
 } = envVarHelpers;
 
 // UAT release environment helpers
-const {isReleaseEnvUat, isReleaseEnvUAT, isUat, isUAT} = envVarHelpers;
+const {isReleaseEnvUat, isReleaseEnvUAT, isUAT} = envVarHelpers;
 
 // Directly log the environment variables in verbose or silly mode.
 const {LOG_LEVEL} = process.env;
@@ -257,7 +257,6 @@ describe('releaseEnv tests :: ', function() {
             [
                 {name: 'isReleaseEnvUat', value: isReleaseEnvUat},
                 {name: 'isReleaseEnvUAT', value: isReleaseEnvUAT},
-                {name: 'isUat', value: isUat},
                 {name: 'isUAT', value: isUAT}
             ],
             null,
