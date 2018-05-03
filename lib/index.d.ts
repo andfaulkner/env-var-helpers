@@ -1,3 +1,4 @@
+/**************************************************************************************************/
 /****************************************** TYPE EXPORTS ******************************************/
 export declare type NodeEnv = 'development' | 'dev' | 'production' | 'prod';
 export declare type ReleaseEnv = 'development' | 'dev' | 'qa' | 'uat' | 'production' | 'prod';
@@ -19,7 +20,7 @@ export declare const isProd: boolean;
 export { isProd as isProduction };
 export declare const prodOrSecurityTest: any;
 export { prodOrSecurityTest as isProdOrSecurityTest };
-/******************************************* LOG LEVEL ********************************************/
+/******************************************* LOG_LEVEL ********************************************/
 export declare const isTrace: boolean;
 export declare const isSilly: boolean;
 export declare const isVerbose: boolean;
@@ -28,14 +29,14 @@ export declare const isInfo: boolean;
 export declare const isWarn: boolean;
 export declare const isError: boolean;
 export declare const isWTF: boolean;
-/******************************************** ALIASES *********************************************/
 export { isWTF as isWtf };
-/**************************************** IE COMPATIBILITY ****************************************/
+/********************************** IE COMPATIBILITY (IE_COMPAT) **********************************/
 export declare const isIECompat: any;
 export { isIECompat as isIeCompat };
+/******************************************* AVOID_WEB ********************************************/
 export declare const isAvoidWeb: any;
 export { isAvoidWeb as avoidWeb };
-/**************************************** TEST ENVIRONMENT ****************************************/
+/************************** TEST ENVIRONMENT (LOADED_MOCHA_OPTS, Mocha) ***************************/
 export declare const isTestMode: any;
 export declare const isMocha: any;
 export { isMocha as isMochaEnv };
@@ -52,7 +53,7 @@ export { isReleaseEnvDev as isReleaseEnvDevelopment };
 export declare const isReleaseEnvProd: boolean;
 export { isReleaseEnvProd as isReleaseEnvProduction };
 /**
- * 3-4 letter version of release environment name. Default: 'dev'
+ * 3-4 letter version of release environment name (Default: 'dev')
  */
 export declare const releaseEnvShort: ReleaseEnvShort;
 export { releaseEnvShort as releaseEnvAbbrev };
