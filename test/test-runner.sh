@@ -12,6 +12,7 @@ LOG_LEVEL=verbose ./node_modules/.bin/mocha ./test/LOG_LEVEL_verbose.test.js
 LOG_LEVEL=debug ./node_modules/.bin/mocha ./test/LOG_LEVEL_debug.test.js
 LOG_LEVEL=info ./node_modules/.bin/mocha ./test/LOG_LEVEL_info.test.js
 LOG_LEVEL=error ./node_modules/.bin/mocha ./test/LOG_LEVEL_error.test.js
+LOG_LEVEL=wtf ./node_modules/.bin/mocha ./test/LOG_LEVEL_wtf.test.js
 
 SECURITY_TEST=true ./node_modules/.bin/mocha ./test/SECURITY_TEST_true.test.js
 
