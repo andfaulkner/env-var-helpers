@@ -20,37 +20,8 @@ const {prodOrSecurityTest, isProdOrSecurityTest} = envVarHelpers;
 // IE_COMPAT exports
 const {isIECompat, isIeCompat} = envVarHelpers;
 
-// LOG_LEVEL (long-form) property exports
-const {
-    logGtEqlSilly,
-    logGtEqlVerbose,
-    logGtEqlDebug,
-    logGtEqlInfo,
-    logGtEqlWarn,
-    logGtEqlError,
-    logGtEqlWtf,
-    logGtEqlWTF
-} = envVarHelpers;
-
-// LOG_LEVEL (short-form) property exports
-const {
-    isSilly,
-    isVerbose,
-    isDebug,
-    isInfo,
-    isWarn,
-    isError,
-    isWtf,
-    isWTF,
-    isLogSilly,
-    isLogVerbose,
-    isLogDebug,
-    isLogInfo,
-    isLogWarn,
-    isLogError,
-    isLogWtf,
-    isLogWTF
-} = envVarHelpers;
+// LOG_LEVEL property exports
+const {isTrace, isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWtf, isWTF} = envVarHelpers;
 
 // AVOID_WEB exports
 const {isAvoidWeb, avoidWeb} = envVarHelpers;
@@ -100,131 +71,83 @@ describe('isProduction (and aliases) :: ', function() {
     );
 });
 
-describe('logGtEqlSilly (and aliases) :: ', function() {
-    valsExistAndAreFalse([{name: 'logGtEqlSilly', value: logGtEqlSilly}]);
-});
+/** LOG_LEVEL **/
 
-describe('logGtEqlVerbose (and aliases) :: ', function() {
-    valsExistAndAreFalse([{name: 'logGtEqlVerbose', value: logGtEqlVerbose}]);
-});
-
-describe('logGtEqlDebug (and aliases) :: ', function() {
-    valsExistAndAreFalse([{name: 'logGtEqlDebug', value: logGtEqlDebug}]);
-});
-
-describe('logGtEqlInfo (and aliases) :: ', function() {
-    valsExistAndAreTrue([{name: 'logGtEqlInfo', value: logGtEqlInfo}]);
-});
-
-describe('logGtEqlWarn (and aliases) :: ', function() {
-    valsExistAndAreTrue([{name: 'logGtEqlWarn', value: logGtEqlWarn}]);
-});
-
-describe('logGtEqlError (and aliases) :: ', function() {
-    valsExistAndAreTrue([{name: 'logGtEqlError', value: logGtEqlError}]);
-});
-
-describe('logGtEqlWTF :: ', function() {
-    valsExistAndAreTrue(
-        [
-            {name: 'logGtEqlWtf', value: logGtEqlWtf},
-            {name: 'logGtEqlWTF', value: logGtEqlWTF}
-        ],
-        null,
-        {logGtEqlWtf}
+describe('isTrace :: ', function() {
+    valsExistAndAreFalse(
+        [{name: 'isTrace', value: isTrace}],
+        '(since LOG_LEVEL value defaults to info)',
+        {isTrace}
     );
 });
 
+describe('isSilly :: ', function() {
+    valsExistAndAreFalse(
+        [{name: 'isSilly', value: isSilly}],
+        '(since LOG_LEVEL value defaults to info)',
+        {isSilly}
+    );
+});
+
+describe('isVerbose :: ', function() {
+    valsExistAndAreFalse(
+        [{name: 'isVerbose', value: isVerbose}],
+        '(since LOG_LEVEL value defaults to info)',
+        {isVerbose}
+    );
+});
+
+describe('isDebug :: ', function() {
+    valsExistAndAreFalse(
+        [{name: 'isDebug', value: isDebug}],
+        '(since LOG_LEVEL value defaults to info)',
+        {isDebug}
+    );
+});
+
+describe('isInfo :: ', function() {
+    valsExistAndAreTrue(
+        [{name: 'isInfo', value: isInfo}],
+        '(since LOG_LEVEL value defaults to info)',
+        {isInfo}
+    );
+});
+
+describe('isWarn :: ', function() {
+    valsExistAndAreTrue(
+        [{name: 'isWarn', value: isWarn}],
+        '(since LOG_LEVEL value defaults to info)',
+        {isWarn}
+    );
+});
+
+describe('isError :: ', function() {
+    valsExistAndAreTrue(
+        [{name: 'isError', value: isError}],
+        '(since LOG_LEVEL value defaults to info)',
+        {isError}
+    );
+});
+
+describe('isWTF (and alias isWtf) :: ', function() {
+    valsExistAndAreTrue(
+        [{name: 'isWTF', value: isWTF}, {name: 'isWtf', value: isWtf}],
+        '(since LOG_LEVEL value defaults to info)',
+        {isWTF}
+    );
+});
+
+/** IE_COMPAT **/
+
 describe('isIECompat (and alias isIeCompat) :: ', function() {
     valsExistAndAreFalse(
-        [
-            {name: 'isIECompat', value: isIECompat},
-            {name: 'isIECompat', value: isIECompat}
-        ],
+        [{name: 'isIECompat', value: isIECompat}, {name: 'isIeCompat', value: isIeCompat}],
         null,
         {isIECompat}
     );
 });
 
-describe('isSilly (and alias isLogSilly) :: ', function() {
-    valsExistAndAreFalse(
-        [
-            {name: 'isSilly', value: isSilly},
-            {name: 'isLogSilly', value: isLogSilly}
-        ],
-        '(since LOG_LEVEL value defaults to info)',
-        {logGtEqlSilly}
-    );
-});
-
-describe('isVerbose (and alias isLogVerbose) :: ', function() {
-    valsExistAndAreFalse(
-        [
-            {name: 'isVerbose', value: isVerbose},
-            {name: 'isLogVerbose', value: isLogVerbose}
-        ],
-        '(since LOG_LEVEL value defaults to info)',
-        {logGtEqlVerbose}
-    );
-});
-
-describe('isDebug (and alias isLogDebug) :: ', function() {
-    valsExistAndAreFalse(
-        [
-            {name: 'isDebug', value: isDebug},
-            {name: 'isLogDebug', value: isLogDebug}
-        ],
-        '(since LOG_LEVEL value defaults to info)',
-        {logGtEqlDebug}
-    );
-});
-
-describe('isInfo (and alias isLogInfo) :: ', function() {
-    valsExistAndAreTrue(
-        [
-            {name: 'isInfo', value: isInfo},
-            {name: 'isLogInfo', value: isLogInfo}
-        ],
-        '(since LOG_LEVEL value defaults to info)',
-        {logGtEqlInfo}
-    );
-});
-
-describe('isWarn (and alias isLogWarn) :: ', function() {
-    valsExistAndAreTrue(
-        [
-            {name: 'isWarn', value: isWarn},
-            {name: 'isLogWarn', value: isLogWarn}
-        ],
-        '(since LOG_LEVEL value defaults to info)',
-        {logGtEqlWarn}
-    );
-});
-
-describe('isError (and alias isLogError) :: ', function() {
-    valsExistAndAreTrue(
-        [
-            {name: 'isError', value: isError},
-            {name: 'isLogError', value: isLogError}
-        ],
-        '(since LOG_LEVEL value defaults to info)',
-        {logGtEqlError}
-    );
-});
-
-describe('isWTF (and aliases isWtf, isLogWTF, and isLogWtf) :: ', function() {
-    valsExistAndAreTrue(
-        [
-            {name: 'isWTF', value: isWTF},
-            {name: 'isWtf', value: isWtf},
-            {name: 'isLogWTF', value: isLogWTF},
-            {name: 'isLogWtf', value: isLogWtf},
-            {name: 'logGtEqlWtf', value: logGtEqlWtf}
-        ],
-        '(since LOG_LEVEL value defaults to info',
-        {logGtEqlWtf}
-    );
-});
+/** SECURITY_TEST **/
 
 describe('prodOrSecurityTest (and aliases) :: ', function() {
     valsExistAndAreFalse([
@@ -233,6 +156,8 @@ describe('prodOrSecurityTest (and aliases) :: ', function() {
     ]);
 });
 
+/** Was run by Mocha? **/
+
 describe('isMocha & aliases (runByMocha, isMochaEnv) :: ', function() {
     valsExistAndAreTrue(
         [
@@ -240,10 +165,12 @@ describe('isMocha & aliases (runByMocha, isMochaEnv) :: ', function() {
             {name: 'runByMocha', value: runByMocha},
             {name: 'isMocha', value: isMocha}
         ],
-        null,
+        `(since current process was launched by Mocha)`,
         {isMocha}
     );
 });
+
+/** RELEASE_ENV **/
 
 describe('releaseEnv tests :: ', function() {
     it(`releaseEnv defaults to development`, function() {
@@ -255,10 +182,7 @@ describe('releaseEnv tests :: ', function() {
     });
     describe('isUAT (isReleaseEnvUAT) tests :: ', function() {
         valsExistAndAreFalse(
-            [
-                {name: 'isReleaseEnvUAT', value: isReleaseEnvUAT},
-                {name: 'isUAT', value: isUAT}
-            ],
+            [{name: 'isReleaseEnvUAT', value: isReleaseEnvUAT}, {name: 'isUAT', value: isUAT}],
             null,
             {isReleaseEnvUAT}
         );
@@ -274,26 +198,13 @@ describe('releaseEnv tests :: ', function() {
     });
 });
 
+/** AVOID_WEB **/
+
 describe('isAvoidWeb tests :: ', function() {
     valsExistAndAreFalse(
-        [
-            {name: 'isAvoidWeb', value: isAvoidWeb},
-            {name: 'avoidWeb', value: avoidWeb},
-        ],
+        [{name: 'isAvoidWeb', value: isAvoidWeb}, {name: 'avoidWeb', value: avoidWeb}],
         null,
         {isAvoidWeb}
-    );
-});
-
-// TODO refactor - use an abstraction. Below tests were created with a quick & dirty macro.
-describe('WAS_RUN_THRU_MOCHA value tests :: ', function() {
-    valsExistAndAreTrue(
-        [
-            {name: 'isMochaEnv', value: isMochaEnv},
-            {name: 'runByMocha', value: runByMocha},
-            {name: 'isMocha', value: isMocha}
-        ],
-        `(since current process was launched by Mocha)`
     );
 });
 

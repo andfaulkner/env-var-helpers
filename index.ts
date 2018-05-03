@@ -72,24 +72,7 @@ export const isError = isWarn || LOG_LEVEL === 'error';
 export const isWTF = isError || LOG_LEVEL === 'wtf';
 
 /******************************************** ALIASES *********************************************/
-export {isSilly as logGtEqlSilly};
-export {isVerbose as logGtEqlVerbose};
-export {isDebug as logGtEqlDebug};
-export {isInfo as logGtEqlInfo};
-export {isWarn as logGtEqlWarn};
-export {isError as logGtEqlError};
-export {isWTF as logGtEqlWTF};
-export {isWTF as logGtEqlWtf};
 export {isWTF as isWtf};
-
-export {isSilly as isLogSilly};
-export {isVerbose as isLogVerbose};
-export {isDebug as isLogDebug};
-export {isInfo as isLogInfo};
-export {isWarn as isLogWarn};
-export {isError as isLogError};
-export {isWTF as isLogWTF};
-export {isWTF as isLogWtf};
 
 /**************************************** IE COMPATIBILITY ****************************************/
 export const isIECompat = IE_COMPAT;
