@@ -59,28 +59,11 @@ const {isAvoidWeb, avoidWeb, doAvoidWeb} = envVarHelpers;
 const {isDev, isDevelopment, isProd, isProduction} = envVarHelpers;
 
 // LOADED_MOCHA_OPTS exports (true if current process launched by Mocha)
-const {
-    wasRunViaMocha,
-    isMochaEnv,
-    runViaMocha,
-    runThruMocha,
-    wasRunThruMocha,
-    runByMocha,
-    wasRunByMocha,
-    loadedMochaOpts,
-    isMocha
-} = envVarHelpers;
+const {isMochaEnv, runByMocha, isMocha} = envVarHelpers;
 
 // RELEASE_ENV (release environment) exports
 const {releaseEnv, releaseEnvironment} = envVarHelpers;
-const {
-    releaseEnvShort,
-    releaseEnvironmentShort,
-    releaseEnvironmentAbbrev,
-    releaseEnvAbbrev,
-    releaseEnvAbbreviation,
-    releaseEnvironmentAbbreviation
-} = envVarHelpers;
+const {releaseEnvShort, releaseEnvAbbrev} = envVarHelpers;
 
 // UAT release environment helpers
 const {isReleaseEnvUat, isReleaseEnvUAT, isUAT} = envVarHelpers;
@@ -229,18 +212,15 @@ describe('prodOrSecurityTest (and aliases) :: ', function() {
     ]);
 });
 
-describe('wasRunViaMocha (and aliases) :: ', function() {
+describe('isMocha & aliases (runByMocha, isMochaEnv) :: ', function() {
     valsExistAndAreTrue(
         [
-            {name: 'wasRunThruMocha', value: wasRunThruMocha},
-            {name: 'runThruMocha', value: runThruMocha},
-            {name: 'runViaMocha', value: runViaMocha},
             {name: 'isMochaEnv', value: isMochaEnv},
-            {name: 'wasRunViaMocha', value: wasRunViaMocha},
+            {name: 'runByMocha', value: runByMocha},
             {name: 'isMocha', value: isMocha}
         ],
         null,
-        {wasRunViaMocha}
+        {isMocha}
     );
 });
 
@@ -290,15 +270,9 @@ describe('isAvoidWeb tests :: ', function() {
 describe('WAS_RUN_THRU_MOCHA value tests :: ', function() {
     valsExistAndAreTrue(
         [
-            {name: 'isMocha', value: isMocha},
             {name: 'isMochaEnv', value: isMochaEnv},
             {name: 'runByMocha', value: runByMocha},
-            {name: 'runViaMocha', value: runViaMocha},
-            {name: 'runThruMocha', value: runThruMocha},
-            {name: 'wasRunByMocha', value: wasRunByMocha},
-            {name: 'wasRunViaMocha', value: wasRunViaMocha},
-            {name: 'wasRunThruMocha', value: wasRunThruMocha},
-            {name: 'loadedMochaOpts', value: loadedMochaOpts}
+            {name: 'isMocha', value: isMocha}
         ],
         `(since current process was launched by Mocha)`
     );

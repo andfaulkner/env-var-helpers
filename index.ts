@@ -110,12 +110,6 @@ export const isTestMode = TEST_MODE && toBool('TEST_MODE', false);
 export const isMocha = WAS_RUN_THRU_MOCHA;
 export {isMocha as isMochaEnv};
 export {isMocha as runByMocha};
-export {isMocha as runViaMocha};
-export {isMocha as runThruMocha};
-export {isMocha as wasRunByMocha};
-export {isMocha as wasRunViaMocha};
-export {isMocha as wasRunThruMocha};
-export {isMocha as loadedMochaOpts};
 
 /******************************* RELEASE ENVIRONMENT (RELEASE_ENV) ********************************/
 export const releaseEnv = RELEASE_ENV;

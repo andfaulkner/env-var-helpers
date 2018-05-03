@@ -59,12 +59,6 @@ export declare const isTestMode: any;
 export declare const isMocha: any;
 export { isMocha as isMochaEnv };
 export { isMocha as runByMocha };
-export { isMocha as runViaMocha };
-export { isMocha as runThruMocha };
-export { isMocha as wasRunByMocha };
-export { isMocha as wasRunViaMocha };
-export { isMocha as wasRunThruMocha };
-export { isMocha as loadedMochaOpts };
 /******************************* RELEASE ENVIRONMENT (RELEASE_ENV) ********************************/
 export declare const releaseEnv: ReleaseEnv;
 export { releaseEnv as releaseEnvironment };
