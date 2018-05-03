@@ -83,12 +83,6 @@ export { isReleaseEnvProd as isReleaseEnvProduction };
 /**
  * 3-4 letter version of release environment name. Default: 'dev'
  */
-export declare const releaseEnvShort: ReleaseEnvShort;
-export { releaseEnvShort as releaseEnvAbbrev };
-export { releaseEnvShort as releaseEnvAbbreviation };
-export { releaseEnvShort as releaseEnvironmentShort };
-export { releaseEnvShort as releaseEnvironmentAbbrev };
-export { releaseEnvShort as releaseEnvironmentAbbreviation };
 /**************************** LOG LEVEL + TEST ENVIRONMENT SHORTHANDS *****************************/
 export declare const isVerboseMocha: boolean;
 export { isVerboseMocha as isVerboseTest };
@@ -98,7 +92,3 @@ export { isVerboseMocha as isMochaVerbose };
 export { isVerboseMocha as isTestVerbose };
 export { isVerboseMocha as isMochaV };
 export { isVerboseMocha as isTestV };
-export declare const isDebugMocha: boolean;
-export { isDebugMocha as isDebugTest };
-export { isDebugMocha as isMochaDebug };
-export { isDebugMocha as isTestDebug };

@@ -166,8 +166,3 @@ export {isVerboseMocha as isMochaVerbose};
 export {isVerboseMocha as isTestVerbose};
 export {isVerboseMocha as isMochaV};
 export {isVerboseMocha as isTestV};
-
-export const isDebugMocha = WAS_RUN_THRU_MOCHA && isDebug;
-export {isDebugMocha as isDebugTest};
-export {isDebugMocha as isMochaDebug};
-export {isDebugMocha as isTestDebug};
