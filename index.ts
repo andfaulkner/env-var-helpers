@@ -155,14 +155,3 @@ export {releaseEnvShort as releaseEnvAbbreviation};
 export {releaseEnvShort as releaseEnvironmentShort};
 export {releaseEnvShort as releaseEnvironmentAbbrev};
 export {releaseEnvShort as releaseEnvironmentAbbreviation};
-
-/**************************** LOG LEVEL + TEST ENVIRONMENT SHORTHANDS *****************************/
-// More are defined for verbose + mocha because it's a much more common pattern.
-export const isVerboseMocha = WAS_RUN_THRU_MOCHA && isVerbose;
-export {isVerboseMocha as isVerboseTest};
-export {isVerboseMocha as isVTest};
-export {isVerboseMocha as isVMocha};
-export {isVerboseMocha as isMochaVerbose};
-export {isVerboseMocha as isTestVerbose};
-export {isVerboseMocha as isMochaV};
-export {isVerboseMocha as isTestV};
