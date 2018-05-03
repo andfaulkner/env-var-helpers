@@ -53,7 +53,6 @@ export { isIeCompatMode as isIECompat };
 export { isIeCompatMode as isIeCompat };
 export declare const isAvoidWeb: any;
 export { isAvoidWeb as avoidWeb };
-export { isAvoidWeb as doAvoidWeb };
 /**************************************** TEST ENVIRONMENT ****************************************/
 export declare const isTestMode: any;
 export declare const isMocha: any;

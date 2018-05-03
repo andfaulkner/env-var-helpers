@@ -100,7 +100,6 @@ export {isIeCompatMode as isIeCompat};
 // Check for env var requesting total avoidance of web; e.g. no CDNs (local bundles use instead)
 export const isAvoidWeb = AVOID_WEB;
 export {isAvoidWeb as avoidWeb};
-export {isAvoidWeb as doAvoidWeb};
 
 /**************************************** TEST ENVIRONMENT ****************************************/
 // For cases where TEST_MODE was run explicitly

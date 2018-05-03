@@ -53,7 +53,7 @@ const {
 } = envVarHelpers;
 
 // AVOID_WEB exports
-const {isAvoidWeb, avoidWeb, doAvoidWeb} = envVarHelpers;
+const {isAvoidWeb, avoidWeb} = envVarHelpers;
 
 // NODE_ENV (environment) exports
 const {isDev, isDevelopment, isProd, isProduction} = envVarHelpers;
@@ -259,7 +259,6 @@ describe('isAvoidWeb tests :: ', function() {
         [
             {name: 'isAvoidWeb', value: isAvoidWeb},
             {name: 'avoidWeb', value: avoidWeb},
-            {name: 'doAvoidWeb', value: doAvoidWeb}
         ],
         null,
         {isAvoidWeb}
