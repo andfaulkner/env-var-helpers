@@ -151,7 +151,3 @@ export const releaseEnvShort: ReleaseEnvShort = (function() {
 })();
 
 export {releaseEnvShort as releaseEnvAbbrev};
-export {releaseEnvShort as releaseEnvAbbreviation};
-export {releaseEnvShort as releaseEnvironmentShort};
-export {releaseEnvShort as releaseEnvironmentAbbrev};
-export {releaseEnvShort as releaseEnvironmentAbbreviation};

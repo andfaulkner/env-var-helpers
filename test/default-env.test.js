@@ -268,22 +268,10 @@ describe('releaseEnv tests :: ', function() {
         it(`releaseEnvShort defaults to 'dev'`, function() {
             expect(releaseEnvShort).to.eql('dev');
         });
-        it(
-            `releaseEnvShort has aliases releaseEnvironmentShort, releaseEnvironmentAbbreviation,` +
-                ` releaseEnvAbbrev, releaseEnvAbbreviation, releaseEnvironmentAbbrev`,
-            function() {
-                expect(releaseEnvironmentShort).to.eql('dev');
-                expect(releaseEnvironmentShort).to.eql(releaseEnvShort);
-                expect(releaseEnvironmentAbbreviation).to.eql('dev');
-                expect(releaseEnvironmentAbbreviation).to.eql(releaseEnvShort);
-                expect(releaseEnvAbbrev).to.eql('dev');
-                expect(releaseEnvAbbrev).to.eql(releaseEnvShort);
-                expect(releaseEnvAbbreviation).to.eql('dev');
-                expect(releaseEnvAbbreviation).to.eql(releaseEnvShort);
-                expect(releaseEnvironmentAbbrev).to.eql('dev');
-                expect(releaseEnvironmentAbbrev).to.eql(releaseEnvShort);
-            }
-        );
+        it(`releaseEnvShort has alias releaseEnvAbbrev`, function() {
+            expect(releaseEnvAbbrev).to.eql('dev');
+            expect(releaseEnvAbbrev).to.eql(releaseEnvShort);
+        });
     });
 });
 
