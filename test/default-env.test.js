@@ -30,8 +30,8 @@ const {isMochaEnv, runByMocha, isMocha} = envVarHelpers;
 // RELEASE_ENV (release environment) exports
 const {releaseEnv, releaseEnvironment, releaseEnvShort, releaseEnvAbbrev} = envVarHelpers;
 
-// UAT release environment helpers
-const {isReleaseEnvUAT, isUAT} = envVarHelpers;
+// UAT & QA release environment helpers
+const {isReleaseEnvUAT, isUAT, isReleaseEnvQA, isQA} = envVarHelpers;
 
 // Directly log the environment variables in verbose or silly mode.
 const {LOG_LEVEL} = process.env;
@@ -181,6 +181,13 @@ describe('releaseEnv tests :: ', function() {
             [{name: 'isReleaseEnvUAT', value: isReleaseEnvUAT}, {name: 'isUAT', value: isUAT}],
             null,
             {isReleaseEnvUAT}
+        );
+    });
+    describe('isQA (isReleaseEnvQA) tests :: ', function() {
+        valsExistAndAreFalse(
+            [{name: 'isReleaseEnvQA', value: isReleaseEnvQA}, {name: 'isQA', value: isQA}],
+            null,
+            {isReleaseEnvQA}
         );
     });
     describe('releaseEnvShort tests :: ', function() {
