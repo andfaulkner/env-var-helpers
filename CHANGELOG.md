@@ -22,6 +22,36 @@ Remove all isMocha (i.e. "Was this code run by Mocha?") aliases except isMochaEn
 
 Remove isAvoidWeb alias: "doAvoidWeb"
 
+Remove isIECompat aliases:
+-   isIECompatMode
+-   isIeCompatMode
+
+Remove isReleaseEnvUAT aliases:
+-   isUat
+-   isReleaseEnvUat
+
+Remove isReleaseEnvQA aliases:
+-   isQa
+-   isReleaseEnvQa
+
+Remove LOG_LEVEL env var helper aliases:
+-   isLogSilly
+-   isLogVerbose
+-   isLogDebug
+-   isLogInfo
+-   isLogWarn
+-   isLogError
+-   isLogWTF
+-   isLogWtf
+-   logGtEqlSilly
+-   logGtEqlVerbose
+-   logGtEqlDebug
+-   logGtEqlInfo
+-   logGtEqlWarn
+-   logGtEqlError
+-   logGtEqlWTF
+-   logGtEqlWtf
+
 3.4.1
 =====
 Converted arrow functions to regular functions to satisfy Webpack + UglifyJS edge case
