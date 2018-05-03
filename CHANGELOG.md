@@ -1,3 +1,7 @@
+4.0.1
+=====
+README brought up to date
+
 4.0.0
 =====
 Remove most releaseEnvShort aliases:
