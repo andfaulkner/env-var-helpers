@@ -51,7 +51,7 @@
     },
     "homepage": "https://github.com/andfaulkner/env-var-helpers#readme",
     "dependencies": {
-        "mad-logs": "^9.1.2"
+        "mad-logs": "^10.0.0"
     },
     "devDependencies": {
         "@types/chai": "^4.1.3",
