@@ -11,6 +11,7 @@ env-var-helpers: Environment variable helpers
     *   AVOID_WEB
     *   TEST_SECURITY / SECURITY_TEST
     *   IE_COMPAT
+    *   IS_LOCAL
 
 *   Handles true, "true", and "TRUE" identically
 
@@ -154,6 +155,14 @@ Is true if process.env.mocha or process.env.LOADED_MOCHA_OPTS is 'true'.
 Should always be true if the current script was run through Mocha, and never true otherwise
 *   Mocha sets this value automatically when it is launched
 
+isLocal
+-------
+Env var: IS_LOCAL
+
+Is true if IS_LOCAL is true (defaults to false)
+
+Purpose: set to true if running in local environment (i.e. on localhost)
+
 ----------------------------------------------------------------------------------------------------
 
 Environment variables handled
@@ -219,6 +228,14 @@ mocha / LOADED_MOCHA_OPTS
 LOADED_MOCHA_OPTS automatically set to true if code was run by Mocha.
 process.env.mocha is an alternative if you want to manually declare that code is run by Mocha
 *   In this case, declare `process.env.mocha = true` at the top of your test files
+
+Values:
+*   true
+*   false (DEFAULT)
+
+IS_LOCAL
+--------
+Turn on if running in localhost - i.e. if special behaviours are needed locally
 
 Values:
 *   true
