@@ -14,6 +14,7 @@ const RAW_LOADED_MOCHA_OPTS = process.env.LOADED_MOCHA_OPTS;
 const RAW_mocha = process.env.mocha;
 const RAW_TEST_SECURITY = process.env.TEST_SECURITY;
 const RAW_SECURITY_TEST = process.env.SECURITY_TEST;
+const RAW_IS_LOCAL = process.env.IS_LOCAL;
 /**************************************************************************************************/
 
 /****************************************** TYPE EXPORTS ******************************************/
@@ -38,6 +39,7 @@ const TEST_MODE = hasVal(RAW_TEST_MODE) ? toBool(RAW_TEST_MODE, false) : false;
 const IE_COMPAT = hasVal(RAW_IE_COMPAT) ? toBool(RAW_IE_COMPAT, false) : false;
 const AVOID_WEB = hasVal(RAW_AVOID_WEB) ? toBool(RAW_AVOID_WEB, false) : false;
 const WAS_RUN_THRU_MOCHA = hasVal(RAW_LOADED_MOCHA_OPTS) || (RAW_mocha && toBool(RAW_mocha, false));
+const IS_LOCAL = hasVal(RAW_IS_LOCAL) ? toBool(RAW_mocha, false) : false;
 
 export const env = {
     NODE_ENV: NODE_ENV,
@@ -47,6 +49,7 @@ export const env = {
     AVOID_WEB: AVOID_WEB,
     WAS_RUN_THRU_MOCHA: WAS_RUN_THRU_MOCHA,
     RELEASE_ENV: RELEASE_ENV,
+    IS_LOCAL: IS_LOCAL,
 };
 
 /******************************************** NODE_ENV ********************************************/
@@ -83,6 +86,10 @@ export {isIECompat as isIeCompat};
 // Check for env var requesting total avoidance of web; e.g. no CDNs (local bundles use instead)
 export const isAvoidWeb = AVOID_WEB;
 export {isAvoidWeb as avoidWeb};
+
+/******************************************** IS_LOCAL ********************************************/
+// Check for env var implying local/localhost environment
+export const isLocal = IS_LOCAL;
 
 /************************** TEST ENVIRONMENT (LOADED_MOCHA_OPTS, Mocha) ***************************/
 // For cases where TEST_MODE was run explicitly
