@@ -1,3 +1,7 @@
+4.1.0
+=====
+Add isLocal helper, for handling IS_LOCAL environment variable
+
 4.0.1
 =====
 README brought up to date
