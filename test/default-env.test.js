@@ -53,8 +53,7 @@ if (LOG_LEVEL && (LOG_LEVEL === 'verbose' || LOG_LEVEL === 'silly')) {
 }
 
 /********************************************* TESTS **********************************************/
-/** NODE_ENV **/
-
+/*--------------- NODE_ENV ---------------*/
 describe('isDevelopment (and aliases) :: ', function() {
     valsExistAndAreTrue(
         [{name: 'isDev', value: isDev}, {name: 'isDevelopment', value: isDevelopment}],
@@ -71,8 +70,7 @@ describe('isProduction (and aliases) :: ', function() {
     );
 });
 
-/** LOG_LEVEL **/
-
+/*--------------- LOG_LEVEL ---------------*/
 describe('isTrace :: ', function() {
     valsExistAndAreFalse(
         [{name: 'isTrace', value: isTrace}],
@@ -137,8 +135,7 @@ describe('isWTF (and alias isWtf) :: ', function() {
     );
 });
 
-/** IE_COMPAT **/
-
+/*--------------- IE_COMPAT ---------------*/
 describe('isIECompat (and alias isIeCompat) :: ', function() {
     valsExistAndAreFalse(
         [{name: 'isIECompat', value: isIECompat}, {name: 'isIeCompat', value: isIeCompat}],
@@ -147,8 +144,7 @@ describe('isIECompat (and alias isIeCompat) :: ', function() {
     );
 });
 
-/** SECURITY_TEST **/
-
+/*--------------- SECURITY_TEST ---------------*/
 describe('prodOrSecurityTest (and aliases) :: ', function() {
     valsExistAndAreFalse([
         {name: 'prodOrSecurityTest', value: prodOrSecurityTest},
@@ -156,8 +152,7 @@ describe('prodOrSecurityTest (and aliases) :: ', function() {
     ]);
 });
 
-/** Was run by Mocha? **/
-
+/*--------------- Was run by Mocha? ---------------*/
 describe('isMocha & aliases (runByMocha, isMochaEnv) :: ', function() {
     valsExistAndAreTrue(
         [
@@ -170,8 +165,7 @@ describe('isMocha & aliases (runByMocha, isMochaEnv) :: ', function() {
     );
 });
 
-/** RELEASE_ENV **/
-
+/*--------------- RELEASE_ENV ---------------*/
 describe('releaseEnv tests :: ', function() {
     it(`releaseEnv defaults to development`, function() {
         expect(releaseEnv).to.eql('development');
@@ -205,8 +199,7 @@ describe('releaseEnv tests :: ', function() {
     });
 });
 
-/** AVOID_WEB **/
-
+/*--------------- AVOID_WEB ---------------*/
 describe('isAvoidWeb tests :: ', function() {
     valsExistAndAreFalse(
         [{name: 'isAvoidWeb', value: isAvoidWeb}, {name: 'avoidWeb', value: avoidWeb}],
@@ -215,8 +208,7 @@ describe('isAvoidWeb tests :: ', function() {
     );
 });
 
-/** IS_LOCAL **/
-
+/*--------------- IS_LOCAL ---------------*/
 describe('isLocal test :: ', function() {
     valsExistAndAreFalse([{name: 'isLocal', value: isLocal}], null, {isLocal});
 });
