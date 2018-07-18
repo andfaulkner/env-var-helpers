@@ -33,6 +33,9 @@ const {releaseEnv, releaseEnvironment, releaseEnvShort, releaseEnvAbbrev} = envV
 // UAT & QA release environment helpers
 const {isReleaseEnvUAT, isUAT, isReleaseEnvQA, isQA} = envVarHelpers;
 
+// IS_LOCAL exports
+const {isLocal} = envVarHelpers;
+
 // Directly log the environment variables in verbose or silly mode.
 const {LOG_LEVEL} = process.env;
 if (LOG_LEVEL && (LOG_LEVEL === 'verbose' || LOG_LEVEL === 'silly')) {
@@ -45,6 +48,7 @@ if (LOG_LEVEL && (LOG_LEVEL === 'verbose' || LOG_LEVEL === 'silly')) {
     console.log(`process.env.LOADED_MOCHA_OPTS:`, process.env.LOADED_MOCHA_OPTS);
     console.log(`process.env.SECURITY_TEST:`, process.env.SECURITY_TEST);
     console.log(`process.env.TEST_SECURITY:`, process.env.TEST_SECURITY);
+    console.log(`process.env.IS_LOCAL:`, process.env.IS_LOCAL);
     console.log(`*******************************************************************\n\n`);
 }
 
@@ -209,6 +213,12 @@ describe('isAvoidWeb tests :: ', function() {
         null,
         {isAvoidWeb}
     );
+});
+
+/** IS_LOCAL **/
+
+describe('isLocal test :: ', function() {
+    valsExistAndAreFalse([{name: 'isLocal', value: isLocal}], null, {isLocal});
 });
 
 /******************************************** HELPERS *********************************************/
