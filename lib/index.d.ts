@@ -12,6 +12,7 @@ export declare const env: {
     AVOID_WEB: any;
     WAS_RUN_THRU_MOCHA: any;
     RELEASE_ENV: ReleaseEnv;
+    IS_LOCAL: any;
 };
 /******************************************** NODE_ENV ********************************************/
 export declare const isDev: boolean;
@@ -36,6 +37,8 @@ export { isIECompat as isIeCompat };
 /******************************************* AVOID_WEB ********************************************/
 export declare const isAvoidWeb: any;
 export { isAvoidWeb as avoidWeb };
+/******************************************** IS_LOCAL ********************************************/
+export declare const isLocal: any;
 /************************** TEST ENVIRONMENT (LOADED_MOCHA_OPTS, Mocha) ***************************/
 export declare const isTestMode: any;
 export declare const isMocha: any;
