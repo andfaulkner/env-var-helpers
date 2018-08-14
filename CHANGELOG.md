@@ -1,3 +1,7 @@
+5.0.0
+=====
+Switch transpile target to ES5
+
 4.1.0
 =====
 Add isLocal helper, for handling IS_LOCAL environment variable
