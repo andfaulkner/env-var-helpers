@@ -11,7 +11,7 @@
         "declaration": true,
         "skipLibCheck": true,
 
-        "target": "ES6",
+        "target": "ES5",
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
         "experimentalDecorators": true,
