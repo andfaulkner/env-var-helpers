@@ -557,9 +557,9 @@ ecc-jsbn@~0.1.1:
   dependencies:
     jsbn "~0.1.0"
 
-env-var-helpers@^4.0.1:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/env-var-helpers/-/env-var-helpers-4.1.0.tgz#3cc4e69b84f79604c4ccc864639dcedf9de6fb83"
+env-var-helpers@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/env-var-helpers/-/env-var-helpers-5.0.0.tgz#9339aafd8f7f7cdce946291d0d7e8a0a55cc0038"
   dependencies:
     mad-logs "^10.2.0"
 
@@ -1322,13 +1322,13 @@ lru-cache@^4.0.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
-mad-logs@^10.2.0, mad-logs@^10.3.1:
-  version "10.3.1"
-  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-10.3.1.tgz#7b75369daf18a79210077498c22f4de115c460f8"
+mad-logs@^10.2.0, mad-logs@^10.3.2:
+  version "10.3.2"
+  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-10.3.2.tgz#32e1c89389cdfcc7b31ceb35afd25b991e6d82e5"
   dependencies:
     colors "^1.1.2"
     detect-node "^2.0.3"
-    env-var-helpers "^4.0.1"
+    env-var-helpers "^5.0.0"
     global "^4.3.1"
     string.prototype.padend "^3.0.0"
 
