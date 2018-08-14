@@ -1,6 +1,8 @@
-5.0.0
+5.0.1
 =====
 Switch transpile target to ES5
+
+Remove mad-logs dependency (make devDependency instead)
 
 4.1.0
 =====
