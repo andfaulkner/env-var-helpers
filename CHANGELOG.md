@@ -1,3 +1,7 @@
+5.0.2 (WIP)
+===========
+Remove package lock (package-lock.json)
+
 5.0.1
 =====
 Switch transpile target to ES5
