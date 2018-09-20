@@ -6,20 +6,20 @@ export declare type ReleaseEnvShort = 'dev' | 'prod' | 'qa' | 'uat';
 export declare type LogLevel = 'trace' | 'silly' | 'debug' | 'verbose' | 'info' | 'warn' | 'error' | 'wtf';
 export declare const env: {
     NODE_ENV: NodeEnv;
-    LOG_LEVEL: any;
-    IE_COMPAT: any;
-    TEST_MODE: any;
-    AVOID_WEB: any;
-    WAS_RUN_THRU_MOCHA: any;
+    LOG_LEVEL: LogLevel;
+    IE_COMPAT: boolean;
+    TEST_MODE: boolean;
+    AVOID_WEB: boolean;
+    WAS_RUN_THRU_MOCHA: boolean;
     RELEASE_ENV: ReleaseEnv;
-    IS_LOCAL: any;
+    IS_LOCAL: boolean;
 };
 /******************************************** NODE_ENV ********************************************/
 export declare const isDev: boolean;
 export { isDev as isDevelopment };
 export declare const isProd: boolean;
 export { isProd as isProduction };
-export declare const prodOrSecurityTest: any;
+export declare const prodOrSecurityTest: boolean;
 export { prodOrSecurityTest as isProdOrSecurityTest };
 /******************************************* LOG_LEVEL ********************************************/
 export declare const isTrace: boolean;
@@ -32,16 +32,16 @@ export declare const isError: boolean;
 export declare const isWTF: boolean;
 export { isWTF as isWtf };
 /********************************** IE COMPATIBILITY (IE_COMPAT) **********************************/
-export declare const isIECompat: any;
+export declare const isIECompat: boolean;
 export { isIECompat as isIeCompat };
 /******************************************* AVOID_WEB ********************************************/
-export declare const isAvoidWeb: any;
+export declare const isAvoidWeb: boolean;
 export { isAvoidWeb as avoidWeb };
 /******************************************** IS_LOCAL ********************************************/
-export declare const isLocal: any;
+export declare const isLocal: boolean;
 /************************** TEST ENVIRONMENT (LOADED_MOCHA_OPTS, Mocha) ***************************/
-export declare const isTestMode: any;
-export declare const isMocha: any;
+export declare const isTestMode: boolean;
+export declare const isMocha: boolean;
 export { isMocha as isMochaEnv };
 export { isMocha as runByMocha };
 /******************************* RELEASE ENVIRONMENT (RELEASE_ENV) ********************************/
@@ -56,7 +56,7 @@ export { isReleaseEnvDev as isReleaseEnvDevelopment };
 export declare const isReleaseEnvProd: boolean;
 export { isReleaseEnvProd as isReleaseEnvProduction };
 /**
- * 3-4 letter version of release environment name (Default: 'dev')
+ * 3-4 letter version of release environment name (Default: `dev`)
  */
 export declare const releaseEnvShort: ReleaseEnvShort;
 export { releaseEnvShort as releaseEnvAbbrev };
