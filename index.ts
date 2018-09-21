@@ -89,14 +89,14 @@ export const env = {
 /**
  * True if current process was run with NODE_ENV=development or NODE_ENV=dev
  */
-export const isDev = NODE_ENV === `development` || NODE_ENV === `dev`;
-export {isDev as isDevelopment};
+export const isDevelopment = NODE_ENV === `development` || NODE_ENV === `dev`;
+export {isDevelopment as isDev};
 
 /**
  * True if current process was run with NODE_ENV=production or NODE_ENV=prod
  */
-export const isProd = NODE_ENV === `production` || NODE_ENV === `prod`;
-export {isProd as isProduction};
+export const isProduction = NODE_ENV === `production` || NODE_ENV === `prod`;
+export {isProduction as isProd};
 
 /**
  * True if NODE_ENV is production, or TEST_SECURITY or SECURITY_TEST are true
@@ -156,7 +156,8 @@ export {isIECompat as isIeCompat};
 
 /******************************************* AVOID_WEB ********************************************/
 /**
- * Check for env var requesting total avoidance of web; e.g. no CDNs (local bundles use instead)
+ * Check for env var requesting total avoidance of web
+ * e.g. for avoiding use of CDNs, and using local bundles instead
  */
 export const isAvoidWeb = AVOID_WEB;
 export {isAvoidWeb as avoidWeb};
@@ -181,18 +182,34 @@ export {isMocha as isMochaEnv};
 export {isMocha as runByMocha};
 
 /******************************* RELEASE ENVIRONMENT (RELEASE_ENV) ********************************/
+/**
+ * Directly output the value set with RELEASE_ENV=something
+ * Should be dev, qa, uat, prod, development, or production
+ */
 export const releaseEnv = RELEASE_ENV;
 export {releaseEnv as releaseEnvironment};
 
+/**
+ * Return true if RELEASE_ENV=uat
+ */
 export const isReleaseEnvUAT = RELEASE_ENV === `uat`;
 export {isReleaseEnvUAT as isUAT};
 
+/**
+ * Return true if RELEASE_ENV=qa
+ */
 export const isReleaseEnvQA = RELEASE_ENV === `qa`;
 export {isReleaseEnvQA as isQA};
 
+/**
+ * Return true if RELEASE_ENV=dev
+ */
 export const isReleaseEnvDev = RELEASE_ENV === `dev` || RELEASE_ENV === `development`;
 export {isReleaseEnvDev as isReleaseEnvDevelopment};
 
+/**
+ * Return true if RELEASE_ENV=prod
+ */
 export const isReleaseEnvProd = RELEASE_ENV === `prod` || RELEASE_ENV === `production`;
 export {isReleaseEnvProd as isReleaseEnvProduction};
 
