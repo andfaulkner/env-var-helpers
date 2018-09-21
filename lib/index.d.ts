@@ -43,6 +43,7 @@ export declare const env: {
     WAS_RUN_THRU_MOCHA: boolean;
     RELEASE_ENV: ReleaseEnv;
     IS_LOCAL: boolean;
+    SKIP_BASIC_AUTH: boolean;
 };
 /******************************************** NODE_ENV ********************************************/
 /**
@@ -109,6 +110,15 @@ export { isAvoidWeb as avoidWeb };
  * Check for env var implying local/localhost environment
  */
 export declare const isLocal: boolean;
+/**************************************** SKIP_BASIC_AUTH *****************************************/
+/**
+ * If true, SKIP_BASIC_AUTH=true, indicating that basic auth should be shut off
+ * Meant to be used when basic auth is conditionally used by a server, often
+ * based on specific routes or deployment environment, or both
+ */
+export declare const isSkipBasicAuth: boolean;
+export { isSkipBasicAuth as skipBasicAuth };
+export { isSkipBasicAuth as doSkipBasicAuth };
 /************************** TEST ENVIRONMENT (LOADED_MOCHA_OPTS, Mocha) ***************************/
 /**
  * For cases where TEST_MODE was run explicitly

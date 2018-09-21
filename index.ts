@@ -15,6 +15,7 @@ const RAW_mocha = process.env.mocha;
 const RAW_TEST_SECURITY = process.env.TEST_SECURITY;
 const RAW_SECURITY_TEST = process.env.SECURITY_TEST;
 const RAW_IS_LOCAL = process.env.IS_LOCAL;
+const RAW_SKIP_BASIC_AUTH = process.env.SKIP_BASIC_AUTH;
 /**************************************************************************************************/
 
 /****************************************** TYPE EXPORTS ******************************************/
@@ -68,6 +69,7 @@ const IE_COMPAT = hasVal(RAW_IE_COMPAT) ? toBool(RAW_IE_COMPAT, false) : false;
 const AVOID_WEB = hasVal(RAW_AVOID_WEB) ? toBool(RAW_AVOID_WEB, false) : false;
 const WAS_RUN_THRU_MOCHA = hasVal(RAW_LOADED_MOCHA_OPTS) || (RAW_mocha && toBool(RAW_mocha, false));
 const IS_LOCAL = hasVal(RAW_IS_LOCAL) ? toBool(RAW_mocha, false) : false;
+const SKIP_BASIC_AUTH = hasVal(RAW_SKIP_BASIC_AUTH) ? toBool(RAW_SKIP_BASIC_AUTH, false) : false;
 
 /**
  * Namespace for direct access to environment variables:
@@ -83,6 +85,7 @@ export const env = {
     WAS_RUN_THRU_MOCHA,
     RELEASE_ENV,
     IS_LOCAL,
+    SKIP_BASIC_AUTH,
 };
 
 /******************************************** NODE_ENV ********************************************/
@@ -167,6 +170,16 @@ export {isAvoidWeb as avoidWeb};
  * Check for env var implying local/localhost environment
  */
 export const isLocal = IS_LOCAL;
+
+/**************************************** SKIP_BASIC_AUTH *****************************************/
+/**
+ * If true, SKIP_BASIC_AUTH=true, indicating that basic auth should be shut off
+ * Meant to be used when basic auth is conditionally used by a server, often
+ * based on specific routes or deployment environment, or both
+ */
+export const isSkipBasicAuth = SKIP_BASIC_AUTH;
+export {isSkipBasicAuth as skipBasicAuth}
+export {isSkipBasicAuth as doSkipBasicAuth}
 
 /************************** TEST ENVIRONMENT (LOADED_MOCHA_OPTS, Mocha) ***************************/
 /**
