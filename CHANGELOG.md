@@ -1,6 +1,10 @@
-5.0.2 (WIP)
-===========
+5.1.0
+=====
 Remove package lock (package-lock.json)
+
+Fix typings in outputted values (no more 'any' values)
+
+Add IDE-friendly docs to all exports
 
 5.0.1
 =====
