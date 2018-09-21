@@ -1,4 +1,3 @@
-
 declare const process: any;
 
 /**************************************************************************************************/
@@ -60,7 +59,9 @@ export {isDev as isDevelopment};
 export const isProd = NODE_ENV === `production` || NODE_ENV === `prod`;
 export {isProd as isProduction};
 
-// True if NODE_ENV is production, TEST_SECURITY is true, or SECURITY_TEST is true
+/**
+ * True if NODE_ENV is production, TEST_SECURITY is true, or SECURITY_TEST is true
+ */
 export const prodOrSecurityTest =
     isProd ||
     (hasVal(RAW_TEST_SECURITY) && toBool(RAW_TEST_SECURITY, false)) ||
@@ -84,19 +85,27 @@ export const isIECompat = IE_COMPAT;
 export {isIECompat as isIeCompat};
 
 /******************************************* AVOID_WEB ********************************************/
-// Check for env var requesting total avoidance of web; e.g. no CDNs (local bundles use instead)
+/**
+ * Check for env var requesting total avoidance of web; e.g. no CDNs (local bundles use instead)
+ */
 export const isAvoidWeb = AVOID_WEB;
 export {isAvoidWeb as avoidWeb};
 
 /******************************************** IS_LOCAL ********************************************/
-// Check for env var implying local/localhost environment
+/**
+ * Check for env var implying local/localhost environment
+ */
 export const isLocal = IS_LOCAL;
 
 /************************** TEST ENVIRONMENT (LOADED_MOCHA_OPTS, Mocha) ***************************/
-// For cases where TEST_MODE was run explicitly
+/**
+ * For cases where TEST_MODE was run explicitly
+ */
 export const isTestMode = TEST_MODE && toBool(`TEST_MODE`, false);
 
-// Check if current script was run via Mocha
+/**
+ * Check if current script was run via Mocha
+ */
 export const isMocha = WAS_RUN_THRU_MOCHA;
 export {isMocha as isMochaEnv};
 export {isMocha as runByMocha};
