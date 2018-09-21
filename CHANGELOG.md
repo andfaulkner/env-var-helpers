@@ -6,6 +6,11 @@ Fix typings in outputted values (no more 'any' values)
 
 Add IDE-friendly docs to all exports
 
+Add handling for SKIP_BASIC_AUTH environment variable, with exports:
+*   skipBasicAuth
+*   isSkipBasicAuth
+*   doSkipBasicAuth
+
 5.0.1
 =====
 Switch transpile target to ES5
