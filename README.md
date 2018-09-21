@@ -12,6 +12,7 @@ env-var-helpers: Environment variable helpers
     *   TEST_SECURITY / SECURITY_TEST
     *   IE_COMPAT
     *   IS_LOCAL
+    *   SKIP_BASIC_AUTH
 
 *   Handles true, "true", and "TRUE" identically
 
@@ -163,6 +164,15 @@ Is true if IS_LOCAL is true (defaults to false)
 
 Purpose: set to true if running in local environment (i.e. on localhost)
 
+skipBasicAuth, isSkipBasicAuth, doSkipBasicAuth
+-----------------------------------------------
+Env var: SKIP_BASIC_AUTH
+
+Is true if SKIP_BASIC_AUTH environment variable is true (defaults to false)
+
+Purpose: set to true for turning basic auth off
+Use to make basic auth handling conditional, based on route and/or deployment environment, etc.
+
 ----------------------------------------------------------------------------------------------------
 
 Environment variables handled
@@ -236,6 +246,14 @@ Values:
 IS_LOCAL
 --------
 Turn on if running in localhost - i.e. if special behaviours are needed locally
+
+Values:
+*   true
+*   false (DEFAULT)
+
+SKIP_BASIC_AUTH
+---------------
+Set to true to shut basic auth off on certain routes
 
 Values:
 *   true
