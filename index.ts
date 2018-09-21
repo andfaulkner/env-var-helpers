@@ -99,7 +99,7 @@ export const isProd = NODE_ENV === `production` || NODE_ENV === `prod`;
 export {isProd as isProduction};
 
 /**
- * True if NODE_ENV is production, TEST_SECURITY is true, or SECURITY_TEST is true
+ * True if NODE_ENV is production, or TEST_SECURITY or SECURITY_TEST are true
  */
 export const prodOrSecurityTest =
     isProd ||
@@ -109,13 +109,44 @@ export const prodOrSecurityTest =
 export {prodOrSecurityTest as isProdOrSecurityTest};
 
 /******************************************* LOG_LEVEL ********************************************/
+/**
+ * True if current process was run with LOG_LEVEL=trace
+ */
 export const isTrace = LOG_LEVEL === `trace`;
+
+/**
+ * True if current process was run with LOG_LEVEL=silly
+ */
 export const isSilly = isTrace || LOG_LEVEL === `silly`;
+
+/**
+ * True if current process was run with LOG_LEVEL=verbose
+ */
 export const isVerbose = isSilly || LOG_LEVEL === `verbose`;
+
+/**
+ * True if current process was run with LOG_LEVEL=debug
+ */
 export const isDebug = isVerbose || LOG_LEVEL === `debug`;
+
+/**
+ * True if current process was run with LOG_LEVEL=info
+ */
 export const isInfo = isDebug || LOG_LEVEL === `info`;
+
+/**
+ * True if current process was run with LOG_LEVEL=warn
+ */
 export const isWarn = isInfo || LOG_LEVEL === `warn`;
+
+/**
+ * True if current process was run with LOG_LEVEL=error
+ */
 export const isError = isWarn || LOG_LEVEL === `error`;
+
+/**
+ * True if current process was run with LOG_LEVEL=wtf
+ */
 export const isWTF = isError || LOG_LEVEL === `wtf`;
 export {isWTF as isWtf};
 
