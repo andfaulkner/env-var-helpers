@@ -69,21 +69,32 @@ const AVOID_WEB = hasVal(RAW_AVOID_WEB) ? toBool(RAW_AVOID_WEB, false) : false;
 const WAS_RUN_THRU_MOCHA = hasVal(RAW_LOADED_MOCHA_OPTS) || (RAW_mocha && toBool(RAW_mocha, false));
 const IS_LOCAL = hasVal(RAW_IS_LOCAL) ? toBool(RAW_mocha, false) : false;
 
+/**
+ * Namespace for direct access to environment variables:
+ *     NODE_ENV, LOG_LEVEL, IE_COMPAT, TEST_MODE, AVOID_WEB, WAS_RUN_THRU_MOCHA,
+ *     RELEASE_ENV, IS_LOCAL
+ */
 export const env = {
-    NODE_ENV: NODE_ENV,
-    LOG_LEVEL: LOG_LEVEL,
-    IE_COMPAT: IE_COMPAT,
-    TEST_MODE: TEST_MODE,
-    AVOID_WEB: AVOID_WEB,
-    WAS_RUN_THRU_MOCHA: WAS_RUN_THRU_MOCHA,
-    RELEASE_ENV: RELEASE_ENV,
-    IS_LOCAL: IS_LOCAL,
+    NODE_ENV,
+    LOG_LEVEL,
+    IE_COMPAT,
+    TEST_MODE,
+    AVOID_WEB,
+    WAS_RUN_THRU_MOCHA,
+    RELEASE_ENV,
+    IS_LOCAL,
 };
 
 /******************************************** NODE_ENV ********************************************/
+/**
+ * True if current process was run with NODE_ENV=development or NODE_ENV=dev
+ */
 export const isDev = NODE_ENV === `development` || NODE_ENV === `dev`;
 export {isDev as isDevelopment};
 
+/**
+ * True if current process was run with NODE_ENV=production or NODE_ENV=prod
+ */
 export const isProd = NODE_ENV === `production` || NODE_ENV === `prod`;
 export {isProd as isProduction};
 
