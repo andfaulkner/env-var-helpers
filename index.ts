@@ -18,9 +18,37 @@ const RAW_IS_LOCAL = process.env.IS_LOCAL;
 /**************************************************************************************************/
 
 /****************************************** TYPE EXPORTS ******************************************/
+/**
+ * Accepted node environments: 'development' | 'dev' | 'production' | 'prod'
+ * Used by e.g. Express to determine whether to activate optimizations
+ */
 export type NodeEnv = 'development' | 'dev' | 'production' | 'prod';
+
+/**
+ * Accepted commonly-used release environments:
+ *     development | dev | qa | uat | production | prod
+ * Usually relates to which deployment server the code is currently being run on
+ */
 export type ReleaseEnv = 'development' | 'dev' | 'qa' | 'uat' | 'production' | 'prod';
+
+/**
+ * Short forms of names of commonly-used release environments
+ *     dev | prod | qa | uat
+ * Usually relates to which deployment server the code is currently being run on
+ * Short forms often act as an actual added subdomain e.g. qa.example.com
+ */
 export type ReleaseEnvShort = 'dev' | 'prod' | 'qa' | 'uat';
+
+/**
+ * Current level of logging:
+ *     trace | silly | debug | verbose | info | warn | error | wtf
+ * Lower levels = less logging, higher = more
+ *
+ * Usually 'warn' or 'error' is used in production, 'info' in normal cases in
+ * dev, and the even lower options when intensively debugging
+ *
+ * 'trace' also sometimes has specific meanings in other modules
+ */
 export type LogLevel = 'trace' | 'silly' | 'debug' | 'verbose' | 'info' | 'warn' | 'error' | 'wtf';
 
 /******************************************** HELPERS *********************************************/
