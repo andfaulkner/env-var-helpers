@@ -556,9 +556,9 @@ ecc-jsbn@~0.1.1:
   dependencies:
     jsbn "~0.1.0"
 
-env-var-helpers@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/env-var-helpers/-/env-var-helpers-5.0.1.tgz#e02762d57e7e998051c04fd76a4582c41e6a8bce"
+env-var-helpers@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/env-var-helpers/-/env-var-helpers-5.1.0.tgz#1726bcaad142eb2ca70fc2e08b9ac9326cc97bf4"
 
 error-ex@^1.2.0:
   version "1.3.1"
@@ -577,12 +577,12 @@ es-abstract@^1.4.3:
     is-regex "^1.0.4"
 
 es-to-primitive@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/es-to-primitive/-/es-to-primitive-1.1.1.tgz#45355248a88979034b6792e19bb81f2b7975dd0d"
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/es-to-primitive/-/es-to-primitive-1.2.0.tgz#edf72478033456e8dda8ef09e00ad9650707f377"
   dependencies:
-    is-callable "^1.1.1"
+    is-callable "^1.1.4"
     is-date-object "^1.0.1"
-    is-symbol "^1.0.1"
+    is-symbol "^1.0.2"
 
 escape-string-regexp@1.0.5, escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
@@ -894,6 +894,10 @@ has-flag@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-3.0.0.tgz#b5d454dc2199ae225699f3467e5a07f3b955bafd"
 
+has-symbols@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/has-symbols/-/has-symbols-1.0.0.tgz#ba1a8f1af2a0fc39650f5c850367704122063b44"
+
 has-unicode@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/has-unicode/-/has-unicode-2.0.1.tgz#e0e6fe6a28cf51138855e086d1691e771de2a8b9"
@@ -1019,7 +1023,7 @@ is-builtin-module@^1.0.0:
   dependencies:
     builtin-modules "^1.0.0"
 
-is-callable@^1.1.1, is-callable@^1.1.3:
+is-callable@^1.1.3, is-callable@^1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/is-callable/-/is-callable-1.1.4.tgz#1e1adf219e1eeb684d691f9d6a05ff0d30a24d75"
 
@@ -1158,9 +1162,11 @@ is-stream@^1.0.0, is-stream@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/is-stream/-/is-stream-1.1.0.tgz#12d4a3dd4e68e0b79ceb8dbc84173ae80d91ca44"
 
-is-symbol@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/is-symbol/-/is-symbol-1.0.1.tgz#3cc59f00025194b6ab2e38dbae6689256b660572"
+is-symbol@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/is-symbol/-/is-symbol-1.0.2.tgz#a055f6ae57192caee329e7a860118b497a950f38"
+  dependencies:
+    has-symbols "^1.0.0"
 
 is-typedarray@~1.0.0:
   version "1.0.0"
@@ -1315,13 +1321,13 @@ lru-cache@^4.0.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
-mad-logs@^10.3.6:
-  version "10.3.6"
-  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-10.3.6.tgz#d693ffe053395f4040946731ded4adf8cb768258"
+mad-logs@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-11.0.0.tgz#cc4b00de8bffc54ad217a1ff31db09798371bef1"
   dependencies:
     colors "^1.1.2"
     detect-node "^2.0.3"
-    env-var-helpers "^5.0.1"
+    env-var-helpers "^5.1.0"
     global "^4.3.1"
     string.prototype.padend "^3.0.0"
 
