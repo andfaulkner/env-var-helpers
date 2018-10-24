@@ -22,74 +22,93 @@ env-var-helpers: Environment variable helpers
 *   Isomorphic, and works cross-platform/cross-environment:
     *   Usable with Typescript, Node, Babel, Webpack, & standard browser JS (ES5 and up)
 
+Example:
+```
+import {isDevelopment, isVerbose} from 'env-var-helpers';
+
+if (isDevelopment) {
+    // Initialize mobx-react-devtools
+}
+
+if (isVerbose) {
+    console.log(`Log this only if LOG_LEVEL=verbose`);
+}
+```
+
 ----------------------------------------------------------------------------------------------------
 
 API
 ===
-
 All values are static boolean constants (true | false), unless otherwise specified
 
-isDev / isDevelopment
+isDevelopment / isDev
 ---------------------
 Env var: NODE_ENV (process.env.NODE_ENV)
 
 True if NODE_ENV=dev or NODE_ENV=development
 
 Example:
+```
+import {isDev, isDevelopment} from 'env-var-helpers';
 
-    import {isDev, isDevelopment} from 'env-var-helpers';
+if (isDev) console.log("run if NODE_ENV is 'development'");
+if (isDevelopment) console.log("run if NODE_ENV is 'development'");
+```
 
-    if (isDev) console.log("run if NODE_ENV is 'development'");
-    if (isDevelopment) console.log("run if NODE_ENV is 'development'");
-
-isProd / isProduction (NODE_ENV)
+isProduction / isProd (NODE_ENV)
 --------------------------------
 Env var: NODE_ENV
 
 True if NODE_ENV=prod or NODE_ENV=production
 
 Example:
+```
+import {isProd, isProduction} from 'env-var-helpers';
 
-    import {isProd, isProduction} from 'env-var-helpers';
+if (isProd) console.log("run if NODE_ENV is 'production'");
+if (isProduction) console.log("run if NODE_ENV is 'production'");
+```
 
-    if (isProd) console.log("run if NODE_ENV is 'production'");
-    if (isProduction) console.log("run if NODE_ENV is 'production'");
-
-isTrace, isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWTF/isWtf
---------------------------------------------------------------------------
+isTrace, isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWTF / isWtf
+----------------------------------------------------------------------------
 Env var: LOG_LEVEL
 
 True if LOG_LEVEL is set to the namesake log level or one that is more verbose
 
 Example:
+```
+import {isVerbose, isWTF} from 'env-var-helpers';
 
-    import {isVerbose, isWTF} from 'env-var-helpers';
+if (isVerbose) {
+    console.log('Display this if LOG_LEVEL is "trace", "silly", or "verbose"');
+}
 
-    if (isVerbose) console.log('Display this if LOG_LEVEL is "trace", "silly", or "verbose"');
-    if (isWTF) {
-        console.log("Log if LOG_LEVEL is wtf, error, warn, info, debug, verbose, silly, or trace");
-    }
+if (isWTF) {
+    console.log("Log if LOG_LEVEL is wtf, error, warn, info, debug, verbose, silly, or trace");
+}
+```
 
-isReleaseEnvDev, isReleaseEnvProd, isReleaseEnvQA/isQA, isReleaseEnvUAT/isUAT
------------------------------------------------------------------------------
+isReleaseEnvDev, isReleaseEnvProd, isReleaseEnvQA / isQA, isReleaseEnvUAT / isUAT
+---------------------------------------------------------------------------------
 Env var: RELEASE_ENV
 
 True if RELEASE_ENV is set to the namesake environment type. Defaults to 'dev'.
 
 Example: if we run the following script with `RELEASE_ENV=qa node some-script.js`:
+```
+import {isQA, isReleaseEnvQA} from 'env-var-helpers';
+import {isUAT, isReleaseEnvUAT, isReleaseEnvDev, isReleaseEnvProd} from 'env-var-helpers';
 
-    import {isQA, isReleaseEnvQA} from 'env-var-helpers';
-    import {isUAT, isReleaseEnvUAT, isReleaseEnvDev, isReleaseEnvProd} from 'env-var-helpers';
+// Below both output "Runs if process.env.RELEASE_ENV=qa"
+if (isReleaseEnvQA) console.log('Runs if process.env.RELEASE_ENV=qa');
+if (isQA)           console.log('Runs if process.env.RELEASE_ENV=qa');
 
-    // Below both output "Runs if process.env.RELEASE_ENV=qa"
-    if (isReleaseEnvQA) console.log('Runs if process.env.RELEASE_ENV=qa');
-    if (isQA)           console.log('Runs if process.env.RELEASE_ENV=qa');
-
-    // The following don't run, because the RELEASE_ENV doesn't match
-    if (isReleaseEnvDev)  console.log('Runs if process.env.RELEASE_ENV=dev or development');
-    if (isReleaseEnvProd) console.log('Runs if process.env.RELEASE_ENV=prod or production');
-    if (isReleaseEnvUAT)  console.log('Runs if process.env.RELEASE_ENV=uat');
-    if (isUAT)            console.log('Runs if process.env.RELEASE_ENV=uat');
+// The following don't run, because the RELEASE_ENV doesn't match
+if (isReleaseEnvDev)  console.log('Runs if process.env.RELEASE_ENV=dev or development');
+if (isReleaseEnvProd) console.log('Runs if process.env.RELEASE_ENV=prod or production');
+if (isReleaseEnvUAT)  console.log('Runs if process.env.RELEASE_ENV=uat');
+if (isUAT)            console.log('Runs if process.env.RELEASE_ENV=uat');
+```
 
 releaseEnvShort (RELEASE_ENV)
 -----------------------------
@@ -108,13 +127,13 @@ For use when determing which APIs to make requests to based on current release e
 *   e.g. in "QA", POST to 'qa.example.ca/api/login'; In "dev", POST to 'dev.example.ca/api/login'
 
 Example: run with `RELEASE_ENV=development node some-script.js`:
+```
+import {releaseEnvShort}
 
-    import {releaseEnvShort}
+const loginRequestRoute = `https://www.${releaseEnvShort}.example.com/api/login`;
 
-    const loginRequestRoute = `https://www.${releaseEnvShort}.example.com/api/login`;
-
-    console.log(loginRequestRoute);
-    // => "https://www.dev.example.com/api/login"
+console.log(loginRequestRoute); // => "https://www.dev.example.com/api/login"
+```
 
 isTestMode
 ----------
@@ -174,7 +193,6 @@ Purpose: set to true for turning basic auth off
 Use to make basic auth handling conditional, based on route and/or deployment environment, etc.
 
 ----------------------------------------------------------------------------------------------------
-
 Environment variables handled
 =============================
 NODE_ENV
@@ -258,10 +276,3 @@ Set to true to shut basic auth off on certain routes
 Values:
 *   true
 *   false (DEFAULT)
-
-
-----------------------------------------------------------------------------------------------------
-
-Why?
-====
-*   I hate duplicating functions between projects. These come up again and again.
