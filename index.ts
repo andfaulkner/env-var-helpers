@@ -86,12 +86,21 @@ const IS_LOCAL = hasVal(RAW_IS_LOCAL) ? toBool(RAW_mocha, false) : false;
 const SKIP_BASIC_AUTH = hasVal(RAW_SKIP_BASIC_AUTH) ? toBool(RAW_SKIP_BASIC_AUTH, false) : false;
 
 /**
- * Node environment - either 'development' or 'production'
+ * Node environment (NODE_ENV):
+ *     development | production
+ * Converts short-form to long-form, contains default value if NODE_ENV not set
  */
 export const nodeEnv = (NODE_ENV.replace(/^dev$/, 'development').replace(
     /^prod$/,
     'production'
 ) as NodeEnvFull);
+
+/**
+ * Directly output log level (LOG_LEVEL env var):
+ *     trace | silly | debug | verbose | info | warn | error | wtf
+ * Resolves default value
+ */
+export const logLevel = LOG_LEVEL;
 
 /**
  * Namespace for direct access to environment variables:
