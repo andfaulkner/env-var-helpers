@@ -20,7 +20,7 @@ const RAW_SKIP_BASIC_AUTH = process.env.SKIP_BASIC_AUTH;
 
 /****************************************** TYPE EXPORTS ******************************************/
 /**
- * Accepted node environments:
+ * Accepted node environments (NODE_ENV values), including short forms:
  *     development | dev | production | prod
  *
  * Used by e.g. Express & React to determine whether to activate optimizations
@@ -28,7 +28,15 @@ const RAW_SKIP_BASIC_AUTH = process.env.SKIP_BASIC_AUTH;
 export type NodeEnv = 'development' | 'dev' | 'production' | 'prod';
 
 /**
- * Accepted commonly-used release environments:
+ * Accepted node environments (NODE_ENV values), excluding short forms:
+ *     development | production
+ *
+ * Used by e.g. Express & React to determine whether to activate optimizations
+ */
+export type NodeEnvFull = 'development' | 'production';
+
+/**
+ * Accepted commonly-used release environment names (short- & long-form):
  *     development | dev | qa | uat | production | prod
  *
  * Usually relates to which deployment server the code is currently running on
