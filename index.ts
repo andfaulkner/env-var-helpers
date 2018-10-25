@@ -106,7 +106,7 @@ export const nodeEnv = (NODE_ENV.replace(/^dev$/, 'development').replace(
  *     SKIP_BASIC_AUTH
  */
 export const env = {
-    NODE_ENV,
+    NODE_ENV: nodeEnv,
     LOG_LEVEL,
     IE_COMPAT,
     TEST_MODE,
