@@ -5,6 +5,7 @@
  * Used by e.g. Express to determine whether to activate optimizations
  */
 export declare type NodeEnv = 'development' | 'dev' | 'production' | 'prod';
+export declare type NodeEnvFull = 'development' | 'production';
 /**
  * Accepted commonly-used release environments:
  *     development | dev | qa | uat | production | prod
@@ -30,12 +31,16 @@ export declare type ReleaseEnvShort = 'dev' | 'prod' | 'qa' | 'uat';
  */
 export declare type LogLevel = 'trace' | 'silly' | 'debug' | 'verbose' | 'info' | 'warn' | 'error' | 'wtf';
 /**
+ * Node environment - either 'development' or 'production'
+ */
+export declare const nodeEnv: NodeEnvFull;
+/**
  * Namespace for direct access to environment variables:
  *     NODE_ENV, LOG_LEVEL, IE_COMPAT, TEST_MODE, AVOID_WEB, WAS_RUN_THRU_MOCHA,
  *     RELEASE_ENV, IS_LOCAL
  */
 export declare const env: {
-    NODE_ENV: NodeEnv;
+    NODE_ENV: NodeEnvFull;
     LOG_LEVEL: LogLevel;
     IE_COMPAT: boolean;
     TEST_MODE: boolean;
@@ -113,6 +118,7 @@ export declare const isLocal: boolean;
 /**************************************** SKIP_BASIC_AUTH *****************************************/
 /**
  * If true, SKIP_BASIC_AUTH=true, indicating that basic auth should be shut off
+ *
  * Meant to be used when basic auth is conditionally used by a server, often
  * based on specific routes or deployment environment, or both
  */

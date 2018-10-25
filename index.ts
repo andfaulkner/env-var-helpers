@@ -20,33 +20,39 @@ const RAW_SKIP_BASIC_AUTH = process.env.SKIP_BASIC_AUTH;
 
 /****************************************** TYPE EXPORTS ******************************************/
 /**
- * Accepted node environments: 'development' | 'dev' | 'production' | 'prod'
- * Used by e.g. Express to determine whether to activate optimizations
+ * Accepted node environments:
+ *     development | dev | production | prod
+ *
+ * Used by e.g. Express & React to determine whether to activate optimizations
  */
 export type NodeEnv = 'development' | 'dev' | 'production' | 'prod';
 
 /**
  * Accepted commonly-used release environments:
  *     development | dev | qa | uat | production | prod
- * Usually relates to which deployment server the code is currently being run on
+ *
+ * Usually relates to which deployment server the code is currently running on
  */
 export type ReleaseEnv = 'development' | 'dev' | 'qa' | 'uat' | 'production' | 'prod';
 
 /**
- * Short forms of names of commonly-used release environments
+ * Short forms of names of commonly-used release environments:
  *     dev | prod | qa | uat
- * Usually relates to which deployment server the code is currently being run on
+ *
+ * Usually relates to which deployment server the code is currently running on
+ *
  * Short forms often act as an actual added subdomain e.g. qa.example.com
  */
 export type ReleaseEnvShort = 'dev' | 'prod' | 'qa' | 'uat';
 
 /**
- * Current level of logging:
+ * Current level of log verbosity:
  *     trace | silly | debug | verbose | info | warn | error | wtf
+ *
  * Lower levels = less logging, higher = more
  *
  * Usually 'warn' or 'error' is used in production, 'info' in normal cases in
- * dev, and the even lower options when intensively debugging
+ * development, and even lower options when intensively debugging
  *
  * 'trace' also sometimes has specific meanings in other modules
  */
@@ -73,8 +79,15 @@ const SKIP_BASIC_AUTH = hasVal(RAW_SKIP_BASIC_AUTH) ? toBool(RAW_SKIP_BASIC_AUTH
 
 /**
  * Namespace for direct access to environment variables:
- *     NODE_ENV, LOG_LEVEL, IE_COMPAT, TEST_MODE, AVOID_WEB, WAS_RUN_THRU_MOCHA,
- *     RELEASE_ENV, IS_LOCAL
+ *     NODE_ENV
+ *     LOG_LEVEL
+ *     IE_COMPAT
+ *     TEST_MODE
+ *     AVOID_WEB
+ *     WAS_RUN_THRU_MOCHA
+ *     RELEASE_ENV
+ *     IS_LOCAL
+ *     SKIP_BASIC_AUTH
  */
 export const env = {
     NODE_ENV,
@@ -90,19 +103,19 @@ export const env = {
 
 /******************************************** NODE_ENV ********************************************/
 /**
- * True if current process was run with NODE_ENV=development or NODE_ENV=dev
+ * true if current process was run with NODE_ENV=development or NODE_ENV=dev
  */
 export const isDevelopment = NODE_ENV === `development` || NODE_ENV === `dev`;
 export {isDevelopment as isDev};
 
 /**
- * True if current process was run with NODE_ENV=production or NODE_ENV=prod
+ * true if current process was run with NODE_ENV=production or NODE_ENV=prod
  */
 export const isProduction = NODE_ENV === `production` || NODE_ENV === `prod`;
 export {isProduction as isProd};
 
 /**
- * True if NODE_ENV is production, or TEST_SECURITY or SECURITY_TEST are true
+ * true if NODE_ENV=production, TEST_SECURITY=true, or SECURITY_TEST=true
  */
 export const prodOrSecurityTest =
     isProduction ||
@@ -113,42 +126,42 @@ export {prodOrSecurityTest as isProdOrSecurityTest};
 
 /******************************************* LOG_LEVEL ********************************************/
 /**
- * True if current process was run with LOG_LEVEL=trace
+ * true if current process was run with LOG_LEVEL=trace
  */
 export const isTrace = LOG_LEVEL === `trace`;
 
 /**
- * True if current process was run with LOG_LEVEL=silly
+ * true if current process was run with LOG_LEVEL=silly
  */
 export const isSilly = isTrace || LOG_LEVEL === `silly`;
 
 /**
- * True if current process was run with LOG_LEVEL=verbose
+ * true if current process was run with LOG_LEVEL=verbose
  */
 export const isVerbose = isSilly || LOG_LEVEL === `verbose`;
 
 /**
- * True if current process was run with LOG_LEVEL=debug
+ * true if current process was run with LOG_LEVEL=debug
  */
 export const isDebug = isVerbose || LOG_LEVEL === `debug`;
 
 /**
- * True if current process was run with LOG_LEVEL=info
+ * true if current process was run with LOG_LEVEL=info
  */
 export const isInfo = isDebug || LOG_LEVEL === `info`;
 
 /**
- * True if current process was run with LOG_LEVEL=warn
+ * true if current process was run with LOG_LEVEL=warn
  */
 export const isWarn = isInfo || LOG_LEVEL === `warn`;
 
 /**
- * True if current process was run with LOG_LEVEL=error
+ * true if current process was run with LOG_LEVEL=error
  */
 export const isError = isWarn || LOG_LEVEL === `error`;
 
 /**
- * True if current process was run with LOG_LEVEL=wtf
+ * true if current process was run with LOG_LEVEL=wtf
  */
 export const isWTF = isError || LOG_LEVEL === `wtf`;
 export {isWTF as isWtf};
@@ -167,28 +180,32 @@ export {isAvoidWeb as avoidWeb};
 
 /******************************************** IS_LOCAL ********************************************/
 /**
- * Check for env var implying local/localhost environment
+ * true if IS_LOCAL=true, indicating process is running in localhost environment
+ *
+ * Must be set manually (it doesn't automatically detect local environment)
  */
 export const isLocal = IS_LOCAL;
 
 /**************************************** SKIP_BASIC_AUTH *****************************************/
 /**
- * If true, SKIP_BASIC_AUTH=true, indicating that basic auth should be shut off
+ * true if process run with SKIP_BASIC_AUTH=true, indicating that basic auth
+ * should be shut off
+ *
  * Meant to be used when basic auth is conditionally used by a server, often
- * based on specific routes or deployment environment, or both
+ * based on deployment environment
  */
 export const isSkipBasicAuth = SKIP_BASIC_AUTH;
-export {isSkipBasicAuth as skipBasicAuth}
-export {isSkipBasicAuth as doSkipBasicAuth}
+export {isSkipBasicAuth as skipBasicAuth};
+export {isSkipBasicAuth as doSkipBasicAuth};
 
 /************************** TEST ENVIRONMENT (LOADED_MOCHA_OPTS, Mocha) ***************************/
 /**
- * For cases where TEST_MODE was run explicitly
+ * true if TEST_MODE was set explicitly to true or false (e.g. TEST_MODE=true)
  */
 export const isTestMode = TEST_MODE && toBool(`TEST_MODE`, false);
 
 /**
- * Check if current script was run via Mocha
+ * true if current script was run via Mocha
  */
 export const isMocha = WAS_RUN_THRU_MOCHA;
 export {isMocha as isMochaEnv};
@@ -196,38 +213,41 @@ export {isMocha as runByMocha};
 
 /******************************* RELEASE ENVIRONMENT (RELEASE_ENV) ********************************/
 /**
- * Directly output the value set with RELEASE_ENV=something
- * Should be dev, qa, uat, prod, development, or production
+ * Output value of RELEASE_ENV=something
+ * Should be 'dev', 'qa', 'uat', 'prod', 'development', or 'production'
  */
 export const releaseEnv = RELEASE_ENV;
 export {releaseEnv as releaseEnvironment};
 
 /**
- * Return true if RELEASE_ENV=uat
+ * true if RELEASE_ENV=uat
  */
 export const isReleaseEnvUAT = RELEASE_ENV === `uat`;
 export {isReleaseEnvUAT as isUAT};
 
 /**
- * Return true if RELEASE_ENV=qa
+ * true if RELEASE_ENV=qa
  */
 export const isReleaseEnvQA = RELEASE_ENV === `qa`;
 export {isReleaseEnvQA as isQA};
 
 /**
- * Return true if RELEASE_ENV=dev
+ * true if RELEASE_ENV=dev
  */
 export const isReleaseEnvDev = RELEASE_ENV === `dev` || RELEASE_ENV === `development`;
 export {isReleaseEnvDev as isReleaseEnvDevelopment};
 
 /**
- * Return true if RELEASE_ENV=prod
+ * true if RELEASE_ENV=prod
  */
 export const isReleaseEnvProd = RELEASE_ENV === `prod` || RELEASE_ENV === `production`;
 export {isReleaseEnvProd as isReleaseEnvProduction};
 
 /**
- * 3-4 letter version of release environment name (Default: `dev`)
+ * 3-4 letter version of release environment name
+ * Should be 'dev' | 'qa' | 'uat' | 'prod'
+ *
+ * Default: `dev`
  */
 export const releaseEnvShort: ReleaseEnvShort = (function() {
     return releaseEnv === `uat`
