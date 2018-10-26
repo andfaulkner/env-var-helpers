@@ -1,49 +1,75 @@
-env-var-helpers: Environment variable helpers
-=============================================
-*   Convenience functions to extract commonly used values from process.env without fuss
+env-var-helpers
+===============
+Environment variable helper functions & pre-resolved values
+*   Extracts & resolves (to type) commonly used values from process.env without fuss
 
-*   Helpers to get info from:
-    *   NODE_ENV
-    *   LOG_LEVEL
-    *   RELEASE_ENV
-    *   LOADED_MOCHA_OPTS (defined by default by Mocha)
-    *   TEST_MODE
-    *   AVOID_WEB
-    *   TEST_SECURITY / SECURITY_TEST
-    *   IE_COMPAT
-    *   IS_LOCAL
-    *   SKIP_BASIC_AUTH
+Helpers to get info from:
+*   NODE_ENV
+*   LOG_LEVEL
+*   RELEASE_ENV
+*   LOADED_MOCHA_OPTS (defined by default by Mocha)
+*   TEST_MODE
+*   AVOID_WEB
+*   TEST_SECURITY / SECURITY_TEST
+*   IE_COMPAT
+*   IS_LOCAL
+*   SKIP_BASIC_AUTH
 
-*   Handles true, "true", and "TRUE" identically
+Converts boolean strings to boolean: e.g. true, "true", and "TRUE" all become true
 
-*   Case-insensitive environment variable value detections
-    *   e.g. NODE_ENV=development, NODE_ENV=Development, & NODE_ENV=DEVELOPMENT treated the same
+Case-insensitive environment variable value detections
+*   NODE_ENV=development, Development, & DEVELOPMENT all resolve to 'development'
 
-*   Isomorphic, and works cross-platform/cross-environment:
-    *   Usable with Typescript, Node, Babel, Webpack, & standard browser JS (ES5 and up)
+Isomorphic: usable with Typescript, Node, Babel, Webpack, & browser JS (ES5 and up)
 
-Example:
+Basic examples
+--------------
+Script run with NODE_ENV=prod & LOG_LEVEL is not set:
 ```
-import {isDevelopment, isVerbose} from 'env-var-helpers';
+import {
+    isDevelopment,
+    isQA,
+    isVerbose,
+    nodeEnv,
+    logLevel,
+    isLocal,
+    skipBasicAuth
+} from 'env-var-helpers';
 
 if (isDevelopment) {
-    // Initialize mobx-react-devtools
+    // Initialize mobx-react-devtools if NODE_ENV=dev, development, or not set
+}
+
+if (isQA) {
+    // Inject QA tools if RELEASE_ENV=qa
 }
 
 if (isVerbose) {
     console.log(`Log this only if LOG_LEVEL=verbose`);
 }
+
+if (isLocal) {
+    // Download latest JSON from remote API for local reference if IS_LOCAL=true
+}
+
+if (!skipBasicAuth) {
+    // Activate basic auth if SKIP_BASIC_AUTH=true or NODE_ENV=production
+}
+
+console.log(nodeEnv);  // => 'production'
+console.log(logLevel); // => 'info' (shows default since it's not set)
 ```
 
-----------------------------------------------------------------------------------------------------
 
+----------------------------------------------------------------------------------------------------
 API
 ===
-All values are static boolean constants (true | false), unless otherwise specified
+All values are static boolean constants (true | false), unless otherwise specified.
 
-isDevelopment / isDev
----------------------
+isDevelopment, isDev
+--------------------
 Env var: NODE_ENV (process.env.NODE_ENV)
+Default: true
 
 True if NODE_ENV=dev or NODE_ENV=development
 
@@ -55,9 +81,10 @@ if (isDev) console.log("run if NODE_ENV is 'development'");
 if (isDevelopment) console.log("run if NODE_ENV is 'development'");
 ```
 
-isProduction / isProd (NODE_ENV)
---------------------------------
+isProduction, isProd (NODE_ENV)
+-------------------------------
 Env var: NODE_ENV
+Default: false
 
 True if NODE_ENV=prod or NODE_ENV=production
 
@@ -72,6 +99,7 @@ if (isProduction) console.log("run if NODE_ENV is 'production'");
 isTrace, isSilly, isVerbose, isDebug, isInfo, isWarn, isError, isWTF / isWtf
 ----------------------------------------------------------------------------
 Env var: LOG_LEVEL
+Default: true for isInfo & up, false for isDebug & below
 
 True if LOG_LEVEL is set to the namesake log level or one that is more verbose
 
@@ -91,8 +119,10 @@ if (isWTF) {
 isReleaseEnvDev, isReleaseEnvProd, isReleaseEnvQA / isQA, isReleaseEnvUAT / isUAT
 ---------------------------------------------------------------------------------
 Env var: RELEASE_ENV
+Type:    string
+Default: true for isReleaseEnvDev, false for all others
 
-True if RELEASE_ENV is set to the namesake environment type. Defaults to 'dev'.
+True if RELEASE_ENV is set to the namesake environment type.
 
 Example: if we run the following script with `RELEASE_ENV=qa node some-script.js`:
 ```
@@ -113,7 +143,8 @@ if (isUAT)            console.log('Runs if process.env.RELEASE_ENV=uat');
 releaseEnvShort (RELEASE_ENV)
 -----------------------------
 Env var: RELEASE_ENV
-Type: string
+Type:    string
+Default: 'dev', or short-form of NODE_ENV value if set
 
 Current release environment value, in 2-4 letter form.
 
@@ -126,25 +157,28 @@ Mapping:
 For use when determing which APIs to make requests to based on current release environment
 *   e.g. in "QA", POST to 'qa.example.ca/api/login'; In "dev", POST to 'dev.example.ca/api/login'
 
-Example: run with `RELEASE_ENV=development node some-script.js`:
+#### Example
+Run with `RELEASE_ENV=qa node some-script.js`:
 ```
 import {releaseEnvShort}
 
 const loginRequestRoute = `https://www.${releaseEnvShort}.example.com/api/login`;
 
-console.log(loginRequestRoute); // => "https://www.dev.example.com/api/login"
+console.log(loginRequestRoute); // => "https://www.qa.example.com/api/login"
 ```
 
 isTestMode
 ----------
 Env var: TEST_MODE
+Default: false
 
-Is true if process.env.TEST_MODE is set to true.
+Is true if process.env.TEST_MODE is set to true (`TEST_MODE=true`)
 *   e.g. script was run with: `TEST_MODE=true node some-script.js`
 
 isIeCompat / isIECompat
 -----------------------
 Env var: IE_COMPAT
+Default: false
 
 Is true if process.env.IE_COMPAT is set to true.
 *   e.g. script was run with: `IE_COMPAT=true node some-script.js`
@@ -152,8 +186,9 @@ Is true if process.env.IE_COMPAT is set to true.
 isProdOrSecurityTest / prodOrSecurityTest
 -----------------------------------------
 Env vars: TEST_SECURITY & SECURITY_TEST
+Default: false
 
-Is true if NODE_ENV is production, TEST_SECURITY is true, or SECURITY_TEST is true
+Is true if NODE_ENV=production, TEST_SECURITY=true, or SECURITY_TEST=true
 e.g. script was run with either:
     *   `SECURITY_TEST=true node some-script.js`
     *   `NODE_ENV=production node some-script.js`
@@ -161,8 +196,9 @@ e.g. script was run with either:
 isAvoidWeb, avoidWeb
 --------------------
 Env var: AVOID_WEB
+Default: false
 
-Is true if AVOID_WEB is true
+Is true if AVOID_WEB=true.
 
 Purpose: environment variable requesting total avoidance of internet usage in a build.
 *   e.g. no CDNs (usage of local bundles instead)
@@ -172,25 +208,46 @@ isMocha, isMochaEnv, runByMocha
 Env vars: LOADED_MOCHA_OPTS & mocha
 
 Is true if process.env.mocha or process.env.LOADED_MOCHA_OPTS is 'true'.
-Should always be true if the current script was run through Mocha, and never true otherwise
-*   Mocha sets this value automatically when it is launched
+
+Should always be true if Mocha ran the current script, and never true otherwise.
+*   Mocha sets this value automatically when it is launched.
 
 isLocal
 -------
 Env var: IS_LOCAL
+Default: false
 
-Is true if IS_LOCAL is true (defaults to false)
+Is true if IS_LOCAL is true.
 
-Purpose: set to true if running in local environment (i.e. on localhost)
+Purpose: set to true if running in local environment (i.e. on localhost).
 
 skipBasicAuth, isSkipBasicAuth, doSkipBasicAuth
 -----------------------------------------------
 Env var: SKIP_BASIC_AUTH
+Default: false
 
-Is true if SKIP_BASIC_AUTH environment variable is true (defaults to false)
+Is true if SKIP_BASIC_AUTH environment variable is true.
 
-Purpose: set to true for turning basic auth off
+Purpose: set to true for turning basic auth off.
 Use to make basic auth handling conditional, based on route and/or deployment environment, etc.
+
+nodeEnv
+-------
+Env var:  NODE_ENV
+Type:     string
+Default: 'development'
+
+Directly returns the NODE_ENV value.
+Automatically resolves it long-form e.g. 'dev' becomes 'development'.
+
+logLevel
+--------
+Env var:  LOG_LEVEL
+Type:     string
+Default: 'info'
+
+Directly returns the LOG_LEVEL value.
+
 
 ----------------------------------------------------------------------------------------------------
 Environment variables handled
