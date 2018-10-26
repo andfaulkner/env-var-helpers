@@ -275,10 +275,10 @@ export const isReleaseEnvProd = RELEASE_ENV === `prod` || RELEASE_ENV === `produ
 export {isReleaseEnvProd as isReleaseEnvProduction};
 
 /**
- * 3-4 letter version of release environment name
- * Should be 'dev' | 'qa' | 'uat' | 'prod'
+ * 3-4 letter version of release environment name (RELEASE_ENV):
+ *     dev | qa | uat | prod
  *
- * Default: `dev`
+ * Default: 'dev'
  */
 export const releaseEnvShort: ReleaseEnvShort = (function() {
     return releaseEnv === `uat`
