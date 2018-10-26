@@ -74,10 +74,20 @@ export type LogLevel = 'trace' | 'silly' | 'debug' | 'verbose' | 'info' | 'warn'
 /******************************************** HELPERS *********************************************/
 const hasVal = (val: Any) => typeof val !== `undefined` && val !== null && val !== ``;
 
-const toBool = (val: Any, def: boolean) => {
-    // If value not set, use default
-    if (!hasVal) return hasVal(def) ? false : def;
-    return val === `false` || val === `f` ? false : val === `true` || val === `t` ? true : val;
+const strToBool = (rawVal: string): boolean => {
+    const val = rawVal.toLowerCase();
+    return val === `false` || val === `f` ? false : val === `true` || val === `t`;
+};
+
+const toBool = (rawVal: string | boolean | null, def: boolean) => {
+    // If value not set, return false, or default if given
+    if (!hasVal(rawVal)) return hasVal(def) ? def : false;
+
+    // If val is a string, convert from boolean string (e.g. "true") to boolean
+    if (typeof rawVal === `string`) return strToBool(rawVal);
+
+    // If val is boolean, return it as-is
+    return rawVal;
 };
 
 /********************************* GET & PROCESS ENVIRONMENT VALS *********************************/
