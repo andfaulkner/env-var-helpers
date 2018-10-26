@@ -1,5 +1,10 @@
 declare const process: any;
 
+/**
+ * Explicit any (for places that truly take any type - i.e. not a placeholder)
+ */
+type Any = any;
+
 /**************************************************************************************************/
 // WARNING: DO NOT TOUCH THIS BLOCK! It's required in this exact form to work with Webpack
 // Without each var explicitly defined with in "process.env.VARIABLE_NAME" format,
@@ -67,15 +72,13 @@ export type ReleaseEnvShort = 'dev' | 'prod' | 'qa' | 'uat';
 export type LogLevel = 'trace' | 'silly' | 'debug' | 'verbose' | 'info' | 'warn' | 'error' | 'wtf';
 
 /******************************************** HELPERS *********************************************/
-const hasVal = val => typeof val !== `undefined` && val !== null && val !== ``;
+const hasVal = (val: Any) => typeof val !== `undefined` && val !== null && val !== ``;
 
-const toBool = (val, def: boolean) => {
+const toBool = (val: Any, def: boolean) => {
     // If value not set, use default
     if (!hasVal) return hasVal(def) ? false : def;
     return val === `false` || val === `f` ? false : val === `true` || val === `t` ? true : val;
 };
-
-// const toBoolIfPres =
 
 /********************************* GET & PROCESS ENVIRONMENT VALS *********************************/
 const NODE_ENV: NodeEnv = hasVal(RAW_NODE_ENV) ? RAW_NODE_ENV.toLowerCase() : `development`;
