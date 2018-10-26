@@ -1,7 +1,5 @@
 #!/usr/bin/env sh
 
-./node_modules/.bin/mocha ./test/default-env.test.js
-
 NODE_ENV=development ./node_modules/.bin/mocha ./test/NODE_ENV_development.test.js
 NODE_ENV=production ./node_modules/.bin/mocha ./test/NODE_ENV_production.test.js
 
@@ -20,3 +18,5 @@ RELEASE_ENV=development ./node_modules/.bin/mocha ./test/RELEASE_ENV_development
 RELEASE_ENV=uat ./node_modules/.bin/mocha ./test/RELEASE_ENV_uat.test.js
 RELEASE_ENV=qa ./node_modules/.bin/mocha ./test/RELEASE_ENV_qa.test.js
 RELEASE_ENV=production ./node_modules/.bin/mocha ./test/RELEASE_ENV_production.test.js
+
+./node_modules/.bin/mocha ./test/default-env.test.js
