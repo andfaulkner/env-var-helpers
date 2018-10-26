@@ -1,3 +1,24 @@
+5.2.0
+=====
+Export directly resolved values of string variables:
+*   `nodeEnv` (for NODE_ENV)
+*   `logLevel` (for LOG_LEVEL)
+
+Improve boolean environment variable resolution:
+*   Handling of 'f' & 't' values
+    *   e.g. for `IS_LOCAL=t`, `isLocal` resolves to true
+*   Fixed edge cases where detection was not case-insensitive
+
+`env` namespace consistently contains resolved values
+*   Previously, some properties held the raw values
+
+Fix edge cases for string matching
+
+Major revamp of README
+
+Upgrade mad-logs & prettier
+
+
 5.1.0
 =====
 Remove package lock (package-lock.json)
