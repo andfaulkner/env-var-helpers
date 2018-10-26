@@ -67,12 +67,15 @@ export type ReleaseEnvShort = 'dev' | 'prod' | 'qa' | 'uat';
 export type LogLevel = 'trace' | 'silly' | 'debug' | 'verbose' | 'info' | 'warn' | 'error' | 'wtf';
 
 /******************************************** HELPERS *********************************************/
-const toBool = function toBool(val, def): boolean {
-    return val === `true` || val === true ? true : val === `false` || val === false ? false : def;
+const hasVal = val => typeof val !== `undefined` && val !== null && val !== ``;
+
+const toBool = (val, def: boolean) => {
+    // If value not set, use default
+    if (!hasVal) return hasVal(def) ? false : def;
+    return val === `false` || val === `f` ? false : val === `true` || val === `t` ? true : val;
 };
-const hasVal = function hasVal(val): boolean {
-    return typeof val !== `undefined` && val !== null && val !== ``;
-};
+
+// const toBoolIfPres =
 
 /********************************* GET & PROCESS ENVIRONMENT VALS *********************************/
 const NODE_ENV: NodeEnv = hasVal(RAW_NODE_ENV) ? RAW_NODE_ENV.toLowerCase() : `development`;
@@ -90,10 +93,10 @@ const SKIP_BASIC_AUTH = hasVal(RAW_SKIP_BASIC_AUTH) ? toBool(RAW_SKIP_BASIC_AUTH
  *     development | production
  * Converts short-form to long-form, contains default value if NODE_ENV not set
  */
-export const nodeEnv = (NODE_ENV.replace(/^dev$/, 'development').replace(
+export const nodeEnv = NODE_ENV.replace(/^dev$/, 'development').replace(
     /^prod$/,
     'production'
-) as NodeEnvFull);
+) as NodeEnvFull;
 
 /**
  * Directly output log level (LOG_LEVEL env var):
@@ -116,7 +119,7 @@ export const logLevel = LOG_LEVEL;
  */
 export const env = {
     NODE_ENV: nodeEnv,
-    LOG_LEVEL,
+    LOG_LEVEL: logLevel,
     IE_COMPAT,
     TEST_MODE,
     AVOID_WEB,
@@ -130,13 +133,13 @@ export const env = {
 /**
  * true if current process was run with NODE_ENV=development or NODE_ENV=dev
  */
-export const isDevelopment = NODE_ENV === `development` || NODE_ENV === `dev`;
+export const isDevelopment = nodeEnv === `development`;
 export {isDevelopment as isDev};
 
 /**
  * true if current process was run with NODE_ENV=production or NODE_ENV=prod
  */
-export const isProduction = NODE_ENV === `production` || NODE_ENV === `prod`;
+export const isProduction = nodeEnv === `production`;
 export {isProduction as isProd};
 
 /**
