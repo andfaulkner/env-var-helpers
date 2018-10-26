@@ -36,6 +36,9 @@ const {isReleaseEnvUAT, isUAT, isReleaseEnvQA, isQA} = envVarHelpers;
 // IS_LOCAL exports
 const {isLocal} = envVarHelpers;
 
+// Resolved string values for environment variables
+const {nodeEnv, logLevel} = envVarHelpers;
+
 // Directly log the environment variables in verbose or silly mode.
 const {LOG_LEVEL} = process.env;
 if (LOG_LEVEL && (LOG_LEVEL === 'verbose' || LOG_LEVEL === 'silly')) {
@@ -213,6 +216,18 @@ describe('isLocal test :: ', function() {
     valsExistAndAreFalse([{name: 'isLocal', value: isLocal}], null, {isLocal});
 });
 
+/*--------------- nodeEnv ---------------*/
+describe('nodeEnv', function() {
+    propExists(nodeEnv);
+    propHasExpectedVal('development', nodeEnv, '(since NODE_ENV defaults to "development")');
+});
+
+/*--------------- logLevel ---------------*/
+describe('logLevel', function() {
+    propExists(logLevel);
+    propHasExpectedVal('info', logLevel, '(since LOG_LEVEL defaults to "info")');
+});
+
 /******************************************** HELPERS *********************************************/
 function propExists(prop) {
     it('exists and gets exported', function() {
@@ -220,9 +235,9 @@ function propExists(prop) {
     });
 }
 
-function propHasExpectedVal(val, prop, msg) {
-    it(`is set to ${val} ${msg ? ' ' + msg : ''}`, function() {
-        expect(prop).to.eql(val);
+function propHasExpectedVal(expectedVal, envVar, msg) {
+    it(`is set to ${expectedVal} ${msg ? ' ' + msg : ''}`, function() {
+        expect(envVar).to.eql(expectedVal);
     });
 }
 
