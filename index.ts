@@ -91,15 +91,28 @@ const toBool = (rawVal: string | boolean | null, def: boolean) => {
 };
 
 /********************************* GET & PROCESS ENVIRONMENT VALS *********************************/
-const NODE_ENV: NodeEnv = hasVal(RAW_NODE_ENV) ? RAW_NODE_ENV.toLowerCase() : `development`;
-const RELEASE_ENV: ReleaseEnv = hasVal(RAW_RELEASE_ENV) ? RAW_RELEASE_ENV.toLowerCase() : NODE_ENV;
-const LOG_LEVEL: LogLevel = hasVal(RAW_LOG_LEVEL) ? RAW_LOG_LEVEL.toLowerCase() : `info`;
-const TEST_MODE = hasVal(RAW_TEST_MODE) ? toBool(RAW_TEST_MODE, false) : false;
-const IE_COMPAT = hasVal(RAW_IE_COMPAT) ? toBool(RAW_IE_COMPAT, false) : false;
-const AVOID_WEB = hasVal(RAW_AVOID_WEB) ? toBool(RAW_AVOID_WEB, false) : false;
+let NODE_ENV: NodeEnv;
+let RELEASE_ENV: ReleaseEnv;
+let LOG_LEVEL: LogLevel;
+let TEST_MODE: boolean;
+let IE_COMPAT: boolean;
+let AVOID_WEB: boolean;
+let IS_LOCAL: boolean;
+let SKIP_BASIC_AUTH: boolean;
+
+// prettier-ignore
+{
+NODE_ENV        = hasVal(RAW_NODE_ENV)        ? RAW_NODE_ENV.toLowerCase()         : `development`;
+RELEASE_ENV     = hasVal(RAW_RELEASE_ENV)     ? RAW_RELEASE_ENV.toLowerCase()      : NODE_ENV;
+LOG_LEVEL       = hasVal(RAW_LOG_LEVEL)       ? RAW_LOG_LEVEL.toLowerCase()        : `info`;
+TEST_MODE       = hasVal(RAW_TEST_MODE)       ? toBool(RAW_TEST_MODE, false)       : false;
+IE_COMPAT       = hasVal(RAW_IE_COMPAT)       ? toBool(RAW_IE_COMPAT, false)       : false;
+AVOID_WEB       = hasVal(RAW_AVOID_WEB)       ? toBool(RAW_AVOID_WEB, false)       : false;
+IS_LOCAL        = hasVal(RAW_IS_LOCAL)        ? toBool(RAW_mocha, false)           : false;
+SKIP_BASIC_AUTH = hasVal(RAW_SKIP_BASIC_AUTH) ? toBool(RAW_SKIP_BASIC_AUTH, false) : false;
+}
+
 const WAS_RUN_THRU_MOCHA = hasVal(RAW_LOADED_MOCHA_OPTS) || (RAW_mocha && toBool(RAW_mocha, false));
-const IS_LOCAL = hasVal(RAW_IS_LOCAL) ? toBool(RAW_mocha, false) : false;
-const SKIP_BASIC_AUTH = hasVal(RAW_SKIP_BASIC_AUTH) ? toBool(RAW_SKIP_BASIC_AUTH, false) : false;
 
 /**
  * Node environment (NODE_ENV):
@@ -125,10 +138,10 @@ export const logLevel = LOG_LEVEL;
  *     IE_COMPAT
  *     TEST_MODE
  *     AVOID_WEB
- *     WAS_RUN_THRU_MOCHA
  *     RELEASE_ENV
  *     IS_LOCAL
  *     SKIP_BASIC_AUTH
+ *     WAS_RUN_THRU_MOCHA
  */
 export const env = {
     NODE_ENV: nodeEnv,
@@ -136,10 +149,10 @@ export const env = {
     IE_COMPAT,
     TEST_MODE,
     AVOID_WEB,
-    WAS_RUN_THRU_MOCHA,
     RELEASE_ENV,
     IS_LOCAL,
     SKIP_BASIC_AUTH,
+    WAS_RUN_THRU_MOCHA,
 };
 
 /******************************************** NODE_ENV ********************************************/
