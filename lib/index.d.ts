@@ -201,3 +201,16 @@ export { isReleaseEnvProd as isReleaseEnvProduction };
  */
 export declare const releaseEnvShort: ReleaseEnvShort;
 export { releaseEnvShort as releaseEnvAbbrev };
+/**
+ * true if in development mode, but not on either QA, UAT, or prod release
+ * environment
+ *
+ * i.e. true if NODE_ENV=dev and RELEASE_ENV isn't qa, uat, or prod
+ *
+ * Reason: sometimes we want to do things in development and treat QA and/or
+ * UAT as a development environment, but explicitly not do an action in a
+ * release environment (mainly QA or UAT)
+ */
+export declare const isDevNonReleaseEnv: boolean;
+export { isDevNonReleaseEnv as isDevNotQaUat };
+export { isDevNonReleaseEnv as isDevNotQaUatProd };
