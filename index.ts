@@ -310,11 +310,14 @@ export const releaseEnvShort: ReleaseEnvShort = (function() {
 export {releaseEnvShort as releaseEnvAbbrev};
 
 /**
- * true if in development mode, but not on either QA or UAT release environment
+ * true if in development mode, but not on either QA, UAT, or prod release
+ * environment
  *
- * i.e. true if either:
- *   1) RELEASE_ENV=dev; or
- *   2) NODE_ENV=dev and RELEASE_ENV isn't qa or uat
+ * i.e. true if NODE_ENV=dev and RELEASE_ENV isn't qa, uat, or prod
+ *
+ * Reason: sometimes we want to do things in development and treat QA and/or
+ * UAT as a development environment, but explicitly not do an action in a
+ * release environment (mainly QA or UAT)
  */
-export const isDevNotQaUat =
-    isReleaseEnvDev || (isDevelopment && !isReleaseEnvQA && !isReleaseEnvUAT);
+export const isDevNonReleaseEnv =
+    isDevelopment && !isReleaseEnvQA && !isReleaseEnvUAT && !isReleaseEnvProd;
