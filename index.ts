@@ -304,7 +304,7 @@ export {isReleaseEnvProd as isReleaseEnvProduction};
  * Default: 'dev'
  */
 export const releaseEnvShort: ReleaseEnvShort = (function() {
-    return isReleaseEnvQA ? `uat` : isReleaseEnvProd ? `prod` : isReleaseEnvQA ? `qa` : `dev`;
+    return isReleaseEnvProd ? `prod` : isReleaseEnvUAT ? `uat` : isReleaseEnvQA ? `qa` : `dev`;
 })();
 
 export {releaseEnvShort as releaseEnvAbbrev};
