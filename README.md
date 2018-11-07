@@ -167,6 +167,14 @@ const loginRequestRoute = `https://www.${releaseEnvShort}.example.com/api/login`
 console.log(loginRequestRoute); // => "https://www.qa.example.com/api/login"
 ```
 
+isDevNonReleaseEnv
+------------------
+True if NODE_ENV=dev or development, and RELEASE_ENV isn't qa, uat, or prod
+
+Purpose (example): sometimes we want a release environment to run code in development mode,
+but to still explicitly exclude certain development code actions (such as setting certain default values)
+
+
 isTestMode
 ----------
 Env var: TEST_MODE
