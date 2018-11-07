@@ -16,7 +16,7 @@ const {stderr, stdout} = require('test-console');
 
 /*********************************** IMPORT FILES TO BE TESTED ************************************/
 const envVarHelpers = require('../lib/index');
-const {isDev, isProd, prodOrSecurityTest} = envVarHelpers;
+const {isDev, isProd, prodOrSecurityTest, isDevNonReleaseEnv} = envVarHelpers;
 
 /********************************************* TESTS **********************************************/
 describe('NODE_ENV=development', function() {
@@ -35,6 +35,12 @@ describe('NODE_ENV=development', function() {
     describe('prodOrSecurityTest', function() {
         it('is false if NODE_ENV equals development and SECURTY_TEST not set', function() {
             expect(prodOrSecurityTest).to.be.false;
+        });
+    });
+
+    describe(`isDevNonReleaseEnv`, function() {
+        it(`is true when NODE_ENV=development & RELEASE_ENV is not set`, function() {
+            expect(isDevNonReleaseEnv).to.eql(true);
         });
     });
 });

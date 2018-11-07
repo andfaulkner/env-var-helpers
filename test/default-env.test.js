@@ -31,7 +31,7 @@ const {isMochaEnv, runByMocha, isMocha} = envVarHelpers;
 const {releaseEnv, releaseEnvironment, releaseEnvShort, releaseEnvAbbrev} = envVarHelpers;
 
 // UAT & QA release environment helpers
-const {isReleaseEnvUAT, isUAT, isReleaseEnvQA, isQA} = envVarHelpers;
+const {isReleaseEnvUAT, isUAT, isReleaseEnvQA, isQA, isDevNonReleaseEnv} = envVarHelpers;
 
 // IS_LOCAL exports
 const {isLocal} = envVarHelpers;
@@ -198,6 +198,11 @@ describe('releaseEnv tests :: ', function() {
         it(`releaseEnvShort has alias releaseEnvAbbrev`, function() {
             expect(releaseEnvAbbrev).to.eql('dev');
             expect(releaseEnvAbbrev).to.eql(releaseEnvShort);
+        });
+    });
+    describe(`isDevNonReleaseEnv`, function() {
+        it(`defaults to true (because NODE_ENV defaults to 'dev' & RELEASE_ENV defaults to NODE_ENV)`, function() {
+            expect(isDevNonReleaseEnv).to.eql(true);
         });
     });
 });

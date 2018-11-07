@@ -15,7 +15,16 @@ const {stderr, stdout} = require('test-console');
 
 /*********************************** IMPORT FILES TO BE TESTED ************************************/
 const envVarHelpers = require('../lib/index');
-const {isQA, isUAT, isReleaseEnvDev, isReleaseEnvProd, releaseEnvShort, releaseEnv} = envVarHelpers;
+
+const {
+    isQA,
+    isUAT,
+    isReleaseEnvDev,
+    isReleaseEnvProd,
+    releaseEnvShort,
+    releaseEnv,
+    isDevNonReleaseEnv
+} = envVarHelpers;
 
 /********************************************* TESTS **********************************************/
 describe(`RELEASE_ENV=uat`, function() {
@@ -47,6 +56,11 @@ describe(`RELEASE_ENV=uat`, function() {
     describe(`releaseEnv`, function() {
         it(`is 'uat' when RELEASE_ENV=uat`, function() {
             expect(releaseEnv).to.eql(`uat`);
+        });
+    });
+    describe(`isDevNonReleaseEnv`, function() {
+        it(`is always false when RELEASE_ENV=uat`, function() {
+            expect(isDevNonReleaseEnv).to.eql(false);
         });
     });
 });
