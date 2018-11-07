@@ -321,3 +321,6 @@ export {releaseEnvShort as releaseEnvAbbrev};
  */
 export const isDevNonReleaseEnv =
     isDevelopment && !isReleaseEnvQA && !isReleaseEnvUAT && !isReleaseEnvProd;
+
+export {isDevNonReleaseEnv as isDevNotQaUat}
+export {isDevNonReleaseEnv as isDevNotQaUatProd}
