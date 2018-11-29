@@ -10,7 +10,7 @@
 declare const process: any;
 
 import { env, isVerbose, isDev, isProd, isDebug, isSilly } from '../index';
-import * as h from '../index';
+import h from '../index';
 
 const lcNodeEnv =
   process.env.NODE_ENV ? process.env.NODE_ENV.toString().toLowerCase() : false;
